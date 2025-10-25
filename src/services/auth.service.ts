@@ -1,0 +1,222 @@
+import makeRequest from "@/config/api";
+import useAuthStore from "@/store/useAuthStore";
+import { TLoginSchema, TRegister } from "@/types/auth";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
+
+export const useLogin = () => {
+  const { handleLogin } = useAuthStore();
+  const router = useRouter();
+
+  return useMutation({
+    mutationKey: ["login-user"],
+    mutationFn: async (data: TLoginSchema) => {
+      const response = await makeRequest({
+        method: "POST",
+        url: "Account/login",
+        data,
+      });
+      return response?.data;
+    },
+    onSuccess: (response) => {
+      handleLogin(response?.data);
+      toast.success("Login successful!");
+
+      const role = response?.data?.role;
+
+      if (role === "SuperAdmin" || role === "Admin") router.push("/admin");
+      if (role === "Tutor") router.push("/tutor");
+      if (role === "Student") router.push("/student");
+    },
+    onError: (error: any) => {
+      toast.error(
+        error?.response.data?.error?.description ?? "An error occured"
+      );
+    },
+  });
+};
+
+export const useGetMe = () => {
+  return useQuery({
+    queryKey: ["profile"],
+    queryFn: () =>
+      makeRequest({
+        url: "User/profile",
+        requireToken: true,
+      }),
+    retry: 1,
+    select: (response) => response?.data,
+  });
+};
+
+export const useGetTutorMe = () => {
+  return useQuery({
+    queryKey: ["tutor-profile"],
+    queryFn: () =>
+      makeRequest({
+        url: "Tutor/logged-in-tutor",
+        requireToken: true,
+      }),
+    retry: 1,
+    select: (response) => response?.data,
+  });
+};
+
+export const useRegister = (role: string) => {
+  const { handleLogin } = useAuthStore();
+  const router = useRouter();
+
+  return useMutation({
+    mutationKey: ["complete-registration", { role }],
+    mutationFn: async (data: TRegister) => {
+      const response = await makeRequest({
+        method: "POST",
+        url:
+          role === "Tutor"
+            ? "TutorAccount/complete-registration"
+            : "Account/completeRegistration",
+        data,
+      });
+      return response?.data;
+    },
+    onSuccess: (response) => {
+      handleLogin(response?.data);
+      toast.success("Registration completed successfully!");
+
+      if (role === "SuperAdmin" || role === "Admin") router.push("/admin");
+      if (role === "Tutor") router.push("/tutor");
+      if (role === "Student") router.push("/student");
+    },
+    onError: (error: any) => {
+      toast.error(
+        error?.response.data?.error?.description ?? "An error occured"
+      );
+    },
+  });
+};
+
+export const useStudentRegister = () => {
+  const { handleLogin } = useAuthStore();
+  const router = useRouter();
+
+  return useMutation({
+    mutationKey: ["complete-student-registration"],
+    mutationFn: async (data: {
+      registrationCode: string;
+      password: string;
+    }) => {
+      const response = await makeRequest({
+        method: "POST",
+        url: "StudentAccount/complete-student-registration",
+        data,
+      });
+      return response?.data;
+    },
+    onSuccess: (response) => {
+      handleLogin(response?.data);
+      toast.success("Registration completed successfully!");
+      router.push("/student");
+    },
+    onError: (error: any) => {
+      toast.error(
+        error?.response.data?.error?.description ?? "An error occured"
+      );
+    },
+  });
+};
+
+
+export const useUpdateProfile = (id?:string) => {
+  return useMutation({
+    mutationKey: ["update-profile"],
+    mutationFn: async (data: any) => {
+      const response = await makeRequest({
+        url: `Account/update?id=${id}`,
+        method: "PUT",
+        data,
+        requireToken: true,
+      });
+
+      return response;
+    },
+  });
+};
+
+export const useChangePassword = () => {
+  return useMutation({
+    mutationKey: ["change-password"],
+    mutationFn: async (data: any) => {
+      const response = await makeRequest({
+        url: `Account/changePassword`,
+        method: "POST",
+        data,
+        requireToken: true,
+      });
+
+      return response;
+    },
+  });
+};
+
+
+export const useForgotPassword = () => {
+  return useMutation({
+    mutationKey: ["forgot-Password"],
+    mutationFn: async (data: any) => {
+      const response = await makeRequest({
+        url: `Account/resetPassword`,
+        method: "POST",
+        data,
+        requireToken: true,
+      });
+
+      return response;
+    },
+  });
+};
+
+export const useCompletePassword = () => {
+  return useMutation({
+    mutationKey: ["complete-Password"],
+    mutationFn: async (data: any) => {
+      const response = await makeRequest({
+        url: `Account/completResetPassword`,
+        method: "POST",
+        data,
+        requireToken: true,
+      });
+
+      return response;
+    },
+  });
+};
+
+
+
+export const useSchoorlashipRegister = () => {
+  const { handleLogin } = useAuthStore();
+  const router = useRouter();
+
+  return useMutation({
+    mutationKey: ["schoolarship-complete-registration"],
+    mutationFn: async (data: any) => {
+      const response = await makeRequest({
+        method: "POST",
+        url:"Scholarship/complete-registration",
+        data,
+      });
+      return response?.data;
+    },
+    onSuccess: (response) => {
+      handleLogin(response?.data);
+      toast.success("Registration completed successfully!");
+      router.push("/student");
+    },
+    onError: (error: any) => {
+      toast.error(
+        error?.response.data?.error?.description ?? "An error occured"
+      );
+    },
+  });
+};

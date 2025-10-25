@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: Manrope;
+  src: url("../../public/fonts/manrope.ttf");
+}
+
+@theme {
+  /* Black */
+  --color-black-100: #171313;
+
+  /* Blue */
+  --color-blue-100: #121363;
+
+  /* Grey */
+  --color-grey-100: #d0d0d0;
+  --color-grey-200: #d0d5dd;
+  --color-grey-300: #98a2b3;
+
+  /* Yellow */
+  --color-yellow-100: #f2a900;
+}
+
+body {
+  @apply bg-[#EDEDED];
+  font-family: Manrope, "Segeo UI";
+}
+
+/* No scrollbar */
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+/* Reusable */
+.container {
+  @apply bg-white rounded-2xl;
+}
+
+.header {
+  @apply font-[700] text-[#9292DA] leading-[20px] tracking-[0.06em] uppercase;
+}
