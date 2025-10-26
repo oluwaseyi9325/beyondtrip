@@ -10,7 +10,7 @@ import useAuthStore from "@/store/useAuthStore";
 import { useUpdateProfile } from "@/services/auth.service";
 import { useGetadvertisersProfile } from "@/services/advertiser.service";
 import { FiEdit2, FiX } from "react-icons/fi";
-
+import Image from "next/image";
 interface TUploadModal {
   open: boolean;
   handleClose: () => void;
@@ -133,7 +133,7 @@ const EditProfile = ({ open, handleClose, }: TUploadModal) => {
           <div className="relative">
             <div className="w-24 h-24 rounded-full bg-gray-100 flex items-center justify-center overflow-hidden">
               {preview ? (
-                <img
+                <Image
                   src={preview}
                   alt="Profile"
                   className="w-full h-full object-cover"
