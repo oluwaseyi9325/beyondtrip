@@ -5,9 +5,10 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 
 type props = {
   h?: string;
+  graphSize?: string
 }
 
-export const EarningsGraph = ({ h = "h-56" }: props) => {
+export const EarningsGraph = ({ h = "h-56", graphSize="h-64" }: props) => {
   const [viewType, setViewType] = useState("Month");
   const [year, setYear] = useState("Year");
 
@@ -66,7 +67,7 @@ export const EarningsGraph = ({ h = "h-56" }: props) => {
         </div>
       </div>
 
-      <div className="h-64">
+      <div className={`${graphSize}`}>
         <ResponsiveContainer width="100%" height="100%">
           <LineChart data={chartData}>
             <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />

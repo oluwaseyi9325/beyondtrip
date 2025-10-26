@@ -38,7 +38,7 @@ const Dashboard = () => {
             <UpcomingPayout />
           </div>
           <div className="lg:col-span-2">
-            <EarningsGraph />
+            <EarningsGraph h="15" graphSize="34"/>
           </div>
         </div>
         <QuickActions />
