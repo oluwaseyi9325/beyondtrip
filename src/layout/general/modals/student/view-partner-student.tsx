@@ -2,15 +2,15 @@ import Modal from "@/components/modal";
 import { useApproveScholarship } from "@/services/scholarship.service";
 import toast from "react-hot-toast";
 
-interface ViewPartnerStudentProps {
+interface ViewPartneradvertiserProps {
   open: boolean;
   handleClose: () => void;
   data: any | null;
   refetch?: () => void;
-  refetchStudent?: ()=>void
+  refetchadvertiser?: ()=>void
 }
 
-const ViewPartnerStudent = ({ open, handleClose, data, refetchStudent }: ViewPartnerStudentProps) => {
+const ViewPartneradvertiser = ({ open, handleClose, data, refetchadvertiser }: ViewPartneradvertiserProps) => {
   // if (!data) return null;
   const scholarship = useApproveScholarship();
 
@@ -19,15 +19,15 @@ const ViewPartnerStudent = ({ open, handleClose, data, refetchStudent }: ViewPar
       onSuccess: () => {
         toast.success("Scholarship Approved!")
         handleClose();
-        if (refetchStudent) {
-          refetchStudent()
+        if (refetchadvertiser) {
+          refetchadvertiser()
         }
        
       },
       onError: (err:any) => {
         toast.error(
           err?.response?.data?.error?.description ??
-            "An error occured while inviting tutor"
+            "An error occured while inviting driver"
         );
       }
     })
@@ -37,7 +37,7 @@ const ViewPartnerStudent = ({ open, handleClose, data, refetchStudent }: ViewPar
     <Modal open={open} handleClose={handleClose} className="w-[490px] p-14">
       <div className="w-full flex flex-col gap-10">
         <p className="text-[32px] font-[700] leading-[36px] text-[#171313]">
-          View Partner Student
+          View Partner advertiser
         </p>
 
         <section className="w-full flex flex-col gap-4">
@@ -124,7 +124,7 @@ const ViewPartnerStudent = ({ open, handleClose, data, refetchStudent }: ViewPar
               onClick={() =>handleApproved()}
               className="px-6 py-2 bg-[#121363] text-white rounded-lg hover:bg-blue-700 transition-colors"
             >
-            Approve Student
+            Approve advertiser
             </button>
            )
           }
@@ -135,4 +135,4 @@ const ViewPartnerStudent = ({ open, handleClose, data, refetchStudent }: ViewPar
   );
 };
 
-export default ViewPartnerStudent;
+export default ViewPartneradvertiser;

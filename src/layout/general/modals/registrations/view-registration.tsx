@@ -1,5 +1,5 @@
 import Modal from "@/components/modal";
-import { useVerifyPayment } from "@/services/student.service";
+import { useVerifyPayment } from "@/services/advertiser.service";
 import { useState } from "react";
 // Import your payment verification service here
 // import { useVerifyPayment } from "@/services/payment.service";
@@ -14,7 +14,7 @@ interface TModal {
 
 const ViewRegistration = ({ open, handleClose, data, refetch }: TModal) => {
   const [isVerifying, setIsVerifying] = useState(false);
-  console.log(data?.id,"application Id HERE")
+  console.log(data?.id, "application Id HERE")
   // Replace this with your actual payment verification service
   const verifyPayment = useVerifyPayment(data?.id);
 
@@ -42,7 +42,7 @@ const ViewRegistration = ({ open, handleClose, data, refetch }: TModal) => {
       }
     );
 
-   
+
   }
 
   const formatDate = (dateStr: string | null) => {
@@ -59,10 +59,10 @@ const ViewRegistration = ({ open, handleClose, data, refetch }: TModal) => {
       <div className="w-full flex flex-col gap-8">
         <div>
           <h2 className="text-[28px] font-[700] leading-[32px] text-[#171313] mb-2">
-            Student Registration Details
+            advertiser Registration Details
           </h2>
           <p className="text-gray-600 text-sm">
-            Review student information and verify payment status
+            Review advertiser information and verify payment status
           </p>
         </div>
 
@@ -119,11 +119,10 @@ const ViewRegistration = ({ open, handleClose, data, refetch }: TModal) => {
               <h3 className="font-semibold text-gray-800 text-sm mb-1">Payment Status</h3>
               <div className="flex">
                 <span
-                  className={`text-sm font-medium px-3 py-1 rounded-full ${
-                    data?.paymentStatus === "Paid"
+                  className={`text-sm font-medium px-3 py-1 rounded-full ${data?.paymentStatus === "Paid"
                       ? "bg-green-100 text-green-700"
                       : "bg-red-100 text-red-700"
-                  }`}
+                    }`}
                 >
                   {data?.paymentStatus}
                 </span>
@@ -162,7 +161,7 @@ const ViewRegistration = ({ open, handleClose, data, refetch }: TModal) => {
           >
             Close
           </button>
-          
+
           {data?.paymentStatus === "Not Paid" && (
             <button
               type="button"

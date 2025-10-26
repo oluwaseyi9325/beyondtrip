@@ -45,9 +45,9 @@ export const useAddPartner = () => {
   
 
 
-export const useGetPartnerStudents = (params?: any) => {
+export const useGetPartneradvertisers = (params?: any) => {
   return useQuery({
-    queryKey: ["get-partners-student", { params }],
+    queryKey: ["get-partners-advertiser", { params }],
     queryFn: () =>
       makeRequest({
         url: "Scholarship",

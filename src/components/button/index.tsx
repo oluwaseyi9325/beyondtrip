@@ -11,6 +11,8 @@ interface Props {
   className?: string;
   hasIcon?: boolean;
   icon?: any;
+  borderColor?: string;
+  borderWidth?: "1" | "2" | "3" | "4";
 }
 
 const Button = ({
@@ -24,16 +26,17 @@ const Button = ({
   className,
   hasIcon = false,
   icon,
+  borderColor,
+  borderWidth = "1",
 }: Props) => {
   const VARIANT = {
     filled: "bg-[#336AEA] border-none outline-none text-white",
-    border:
-      "border border-[#d4d4d4] hover:bg-[#336AEA] hover:text-white hover:border-[#336AEA]",
+    border: "bg-transparent hover:bg-[#336AEA] hover:text-white",
   };
 
   const SIZE = {
     lg: "h-14",
-    md: "h-9",
+    md: "h-10",
   };
 
   const ROUNDED = {
@@ -42,6 +45,22 @@ const Button = ({
     lg: "rounded-lg",
     full: "rounded-full",
   };
+
+  const BORDER_WIDTH = {
+    "1": "border",
+    "2": "border-2",
+    "3": "border-3",
+    "4": "border-4",
+  };
+
+  // If variant is border, apply border styles
+  const borderStyles =
+    variant === "border"
+      ? {
+          borderColor: borderColor || "#336AEA",
+          borderWidth: `${borderWidth}px`,
+        }
+      : {};
 
   return (
     <button
@@ -52,9 +71,11 @@ const Button = ({
         VARIANT[variant],
         SIZE[size],
         ROUNDED[rounded],
+        variant === "border" && BORDER_WIDTH[borderWidth],
         hasIcon && "flex items-center justify-center gap-2",
         disabled && "cursor-not-allowed opacity-50"
       )}
+      style={borderStyles}
       type={type}
       disabled={disabled}
       onClick={handleClick}

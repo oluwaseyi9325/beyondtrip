@@ -24,7 +24,7 @@ export const useClassColumns = ({
   return [
     {
       name: "Name",
-      selector: (row) => `${row?.tutorName}`,
+      selector: (row) => `${row?.driverName}`,
     },
     {
       name: "Course Name",
@@ -66,7 +66,7 @@ export const useClassColumns = ({
                       "absolute w-[180px] bg-white border border-gray-200 text-black text-sm rounded-md shadow-lg z-50 -left-32",
                       isLast ? "bottom-full mb-2" : "top-full mt-2"
                     )}
-                    style={{ 
+                    style={{
                       position: 'absolute',
                       zIndex: 9999,
                       minWidth: '180px'
@@ -76,7 +76,7 @@ export const useClassColumns = ({
                       <div
                         onClick={(e) => {
                           e.stopPropagation();
-                          navigate.push(`/tutor/class/${row.courseCohortId}`);
+                          navigate.push(`/driver/class/${row.courseCohortId}`);
                           handleClick(row.courseCohortId);
                           setDropdownIndex(null);
                         }}
@@ -87,7 +87,7 @@ export const useClassColumns = ({
                       {/* <div
                         onClick={(e) => {
                           e.stopPropagation();
-                          navigate.push(`/tutor/assignments/${row.courseCohortId}`);
+                          navigate.push(`/driver/assignments/${row.courseCohortId}`);
                           setDropdownIndex(null);
                         }}
                         className="hover:bg-gray-100 px-3 py-2 cursor-pointer text-gray-700 hover:text-gray-900"
@@ -97,7 +97,7 @@ export const useClassColumns = ({
                       {/* <div
                         onClick={(e) => {
                           e.stopPropagation();
-                          navigate.push(`/tutor/class/schedule/${row.courseCohortId}`);
+                          navigate.push(`/driver/class/schedule/${row.courseCohortId}`);
                           setDropdownIndex(null);
                         }}
                         className="hover:bg-gray-100 px-3 py-2 cursor-pointer text-gray-700 hover:text-gray-900"
@@ -107,17 +107,17 @@ export const useClassColumns = ({
                       {/* <div
                         onClick={(e) => {
                           e.stopPropagation();
-                          navigate.push(`/tutor/students/${row.courseCohortId}`);
+                          navigate.push(`/driver/advertisers/${row.courseCohortId}`);
                           setDropdownIndex(null);
                         }}
                         className="hover:bg-gray-100 px-3 py-2 cursor-pointer text-gray-700 hover:text-gray-900"
                       >
-                        Students
+                        advertisers
                       </div>
                       <div
                         onClick={(e) => {
                           e.stopPropagation();
-                          navigate.push(`/tutor/materials/${row.courseCohortId}`);
+                          navigate.push(`/driver/materials/${row.courseCohortId}`);
                           setDropdownIndex(null);
                         }}
                         className="hover:bg-gray-100 px-3 py-2 cursor-pointer text-gray-700 hover:text-gray-900"

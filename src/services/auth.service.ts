@@ -26,8 +26,8 @@ export const useLogin = () => {
       const role = response?.data?.role;
 
       if (role === "SuperAdmin" || role === "Admin") router.push("/admin");
-      if (role === "Tutor") router.push("/tutor");
-      if (role === "Student") router.push("/student");
+      if (role === "driver") router.push("/driver");
+      if (role === "advertiser") router.push("/advertiser");
     },
     onError: (error: any) => {
       toast.error(
@@ -50,12 +50,12 @@ export const useGetMe = () => {
   });
 };
 
-export const useGetTutorMe = () => {
+export const useGetdriverMe = () => {
   return useQuery({
-    queryKey: ["tutor-profile"],
+    queryKey: ["driver-profile"],
     queryFn: () =>
       makeRequest({
-        url: "Tutor/logged-in-tutor",
+        url: "driver/logged-in-driver",
         requireToken: true,
       }),
     retry: 1,
@@ -73,8 +73,8 @@ export const useRegister = (role: string) => {
       const response = await makeRequest({
         method: "POST",
         url:
-          role === "Tutor"
-            ? "TutorAccount/complete-registration"
+          role === "driver"
+            ? "driverAccount/complete-registration"
             : "Account/completeRegistration",
         data,
       });
@@ -85,8 +85,8 @@ export const useRegister = (role: string) => {
       toast.success("Registration completed successfully!");
 
       if (role === "SuperAdmin" || role === "Admin") router.push("/admin");
-      if (role === "Tutor") router.push("/tutor");
-      if (role === "Student") router.push("/student");
+      if (role === "driver") router.push("/driver");
+      if (role === "advertiser") router.push("/advertiser");
     },
     onError: (error: any) => {
       toast.error(
@@ -96,19 +96,19 @@ export const useRegister = (role: string) => {
   });
 };
 
-export const useStudentRegister = () => {
+export const useAdvertiserRegister = () => {
   const { handleLogin } = useAuthStore();
   const router = useRouter();
 
   return useMutation({
-    mutationKey: ["complete-student-registration"],
+    mutationKey: ["complete-advertiser-registration"],
     mutationFn: async (data: {
       registrationCode: string;
       password: string;
     }) => {
       const response = await makeRequest({
         method: "POST",
-        url: "StudentAccount/complete-student-registration",
+        url: "advertiserAccount/complete-advertiser-registration",
         data,
       });
       return response?.data;
@@ -116,7 +116,7 @@ export const useStudentRegister = () => {
     onSuccess: (response) => {
       handleLogin(response?.data);
       toast.success("Registration completed successfully!");
-      router.push("/student");
+      router.push("/advertiser");
     },
     onError: (error: any) => {
       toast.error(
@@ -211,7 +211,7 @@ export const useSchoorlashipRegister = () => {
     onSuccess: (response) => {
       handleLogin(response?.data);
       toast.success("Registration completed successfully!");
-      router.push("/student");
+      router.push("/advertiser");
     },
     onError: (error: any) => {
       toast.error(

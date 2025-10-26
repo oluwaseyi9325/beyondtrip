@@ -11,7 +11,7 @@ export const Statistics: TStats[] = [
   },
   {
     icon: <PiUsersThree size={20} />,
-    title: "Registered Students",
+    title: "Registered advertisers",
     figure: "0",
   },
   {
@@ -26,7 +26,7 @@ export const Statistics: TStats[] = [
   },
 ];
 
-export const StudentStatistics: TStats[] = [
+export const advertiserStatistics: TStats[] = [
   {
     icon: <ImBook size={16} />,
     title: "Total Courses",
@@ -34,17 +34,17 @@ export const StudentStatistics: TStats[] = [
   },
   {
     icon: <PiUsersThree size={20} />,
-    title: "Total Registered Students",
+    title: "Total Registered advertisers",
     figure: "0",
   },
   {
     icon: <LuUsersRound size={16} />,
-    title: "Total Active Students",
+    title: "Total Active advertisers",
     figure: "0",
   },
   {
     icon: <LuSchool size={18} />,
-    title: "Total Suspended Students",
+    title: "Total Suspended advertisers",
     figure: "0",
   },
 ];

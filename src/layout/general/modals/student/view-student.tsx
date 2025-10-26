@@ -1,5 +1,5 @@
 import Modal from "@/components/modal";
-import { useActivateTutor, useDeactivateTutor } from "@/services/tutor.service";
+import { useActivatedriver, useDeactivatedriver } from "@/services/driver.service";
 import toast from "react-hot-toast";
 
 interface TModal {
@@ -14,9 +14,9 @@ export interface TAddClass {
   cohort: string;
 }
 
-const ViewStudent = ({ open, handleClose, data, refetch }: TModal) => {
-  const deactivate = useDeactivateTutor(data?.identityId);
-  const activate = useActivateTutor(data?.identityId);
+const Viewadvertiser = ({ open, handleClose, data, refetch }: TModal) => {
+  const deactivate = useDeactivatedriver(data?.identityId);
+  const activate = useActivatedriver(data?.identityId);
   console.log(data,"gettt")
 
   const isActive = data?.accountStatus?.toLowerCase() === 'active';
@@ -26,13 +26,13 @@ const ViewStudent = ({ open, handleClose, data, refetch }: TModal) => {
       { id: data?.identityId },
       {
         onSuccess: () => {
-          toast.success("Tutor activated successfully!");
+          toast.success("driver activated successfully!");
           refetch?.(); // Refresh the data
           handleClose();
         },
         onError: (err: any) => {
           toast.error(
-            err?.response?.data?.error?.description ?? "Failed to activate tutor"
+            err?.response?.data?.error?.description ?? "Failed to activate driver"
           );
         },
       }
@@ -44,13 +44,13 @@ const ViewStudent = ({ open, handleClose, data, refetch }: TModal) => {
       { id: data?.identityId },
       {
         onSuccess: () => {
-          toast.success("Tutor deactivated successfully!");
+          toast.success("driver deactivated successfully!");
           refetch?.(); // Refresh the data
           handleClose();
         },
         onError: (err: any) => {
           toast.error(
-            err?.response?.data?.error?.description ?? "Failed to deactivate tutor"
+            err?.response?.data?.error?.description ?? "Failed to deactivate driver"
           );
         },
       }
@@ -61,7 +61,7 @@ const ViewStudent = ({ open, handleClose, data, refetch }: TModal) => {
     <Modal open={open} handleClose={handleClose} className="w-[490px] p-14">
       <div className="w-full flex flex-col gap-10">
         <p className="text-[32px] font-[700] leading-[36px] text-[#171313]">
-          View Student
+          View advertiser
         </p>
 
         <section className="w-full flex flex-col gap-4">
@@ -130,4 +130,4 @@ const ViewStudent = ({ open, handleClose, data, refetch }: TModal) => {
   );
 };
 
-export default ViewStudent;
+export default Viewadvertiser;

@@ -22,7 +22,7 @@ export interface TSubmissions {
   submissionComment: string | null;
   answer: string | null; // could be a text answer or file link
   attachmentLinks: string[]; // array of uploaded file URLs
-  awardedMark: number | null; // if tutor grades
+  awardedMark: number | null; // if driver grades
   isGraded: boolean;
 }
 
@@ -72,7 +72,7 @@ const SubmissionsTable = ({ assignmentId }: { assignmentId: string }) => {
       {isLoading ? (
         <TableSkeleton />
       ) : submissions.length < 1 ? (
-        <Empty/>
+        <Empty />
       ) : (
         <>
           <Table<TSubmissions> columns={columns} data={submissions} />

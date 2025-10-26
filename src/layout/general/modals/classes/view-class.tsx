@@ -4,8 +4,8 @@ interface TClass {
   cohortName: string;
   courseCohortId: string;
   courseName: string;
-  tutorId: string;
-  tutorName: string;
+  driverId: string;
+  driverName: string;
 }
 
 interface ViewClassProps {
@@ -37,8 +37,8 @@ const ViewClass = ({ open, handleClose, data }: ViewClassProps) => {
           </div>
 
           <div className="flex justify-between items-center">
-            <h3 className="font-semibold text-gray-800">Tutor Name:</h3>
-            <p className="text-gray-600 font-medium">{data.tutorName}</p>
+            <h3 className="font-semibold text-gray-800">driver Name:</h3>
+            <p className="text-gray-600 font-medium">{data.driverName}</p>
           </div>
         </section>
 

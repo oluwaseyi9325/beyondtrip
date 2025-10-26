@@ -1,13 +1,13 @@
 import { TableColumn } from "react-data-table-component";
 
-interface TStudent {
+interface Tadvertiser {
   id: string;
   firstName: string;
   lastName: string;
   emailAddress: string;
 }
 
-export const studentColumns: TableColumn<TStudent>[] = [
+export const advertiserColumns: TableColumn<Tadvertiser>[] = [
   {
     name: "Name",
     selector: (row) => `${row.firstName} ${row.lastName}`,

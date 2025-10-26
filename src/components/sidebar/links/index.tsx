@@ -54,8 +54,8 @@ const SidebarLink = ({
             <PiCaretDown
               size={16}
               className={clsx(
-                "transition-all ease-in-out duration-300",
-                open ? "rotate-180" : "rotate-0"
+                "transition-all ease-in-out duration-300 ",
+                open ? "rotate-180 text-[#27458F]" : "rotate-0"
               )}
             />
           </div>
@@ -83,7 +83,7 @@ const SidebarLink = ({
                         "pl-8 text-sm h-10 flex items-center",
                         isSubItemActive
                           ? "bg-[#336AEA] border border-[#336AEA] text-white font-medium"
-                          : "text-[#8E8E8E] hover:text-white"
+                          : "text-[#27458F]"
                       )}
                     >
                       {item.text}

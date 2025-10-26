@@ -17,7 +17,7 @@ const StatsCard = ({ data }: Props) => {
   const isEarnings = data.title === "Total Earnings";
 
   return (
-    <div className="w-full bg-white py-4 px-6 rounded-xl border border-[black] flex flex-col gap-4">
+    <div className="w-full bg-white border border-gray-200 py-4 px-6 rounded-xl  flex flex-col gap-4">
       {/* Top Section: Icon and Title */}
       <div className="flex items-center gap-5">
         <div

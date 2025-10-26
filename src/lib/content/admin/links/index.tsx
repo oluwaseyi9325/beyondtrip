@@ -1,118 +1,68 @@
-import { RxDashboard } from "react-icons/rx";
-import { LuUsersRound, LuSchool, LuFile } from "react-icons/lu";
-import { PiUsersThree, PiBellSimple } from "react-icons/pi";
-import { ImBook } from "react-icons/im";
+// import { RxDashboard } from "react-icons/rx";
+// import { LuUsersRound, LuSchool, LuFile } from "react-icons/lu";
+// import { PiUsersThree, PiBellSimple } from "react-icons/pi";
+// import { ImBook } from "react-icons/im";
 // import { GiWallet } from "react-icons/gi";
-import {
-  // CiCalendar,
-  CiUser,
-} from "react-icons/ci";
-import { IoKeyOutline } from "react-icons/io5";
+// import {
+//   // CiCalendar,
+//   CiUser,
+// } from "react-icons/ci";
+// import { IoKeyOutline } from "react-icons/io5";
+import { IoMdSettings } from "react-icons/io";
+import { MdDashboard,  } from "react-icons/md";
+import { FaBell } from "react-icons/fa";
+import { IoIosPeople } from "react-icons/io";
 
 export const AdminLinks = [
   {
-    icon: <RxDashboard size={20} />,
+    icon: <MdDashboard size={20} />,
     text: "Dashboard",
     path: "/admin",
     hasSub: false,
     sub: [],
   },
   {
-    icon: <LuUsersRound size={20} />,
-    text: "Instructors",
-    path: "/admin/tutors",
-    hasSub: false,
-    sub: [],
-  },
-  {
-    icon: <PiUsersThree size={20} />,
-    text: "Students",
+    icon: <IoIosPeople size={20} />,
+    text: "Drivers",
     path: "",
     hasSub: true,
     sub: [
-      { text: "Registered Students", path: "/admin/students/registered" },
-      { text: "Scholarship Students", path: "/admin/students/scholarship" },
+      { text: "Overview", path: "/admin/advertisers/overview" },
+      { text: "Magazines", path: "/admin/advertisers/magazines" },
+      { text: "Manage Requests", path: "/admin/advertisers/requests" },
     ],
   },
   {
-    icon: <LuSchool size={18} />,
-    text: "Cohort",
-    path: "/admin/cohort",
-    hasSub: false,
-    sub: [],
-  },
-  {
-    icon: <ImBook size={16} />,
-    text: "Courses",
-    path: "/admin/courses",
-    hasSub: false,
-    sub: [],
-  },
-  {
-    icon: <PiBellSimple size={20} />,
-    text: "Announcement",
-    path: "/admin/announcement",
-    hasSub: false,
-    sub: [],
-  },
-  {
-    icon: <LuFile size={20} />,
-    text: "Website Form",
+    icon: <IoIosPeople size={20} />,
+    text: "Advertisers",
     path: "",
     hasSub: true,
     sub: [
-      { text: "Registrations", path: "/admin/website/registrations" },
-      { text: "Partnership", path: "/admin/website/partners" },
-       {text:"Ambassador", path:"/admin/website/ambassadors"}
+      { text: "Overview", path: "/admin/advertisers/overview" },
+      { text: "Campaigns", path: "/admin/advertisers/campaigns" },
+      { text: "Invoices", path: "/admin/advertisers/invoices" }
     ],
   },
-  // {
-  //   icon: <GiWallet size={18} />,
-  //   text: "Wallet",
-  //   path: "/admin/wallet",
-  //   hasSub: false,
-  //   sub: [],
-  // },
-  // {
-  //   icon: <CiCalendar size={20} />,
-  //   text: "Audit Trails",
-  //   path: "/admin/audit-trail",
-  //   hasSub: false,
-  //   sub: [],
-  // },
-];
 
-
-export const UsAdminLinks = [
   {
-    icon: <RxDashboard size={20} />,
-    text: "Students",
-    path: "/admin/us-students",
+    icon: <FaBell size={20} />,
+    text: "Notifications",
+    path: "/admin/notifications",
     hasSub: false,
     sub: [],
   },
   {
-    icon: <ImBook size={16} />,
-    text: "Webinars",
-    path: "/admin/us-webinars?mode=us",
+    icon: <IoMdSettings size={20} />,
+    text: "Settings",
+    path: "/admin/settings",
     hasSub: false,
     sub: [],
   },
 
 ];
 
-export const AdminSettingsLinks = [
-  {
-    icon: <CiUser size={20} />,
-    text: "Admin Management",
-    path: "/admin/manage",
-  },
-  {
-    icon: <IoKeyOutline size={20} />,
-    text: "Security",
-    path: "/admin/security",
-  },
-];
+
+
 
 
 

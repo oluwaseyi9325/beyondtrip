@@ -1,6 +1,6 @@
 import Button from "@/components/button";
 import Modal from "@/components/modal";
-import { TCourses } from "@/layout/tutor/tables/courses";
+import { TCourses } from "@/layout/driver/tables/courses";
 
 interface TModal {
     open: boolean;
@@ -54,7 +54,7 @@ const JoinClassModal = ({ open, handleClose, courseData }: TModal) => {
 
                     <div className="flex justify-between">
                         <div>
-                            <p className="font-semibold text-gray-800">Registered Students</p>
+                            <p className="font-semibold text-gray-800">Registered advertisers</p>
                             <p className="text-gray-600">25</p>
                         </div>
                         <div>

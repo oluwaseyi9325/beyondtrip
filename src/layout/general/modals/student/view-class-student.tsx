@@ -20,8 +20,8 @@ interface TModal {
   data: TRegistered | null;
 }
 
-const ViewClassStudent = ({ open, handleClose, data,}: TModal) => {
- ;
+const ViewClassadvertiser = ({ open, handleClose, data, }: TModal) => {
+  ;
 
   if (!data) return null;
 
@@ -31,7 +31,7 @@ const ViewClassStudent = ({ open, handleClose, data,}: TModal) => {
     <Modal open={open} handleClose={handleClose} className="w-[490px] p-14">
       <div className="w-full flex flex-col gap-10">
         <p className="text-[32px] font-[700] leading-[36px] text-[#171313]">
-          View Student Details
+          View advertiser Details
         </p>
 
         <section className="w-full flex flex-col gap-6">
@@ -53,7 +53,7 @@ const ViewClassStudent = ({ open, handleClose, data,}: TModal) => {
           </div>
 
           {/* <div className="flex justify-between items-center">
-            <h3 className="font-semibold text-gray-800">Student ID:</h3>
+            <h3 className="font-semibold text-gray-800">advertiser ID:</h3>
             <p className="text-gray-600 font-mono text-sm bg-gray-100 px-2 py-1 rounded">
               {data.id}
             </p>
@@ -68,10 +68,10 @@ const ViewClassStudent = ({ open, handleClose, data,}: TModal) => {
             </div>
           )} */}
 
-         
 
-         
-         
+
+
+
         </section>
 
         {/* Action Buttons */}
@@ -83,13 +83,13 @@ const ViewClassStudent = ({ open, handleClose, data,}: TModal) => {
           >
             Close
           </button>
-          
+
           {/* Status Toggle Button */}
-        
+
         </div>
       </div>
     </Modal>
   );
 };
 
-export default ViewClassStudent;
+export default ViewClassadvertiser;

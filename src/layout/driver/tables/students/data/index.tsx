@@ -3,108 +3,108 @@ import { TableColumn } from "react-data-table-component";
 import { AiOutlineMore } from "react-icons/ai";
 import clsx from "clsx";
 import Dropdown from "@/components/dropdown";
-import { TStudent } from "..";
+import { Tadvertiser } from "..";
 import Image from "next/image";
 
-export const studentColumns = (
-  onViewCourse: (course: TStudent) => void,
-  onUploadMaterials: (course: TStudent) => void
-): TableColumn<TStudent>[] => [
-  {
-    name: "S/N",
-    width: "5%",
-    cell: (_, index: number) => index + 1,
-  },
-  {
-    name: "Student Name",
-    width: "15%",
-    cell: (row) => (
-      <div className="flex items-center gap-2">
-        <Image
-          src="/assets/png/student.png"
-          width={35}
-          height={35}
-          alt="Student"
-        />
-        <span>{row.student_name}</span>
-      </div>
-    ),
-  },
-  {
-    name: "Program",
-    width: "15%",
-    selector: (row) => row.program,
-  },
-  {
-    name: "Gender",
-    width: "10%",
-    selector: (row) => row.gender,
-  },
-  {
-    name: "Cohort",
-    width: "10%",
-    selector: (row) => row.cohort,
-  },
-  {
-    name: "Payment Status",
-    width: "15%",
-    selector: (row) => row.payment_status,
-  },
-  {
-    name: "Joined Date",
-    width: "15%",
-    selector: (row) => row.joined_date,
-  },
-  {
-    name: "Status",
-    cell: (row) => (
-      <div
-        className={clsx(
-          "border text-sm font-[500] rounded-md px-3 py-[2px]",
-          row.status === "Active" &&
+export const advertiserColumns = (
+  onViewCourse: (course: Tadvertiser) => void,
+  onUploadMaterials: (course: Tadvertiser) => void
+): TableColumn<Tadvertiser>[] => [
+    {
+      name: "S/N",
+      width: "5%",
+      cell: (_, index: number) => index + 1,
+    },
+    {
+      name: "advertiser Name",
+      width: "15%",
+      cell: (row) => (
+        <div className="flex items-center gap-2">
+          <Image
+            src="/assets/png/advertiser.png"
+            width={35}
+            height={35}
+            alt="advertiser"
+          />
+          <span>{row.advertiser_name}</span>
+        </div>
+      ),
+    },
+    {
+      name: "Program",
+      width: "15%",
+      selector: (row) => row.program,
+    },
+    {
+      name: "Gender",
+      width: "10%",
+      selector: (row) => row.gender,
+    },
+    {
+      name: "Cohort",
+      width: "10%",
+      selector: (row) => row.cohort,
+    },
+    {
+      name: "Payment Status",
+      width: "15%",
+      selector: (row) => row.payment_status,
+    },
+    {
+      name: "Joined Date",
+      width: "15%",
+      selector: (row) => row.joined_date,
+    },
+    {
+      name: "Status",
+      cell: (row) => (
+        <div
+          className={clsx(
+            "border text-sm font-[500] rounded-md px-3 py-[2px]",
+            row.status === "Active" &&
             "bg-[#CBFFE5] border-[#CBFFE5] text-[#018844]",
-          row.status === "Inactive" &&
+            row.status === "Inactive" &&
             "bg-[#CDCDCD] border-[#CDCDCD] text-white"
-        )}
-      >
-        {row.status}
-      </div>
-    ),
-  },
-  {
-    name: "",
-    width: "7%",
-    cell: (row) => (
-      <Dropdown className="w-[80px]" position="-left-26">
-        <div className="cursor-pointer">
-          <AiOutlineMore size={24} />
+          )}
+        >
+          {row.status}
         </div>
+      ),
+    },
+    {
+      name: "",
+      width: "7%",
+      cell: (row) => (
+        <Dropdown className="w-[80px]" position="-left-26">
+          <div className="cursor-pointer">
+            <AiOutlineMore size={24} />
+          </div>
 
-        <div className="w-[185px] bg-[#FAFAFA] border-[#EEEEEE] rounded-md shadow-xl py-1">
-          <div
-            className="flex items-center gap-2 px-4 py-2 cursor-pointer hover:bg-gray-100"
-            onClick={() => onViewCourse(row)}
-          >
-            <span className="text-sm text-gray-700">View Details</span>
+          <div className="w-[185px] bg-[#FAFAFA] border-[#EEEEEE] rounded-md shadow-xl py-1">
+            <div
+              className="flex items-center gap-2 px-4 py-2 cursor-pointer hover:bg-gray-100"
+              onClick={() => onViewCourse(row)}
+            >
+              <span className="text-sm text-gray-700">View Details</span>
+            </div>
+            <div
+              className="flex items-center gap-2 px-4 py-2 cursor-pointer hover:bg-gray-100"
+              onClick={() => onUploadMaterials(row)}
+            >
+              <span className="text-sm text-gray-700">Upload Materials</span>
+            </div>
+            <div className="flex items-center gap-2 px-4 py-2 cursor-pointer hover:bg-gray-100">
+              <span className="text-sm text-red-600">Deactivate Course</span>
+            </div>
           </div>
-          <div
-            className="flex items-center gap-2 px-4 py-2 cursor-pointer hover:bg-gray-100"
-            onClick={() => onUploadMaterials(row)}
-          >
-            <span className="text-sm text-gray-700">Upload Materials</span>
-          </div>
-          <div className="flex items-center gap-2 px-4 py-2 cursor-pointer hover:bg-gray-100">
-            <span className="text-sm text-red-600">Deactivate Course</span>
-          </div>
-        </div>
-      </Dropdown>
-    ),
-  },
-];
+        </Dropdown>
+      ),
+    },
+  ];
 
-export const studentData: TStudent[] = [
+export const advertiserData: Tadvertiser[] = [
   {
-    student_name: "John Doe",
+    advertiser_name: "John Doe",
     program: "Software Engineering",
     gender: "Male",
     cohort: "Cohort 1",

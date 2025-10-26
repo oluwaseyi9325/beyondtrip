@@ -21,7 +21,7 @@ export const useSubmissionColumns = ({
 }) => {
   return [
     {
-      name: "Student Name",
+      name: "advertiser Name",
       selector: (row: TSubmissions) => `${row.firstName} ${row.lastName}`,
     },
     {

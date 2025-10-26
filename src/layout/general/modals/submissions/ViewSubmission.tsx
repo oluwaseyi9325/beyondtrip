@@ -1,5 +1,5 @@
 import Modal from "@/components/modal";
-import { TSubmissions } from "@/layout/tutor/tables/submission";
+import { TSubmissions } from "@/layout/driver/tables/submission";
 
 
 interface TModal {
@@ -28,7 +28,7 @@ const ViewSubmission = ({ open, handleClose, data }: TModal) => {
           <h2 className="text-[24px] font-bold text-[#171313] mb-2">
             View Assignment Submission
           </h2>
-          <p className="text-gray-600 text-sm">Review student submission details</p>
+          <p className="text-gray-600 text-sm">Review advertiser submission details</p>
         </div>
 
         <div className="grid grid-cols-2 gap-4 text-sm">

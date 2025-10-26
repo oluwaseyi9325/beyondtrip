@@ -1,15 +1,13 @@
 
 import Table from "@/components/table";
-import { useTutorColumns } from "./data";
-import { useState } from "react";
-import TutorToClass from "@/layout/general/modals/tutor-to-class";
-import ViewTutor from "@/layout/general/modals/tutor/view-tuor";
+import { useDriverColumns } from "./data";
+// import { useState } from "react";
 import TableSearchInput from "../table-search-input";
 import { useTableSearch } from "@/hooks/use-table-search";
 import { SelectFilter, useSelectFilters } from "../SelectFilter";
 import { SelectFilterDropdown } from "../select-filter-dropdown";
 
-export interface TTutor {
+export interface Tdriver {
   id: string;
   firstName: string;
   lastName: string;
@@ -19,20 +17,20 @@ export interface TTutor {
   accountStatus: string;
 }
 
-const TutorTable = ({ data }: { data: TTutor[] }) => {
-  const [tutorId, setTutorId] = useState("");
-  const [open, setOpen] = useState(false);
-  const [viewTutorOpen, setViewTutorOpen] = useState(false);
-  const [tutor, setTutor] = useState<TTutor | null>(null);
+const DriverTable = ({ data }: { data: Tdriver[] }) => {
+  // const [driverId, setdriverId] = useState("");
+  // const [open, setOpen] = useState(false);
+  // const [viewdriverOpen, setViewdriverOpen] = useState(false);
+  // const [driver, setdriver] = useState<Tdriver | null>(null);
 
-  const columns = useTutorColumns({
-    handleClick: (id) => {
-      setTutorId(id);
-      setOpen(true);
+  const columns = useDriverColumns({
+    handleClick: () => {
+      // setdriverId(id);
+      // setOpen(true);
     },
-    handleClickView: (row) => {
-      setTutor(row);
-      setViewTutorOpen(true);
+    handleClickView: () => {
+      // setdriver(row);
+      // setViewdriverOpen(true);
     },
     total: data?.length,
   });
@@ -42,7 +40,7 @@ const TutorTable = ({ data }: { data: TTutor[] }) => {
     {
       key: "status",
       label: "Status",
-      getValue: (item: TTutor) => item.accountStatus,
+      getValue: (item: Tdriver) => item.accountStatus,
     },
   ];
 
@@ -61,7 +59,7 @@ const TutorTable = ({ data }: { data: TTutor[] }) => {
   const {
     searchTerm,
     setSearchTerm,
-    filteredData: filterTutor,
+    filteredData: filterdriver,
     clearSearch,
   } = useTableSearch({
     data: dataFilteredBySelects,
@@ -70,20 +68,7 @@ const TutorTable = ({ data }: { data: TTutor[] }) => {
 
   return (
     <>
-      <TutorToClass
-        tutorId={tutorId}
-        open={open}
-        handleClose={() => {
-          setTutorId("");
-          setOpen(false);
-        }}
-      />
-
-      <ViewTutor
-        data={tutor}
-        open={viewTutorOpen}
-        handleClose={() => setViewTutorOpen(false)}
-      />
+    
 
       <div className="p-3 flex justify-between items-center flex-wrap gap-4">
         <TableSearchInput
@@ -107,9 +92,9 @@ const TutorTable = ({ data }: { data: TTutor[] }) => {
         </div>
       </div>
 
-      <Table<TTutor> columns={columns} data={filterTutor} />
+      <Table<Tdriver> columns={columns} data={filterdriver} />
     </>
   );
 };
 
-export default TutorTable;
+export default DriverTable;

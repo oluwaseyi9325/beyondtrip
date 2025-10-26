@@ -1,5 +1,5 @@
 import { TableColumn } from "react-data-table-component";
-import { TTutor } from "..";
+import { Tdriver } from "..";
 import { AiOutlineMore } from "react-icons/ai";
 import clsx from "clsx";
 import { useState } from "react";
@@ -8,14 +8,14 @@ import { AnimatePresence, motion } from "framer-motion";
 interface Props {
   handleClick: (id: string) => void;
   total: number;
-  handleClickView: (row: TTutor) => void;
+  handleClickView: (row: Tdriver) => void;
 }
 
-export const useTutorColumns = ({
+export const useDriverColumns = ({
   handleClick,
   handleClickView,
   total,
-}: Props): TableColumn<TTutor>[] => {
+}: Props): TableColumn<Tdriver>[] => {
   const [dropdownIndex, setDropdownIndex] = useState<number | null>(null);
 
   return [
@@ -41,9 +41,9 @@ export const useTutorColumns = ({
           className={clsx(
             "border text-sm font-[500] rounded-md px-3 py-[2px]",
             row.accountStatus === "Active" &&
-              "bg-[#CBFFE5] border-[#CBFFE5] text-[#018844]",
+            "bg-[#CBFFE5] border-[#CBFFE5] text-[#018844]",
             row.accountStatus === "Inactive" &&
-              "bg-[#CDCDCD] border-[#CDCDCD] text-white"
+            "bg-[#CDCDCD] border-[#CDCDCD] text-white"
           )}
         >
           {row.accountStatus}

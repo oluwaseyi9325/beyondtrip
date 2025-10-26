@@ -11,8 +11,8 @@ export interface TClass {
   cohortName: string;
   courseCohortId: string;
   courseName: string;
-  tutorId: string;
-  tutorName: string;
+  driverId: string;
+  driverName: string;
 }
 
 const ClassTable = ({ data }: { data: TClass[] }) => {
@@ -64,7 +64,7 @@ const ClassTable = ({ data }: { data: TClass[] }) => {
     clearSearch,
   } = useTableSearch({
     data: filteredBySelects,
-    searchFields: ["tutorName"],
+    searchFields: ["driverName"],
   });
 
   return (
@@ -77,13 +77,13 @@ const ClassTable = ({ data }: { data: TClass[] }) => {
           setSelectedClass(null);
         }}
       />
-      
+
       <div className="p-3 flex justify-between items-center flex-wrap gap-4">
         <TableSearchInput
           searchTerm={searchTerm}
           onSearchChange={setSearchTerm}
           onClearSearch={clearSearch}
-          placeholder="Search by tutor name..."
+          placeholder="Search by driver name..."
           className="w-96"
         />
 

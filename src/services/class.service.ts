@@ -16,19 +16,19 @@ export const useCreateClass = (id: string) => {
   });
 };
 
-export const useTutorToClass = (id: string) => {
+export const useDriverToClass = (id: string) => {
   return useMutation({
     mutationKey: ["create-cohort"],
     mutationFn: async (data: TAddClass) => {
       const response = await makeRequest({
-        url: `Tutor`,
+        url: `driver`,
         method: "POST",
         data: {
-          tutorId: id,
+          driverId: id,
           cohortId: data.cohort,
           courseId: data.course,
           isInheritingClass: true,
-          isPrimaryTutor: true,
+          isPrimarydriver: true,
         },
         requireToken: true,
       });
@@ -38,12 +38,12 @@ export const useTutorToClass = (id: string) => {
   });
 };
 
-export const useGetTutorClasses = (id: string) => {
+export const useGetdriverClasses = (id: string) => {
   return useQuery({
-    queryKey: ["get-tutor-class", { id }],
+    queryKey: ["get-driver-class", { id }],
     queryFn: () =>
       makeRequest({
-        url: `Tutor/classes?tutorId=${id}`,
+        url: `driver/classes?driverId=${id}`,
         requireToken: true,
       }),
     retry: 1,

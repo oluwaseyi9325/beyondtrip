@@ -1,9 +1,9 @@
 import makeRequest from "@/config/api";
 import {  useMutation, useQuery } from "@tanstack/react-query";
 
-export const useGetScholarshipStudents = (params?: any) => {
+export const useGetScholarshipadvertisers = (params?: any) => {
     return useQuery({
-      queryKey: ["get-scholarship-student", { params }],
+      queryKey: ["get-scholarship-advertiser", { params }],
       queryFn: () =>
         makeRequest({
           url: "Scholarship",

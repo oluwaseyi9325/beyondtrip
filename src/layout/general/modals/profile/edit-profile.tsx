@@ -1,153 +1,252 @@
-import Button from "@/components/button";
-import Input from "@/components/input/input";
-import Modal from "@/components/modal";
-import { yupResolver } from "@hookform/resolvers/yup";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import toast from "react-hot-toast";
+import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { useEffect } from "react";
-import {  useUpdateProfile } from "@/services/auth.service";
+import toast from "react-hot-toast";
+import Modal from "@/components/modal";
+import Input from "@/components/input/input";
+import Button from "@/components/button";
 import useAuthStore from "@/store/useAuthStore";
-import { useGetStudentsProfile } from "@/services/student.service";
+import { useUpdateProfile } from "@/services/auth.service";
+import { useGetadvertisersProfile } from "@/services/advertiser.service";
+import { FiEdit2, FiX } from "react-icons/fi";
 
 interface TUploadModal {
-    open: boolean;
-    handleClose: () => void;
-    classId: string; // keeping for interface compatibility
-    refetch?: () => void;
+  open: boolean;
+  handleClose: () => void;
+  // classId: string;
+  // refetch?: () => void;
 }
 
-export interface TCreateWebinarForm {
-    firstName: string;
-    middleName: string;
-    phoneNumber: string;
+export interface TEditProfileForm {
+  username: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phoneNo: string;
+  address: string;
+  references: string;
+  profilePicture?: File | null;
 }
 
 const schema = yup.object().shape({
-    firstName: yup.string().required("First name is required"),
-    middleName: yup.string().required("Middle name is required"),
-    phoneNumber: yup.string().required("Phone number is required"),
+  username: yup.string().required("Username is required"),
+  firstName: yup.string().required("First name is required"),
+  lastName: yup.string().required("Last name is required"),
+  email: yup.string().email("Invalid email").required("Email is required"),
+  phoneNo: yup.string().required("Phone number is required"),
+  address: yup.string().required("Address is required"),
+  references: yup.string().required("References are required"),
 });
 
-const EditProfile = ({
-    open,
-    handleClose,
-    refetch,
-}: TUploadModal) => {
-    const { profile, } = useAuthStore();
-//    console.log("Profile Data:", profile?.id);
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-        reset,
-        setValue,
-    } = useForm<TCreateWebinarForm>({
-        mode: "onBlur",
-        resolver: yupResolver(schema),
-    });
-    const { updateProfile: updateUser } = useAuthStore();
-    const updateProfile = useUpdateProfile(profile?.id);
-    // const { data: responseData } = useGetTutorMe();
-    const { data: response } = useGetStudentsProfile();
-    useEffect(() => {
-        if (response) {
-          updateUser(response?.data);
-        }
-      }, [response, updateUser, profile]);
-    // Pre-populate form with existing profile data
-    useEffect(() => {
-        if (open && profile) {
-            setValue("firstName", profile.firstName || "");
-            setValue("middleName", profile.lastName || "");
-            setValue("phoneNumber", profile.phoneNumber || "");
-        }
-    }, [open, profile, setValue]);
+const EditProfile = ({ open, handleClose, }: TUploadModal) => {
+  const { profile, updateProfile: updateUser } = useAuthStore();
+  const { data: response } = useGetadvertisersProfile();
+  const updateProfile = useUpdateProfile(profile?.id);
 
-    const onSubmit = (data: TCreateWebinarForm) => {
-        const payload = { ...data, id: profile?.id };
-        console.log("Payload:", payload);
+  const [preview, setPreview] = useState<string | null>(null);
 
-        updateProfile.mutate(payload, {
-            onSuccess: (response) => {
-                toast.success("Profile updated successfully!");
-                console.log(response, "this ois editging")
-                //  updateStore(responseData?.data)
-                
-                // console.log("profilellll", profile)
-                if (refetch) refetch();
-                handleClose();
-                reset();
-            },
-            onError: (err: any) => {
-                toast.error(
-                    err?.response?.data?.error?.description ??
-                    "Something went wrong while updating the profile"
-                );
-            },
-        });
-    };
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+    setValue,
+  } = useForm<TEditProfileForm>({
+    mode: "onBlur",
+    resolver: yupResolver(schema),
+  });
 
-    const handleModalClose = () => {
-        reset();
+  useEffect(() => {
+    if (response) updateUser(response?.data);
+  }, [response, updateUser]);
+
+  useEffect(() => {
+    if (open && profile) {
+      setValue("username", profile.username || "");
+      setValue("firstName", profile.firstName || "");
+      setValue("lastName", profile.lastName || "");
+      setValue("email", profile.email || "");
+      setValue("phoneNo", profile.phoneNumber || "");
+      setValue("address", profile.address || "");
+      setValue("references", profile.references || "");
+      setPreview(profile?.avatarUrl || null);
+    }
+  }, [open, profile, setValue]);
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      if (file.size > 2 * 1024 * 1024) {
+        toast.error("Max file size is 2MB");
+        return;
+      }
+      setPreview(URL.createObjectURL(file));
+      setValue("profilePicture", file);
+    }
+  };
+
+  const handleRemoveImage = () => {
+    setPreview(null);
+    setValue("profilePicture", null);
+  };
+
+  const onSubmit = (data: TEditProfileForm) => {
+    const payload = { ...data, id: profile?.id };
+    updateProfile.mutate(payload, {
+      onSuccess: () => {
+        toast.success("Profile updated successfully!");
+        // if (refetch) refetch();
         handleClose();
-    };
+        reset();
+      },
+      onError: (err: any) => {
+        toast.error(
+          err?.response?.data?.error?.description ??
+          "Something went wrong while updating the profile"
+        );
+      },
+    });
+  };
 
-    return (
-        <Modal
-            open={open}
-            handleClose={handleModalClose}
-            className="w-[570px] lg:p-14 p-6 h-auto max-h-[90vh]"
-        >
-            <form
-                className="w-full flex flex-col gap-5"
-                onSubmit={handleSubmit(onSubmit)}
-            >
-                <p className="text-[32px] font-[700] leading-[36px] text-[#171313]">
-                    Edit Profile
-                </p>
+  const handleModalClose = () => {
+    reset();
+    handleClose();
+  };
 
-                <section className="max-h-[60vh] w-full flex flex-col gap-4 overflow-y-auto scrollbar-none">
-                    <Input
-                        label="First Name"
-                        placeholder="Enter first name"
-                        register={register("firstName")}
-                        error={errors.firstName}
-                    />
-                    <Input
-                        label="Middle Name"
-                        placeholder="Enter middle name"
-                        register={register("middleName")}
-                        error={errors.middleName}
-                    />
-                    <Input
-                        label="Phone Number"
-                        placeholder="Enter phone number"
-                        register={register("phoneNumber")}
-                        error={errors.phoneNumber}
-                    />
-                </section>
+  return (
+    <Modal
+      open={open}
+      handleClose={handleModalClose}
+      className="w-[600px] lg:p-9 p-5 h-auto max-h-[100vh]"
+    >
+      <form
+        className="flex flex-col gap-5 w-full"
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <h2 className="text-2xl font-semibold text-gray-900">
+          Edit Personal Information
+        </h2>
 
-                <div className="flex gap-4">
-                    <Button 
-                        type="button" 
-                        // variant="outline" 
-                        className="w-full" 
-                        handleClick={handleModalClose}
-                    >
-                        Cancel
-                    </Button>
-                    <Button 
-                        type="submit" 
-                        className="w-full text-white font-[700]" 
-                        disabled={updateProfile.isPending}
-                    >
-                        {updateProfile.isPending ? "Saving..." : "Save Changes"}
-                    </Button>
-                </div>
-            </form>
-        </Modal>
-    );
+        {/* Profile Picture Section */}
+        <div className="flex items-center gap-6">
+          <div className="relative">
+            <div className="w-24 h-24 rounded-full bg-gray-100 flex items-center justify-center overflow-hidden">
+              {preview ? (
+                <img
+                  src={preview}
+                  alt="Profile"
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <div className="w-12 h-12 rounded-full bg-gray-200" />
+              )}
+            </div>
+            {preview ? (
+              <button
+                type="button"
+                onClick={handleRemoveImage}
+                className="absolute bottom-0 right-0 bg-white rounded-full shadow p-1"
+              >
+                <FiX className="text-gray-600 text-sm" />
+              </button>
+            ) : (
+              <label
+                htmlFor="profile-upload"
+                className="absolute top-0 right-0 bg-white rounded-full shadow p-1 cursor-pointer"
+              >
+                <FiEdit2 className="text-gray-600 text-sm" />
+                <input
+                  type="file"
+                  id="profile-upload"
+                  accept="image/png, image/jpeg"
+                  className="hidden"
+                  onChange={handleImageChange}
+                />
+              </label>
+            )}
+          </div>
+
+          <p className="text-sm text-gray-500">
+            Allowed file types: <b>png, jpg</b> <br />
+            (max. file size of 2MB)
+          </p>
+        </div>
+
+        {/* Form Fields */}
+        <div className="space-y-3">
+          <Input
+            label="Username"
+            placeholder="Username"
+            register={register("username")}
+            error={errors.username}
+          />
+
+          <div className="grid grid-cols-2 gap-3">
+            <Input
+              label="First Name"
+              placeholder="First Name"
+              register={register("firstName")}
+              error={errors.firstName}
+            />
+            <Input
+              label="Last Name"
+              placeholder="Last Name"
+              register={register("lastName")}
+              error={errors.lastName}
+            />
+          </div>
+
+          <div className="grid grid-cols-2 gap-3">
+            <Input
+              label="Email"
+              placeholder="username@email.com"
+              register={register("email")}
+              error={errors.email}
+            />
+            <Input
+              label="Phone No"
+              placeholder="Enter phone number"
+              register={register("phoneNo")}
+              error={errors.phoneNo}
+            />
+          </div>
+          <Input
+            label="Address"
+            placeholder="Enter address"
+            register={register("address")}
+            error={errors.address}
+          />
+          <Input
+            label="References"
+            placeholder="Enter references"
+            register={register("references")}
+            error={errors.references}
+          />
+        </div>
+
+
+
+        {/* Buttons */}
+        <div className="flex justify-end gap-4 ">
+          <Button
+            type="button"
+            className="w-32 border border-gray-300 text-gray-700 bg-white hover:bg-gray-50"
+            handleClick={handleModalClose}
+          >
+            Cancel
+          </Button>
+          <Button
+            type="submit"
+            className="w-40 bg-blue-600 text-white font-semibold hover:bg-blue-700"
+            disabled={updateProfile.isPending}
+          >
+            {updateProfile.isPending ? "Saving..." : "Save Changes"}
+          </Button>
+        </div>
+      </form>
+    </Modal>
+  );
 };
 
 export default EditProfile;

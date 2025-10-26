@@ -1,14 +1,14 @@
 // utils/exportToCSV.ts
 import { unparse } from "papaparse";
-import { TApplications } from "@/layout/admin/tables/applications";
+// import { TApplications } from "@/layout/admin/tables/applications";
 
 export const exportApplications = (
-  data: TApplications[],
+  data: any,
   filename = "registrations.csv"
 ) => {
   if (!data || data.length === 0) return;
 
-  const flattened = data.map((app) => ({
+  const flattened = data.map((app:any) => ({
     FirstName: app?.firstName,
     MiddleName: app?.middleName,
     LastName: app?.lastName,

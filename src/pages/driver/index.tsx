@@ -1,76 +1,52 @@
-import { Option } from "@/components/input/select";
-import Announcement from "@/layout/general/announcement";
+"use client";
 import Container from "@/layout/driver/container";
-import { Statistics } from "@/lib/content/tutor/stats";
-import { useGetAnnouncements } from "@/services/announcement.service";
-import { useGetTutorClasses } from "@/services/class.service";
-import useAuthStore from "@/store/useAuthStore";
+import { Statistics } from "@/lib/content/driver/stats";
 import Stats from "@/ui/stats";
-import { useEffect, useState } from "react";
+import { EarningsGraph, MagazinePickup, NotificationCard, QuickActions, UpcomingPayout } from "@/layout/driver/dashboard";
 
 const Dashboard = () => {
-  const { profile } = useAuthStore();
 
-  const { data } = useGetTutorClasses(profile?.id);
-  const [classes, setClasses] = useState<any>([]);
-  const [options, setOptions] = useState<Option[]>([]);
-
-  useEffect(() => {
-    if (data) {
-      setClasses(data?.data);
-      setOptions(
-        data?.data?.map((item: any) => ({
-          label: item?.courseName,
-          value: item?.courseCohortId,
-        }))
-      );
-    }
-  }, [data]);
-
-  const {
-    data: announcements,
-    isLoading,
-    refetch,
-  } = useGetAnnouncements(classes?.[0]?.courseCohortId);
-
-  const [announce, setAnnounce] = useState<any>([]);
-
-  useEffect(() => {
-    if (announcements) {
-      setAnnounce(announcements?.data?.items);
-    }
-  }, [announcements]);
 
   return (
     <Container>
-
-
-
-      <section className="w-full px-4 py-6 flex flex-col gap-8 ">
-
-        <div className="flex items-start justify-between">
+      <section className="w-full lg:px-4 py-6 flex flex-col gap-8">
+        {/* Header */}
+        <div className="flex items-start justify-between ">
           <div className="flex flex-col gap-2">
-            <h1 className="lg:text-2xl text-lg font-[800] leading-[26px] text-[#171313]">
-              Good Morning,{" "}
-              <span className="text-[#D0D0D0]">{profile?.lastName}!</span>
-            </h1>
-            <p className="font-[500] lg:text-xl text-md leading-none -tracking-[0.03em] text-[#5E5E5EEF]">
-              Hope you are having an interesting day today 😎
+            <div className="flex items-center gap-3">
+              <h1 className="lg:text-3xl text-xl font-bold text-gray-900">
+                Hello, Samuel Emmaeus
+              </h1>
+              <div className="flex items-center gap-2">
+                <span className="h-3 w-3 rounded-full bg-blue-600"></span>
+                <span className="text-2xl font-bold text-gray-900">4.8</span>
+                <span className="text-2xl">⭐</span>
+              </div>
+            </div>
+            <p className="text-base text-gray-600">
+              Get reward for every second spent with us and on the road!
             </p>
           </div>
         </div>
-        <div className="flex flex-col gap-3"> 
+
+        {/* Stats */}
+        <div className="flex flex-col gap-3">
           <Stats data={Statistics} />
         </div>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="lg:col-span-1 h-54">
+            <UpcomingPayout />
+          </div>
+          <div className="lg:col-span-2">
+            <EarningsGraph />
+          </div>
+        </div>
+        <QuickActions />
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <MagazinePickup />
+          <NotificationCard />
+        </div>
       </section>
-
-      {/* Pass options and refetch to Announcement component
-      <Announcement
-        data={announce}
-        isLoading={isLoading}
-        refetch={refetch}
-        options={options}
-      /> */}
     </Container>
   );
 };

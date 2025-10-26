@@ -1,9 +1,9 @@
 import Table from "@/components/table";
-import { studentColumns, studentData } from "./data";
+import { advertiserColumns, advertiserData } from "./data";
 import Pagination from "@/components/pagination";
 
-export interface TStudent {
-  student_name: string;
+export interface Tadvertiser {
+  advertiser_name: string;
   program: string;
   gender: string;
   cohort: string;
@@ -13,22 +13,22 @@ export interface TStudent {
 }
 
 interface CourseTableProps {
-  onViewCourse: (course: TStudent) => void;
-  onUploadMaterials: (course: TStudent) => void;
+  onViewCourse: (course: Tadvertiser) => void;
+  onUploadMaterials: (course: Tadvertiser) => void;
 }
 
-const StudentTable = ({
+const advertiserTable = ({
   onViewCourse,
   onUploadMaterials,
 }: CourseTableProps) => {
-  const columns = studentColumns(onViewCourse, onUploadMaterials);
+  const columns = advertiserColumns(onViewCourse, onUploadMaterials);
 
   return (
     <>
-      <Table<TStudent> columns={columns} data={studentData} />
+      <Table<Tadvertiser> columns={columns} data={advertiserData} />
       <Pagination currentPage={1} totalPages={1} onPageChange={() => null} />
     </>
   );
 };
 
-export default StudentTable;
+export default advertiserTable;

@@ -34,7 +34,7 @@ export interface TAddPartner {
   cohortIds: string[]
   courseIds: string[]
   isForAllCourses: boolean
-  numberOfStudents: number
+  numberOfadvertisers: number
   discount: number
   scholarshipDescription: string
   amountPledged: number
@@ -50,7 +50,7 @@ interface TPartnerForm {
   cohortIds: string
   courseIds: string
   isForAllCourses: boolean
-  numberOfStudents: number
+  numberOfadvertisers: number
   discount: number
   scholarshipDescription: string
   amountPledged: number
@@ -65,11 +65,11 @@ const partnerSchema = yup.object({
   cohortIds: yup.string().required("Select a cohort"),
   courseIds: yup.string().required("Select a course"),
   isForAllCourses: yup.boolean().required("Specify if it's for all courses"),
-  numberOfStudents: yup
+  numberOfadvertisers: yup
     .number()
     .typeError("Must be a number")
-    .min(1, "At least 1 student")
-    .required("Number of students is required"),
+    .min(1, "At least 1 advertiser")
+    .required("Number of advertisers is required"),
   discount: yup
     .number()
     .typeError("Discount must be a number")
@@ -166,11 +166,11 @@ const CreatePartner = ({ open, handleClose, refetch }: TModal) => {
           </div>
           <div className="flex flex-col md:flex-row gap-4">
             <Input
-              label="Number of Students"
+              label="Number of advertisers"
               type="number"
-              placeholder="Enter number of students"
-              register={register("numberOfStudents")}
-              error={errors.numberOfStudents}
+              placeholder="Enter number of advertisers"
+              register={register("numberOfadvertisers")}
+              error={errors.numberOfadvertisers}
             />
             <DateInput
               label="Start Date"

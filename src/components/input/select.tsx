@@ -61,7 +61,7 @@ const Select = ({
                     {options.map((option) => (
                       <li
                         key={option.value}
-                        className={`px-4 py-2 cursor-pointer hover:bg-blue-100 hover:text-white ${
+                        className={`px-4 py-2 cursor-pointer hover:bg-[#336AEA] hover:text-white ${
                           option.value === field.value
                             ? "bg-blue-50 font-medium"
                             : ""

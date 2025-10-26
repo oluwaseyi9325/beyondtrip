@@ -26,10 +26,10 @@ function Table<T>({
     },
     headRow: {
       style: {
-        backgroundColor: "#F6F6F6",
-        fontWeight: 500,
+        backgroundColor: "#C5E4FF",
+        fontWeight: 800,
         fontSize: "12px",
-        color: "#5E5E5E",
+        color: "#000000",
       },
     },
     headCells: {
@@ -46,7 +46,7 @@ function Table<T>({
   };
 
   return (
-    <div className="w-full  rounded-b-2xl min-h-[65vh]">
+    <div className="w-full  rounde-2x min-h-[65vh]">
       <DataTable
         columns={columns}
         data={data}
