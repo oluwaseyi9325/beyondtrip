@@ -46,7 +46,7 @@ function Table<T>({
   };
 
   return (
-    <div className="w-full  rounde-2x min-h-[65vh]">
+    <div className="w-full min-h-[65vh]">
       <DataTable
         columns={columns}
         data={data}

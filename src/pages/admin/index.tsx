@@ -1,3 +1,4 @@
+"use client";
 import Container from "@/layout/admin/container";
 import Text from "@/components/typography";
 

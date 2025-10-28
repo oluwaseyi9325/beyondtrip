@@ -1,27 +1,28 @@
 import Table from "@/components/table";
-import { useEarningColumns } from "./data";
+import { useCampaignColumns } from "./data";
 import { useState } from "react";
 // import driverToClass from "@/layout/general/modals/driver-to-class";
 
 import { useTableSearch } from "@/hooks/use-table-search";
 import TransactionDetails from "@/layout/general/modals/earnings/view-earning";
-// import TransactionDetails from "@/layout/general/modals/earnings/view-earning";
+// import TransactionDetails from "@/layout/general/modnpals/earnings/view-earning";
 // import Pagination from "@/components/pagination";
 
 export interface TAmbassador {
+  name: string
   date: string;
+  duration: string;
   amount: string;
-  description: string;
-  status: "Approved" | "Pending" | "Rejected" | "Not Paid";
+  status: "Active" | "Pending" | "Completed" | "Planned";
 }
-const EarningTable = ({ data }: { data: TAmbassador[] }) => {
+const CampaignTable = ({ data }: { data: TAmbassador[] }) => {
   // const [driverId, setdriverId] = useState("");
   // const [open, setOpen] = useState(false);
 
   const [viewdriverOpen, setViewdriverOpen] = useState(false);
   const [driver, setdriver] = useState<TAmbassador | null>(null);
 
-  const columns = useEarningColumns({
+  const columns = useCampaignColumns({
     handleClick: () => {
       // setdriverId(id);
       // setOpen(true);
@@ -72,4 +73,4 @@ const EarningTable = ({ data }: { data: TAmbassador[] }) => {
   );
 };
 
-export default EarningTable;
+export default CampaignTable;

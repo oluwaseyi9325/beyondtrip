@@ -4,6 +4,7 @@ import BasicDetailsContent from "@/layout/general/profile-details";
 // import BankDetailsContent from "@/layout/driver/profile/bank-details-content";
 import Ratings from "@/layout/driver/profile/ratings";
 import NotificationList from "@/layout/general/notification-item";
+import Pricing from "@/layout/advertiser/modal/plan";
 
 const Security = () => {
   const tabsData: any = [
@@ -17,7 +18,7 @@ const Security = () => {
     },
     {
       title: "Pricing Tiers/Payment Options",
-      content: <Ratings />
+      content: <Pricing/>
     }
   ];
 

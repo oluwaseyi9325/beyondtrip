@@ -20,14 +20,16 @@ const StatsCard = ({ data }: Props) => {
     <div className="w-full bg-white border border-gray-200 py-4 px-6 rounded-xl  flex flex-col gap-4">
       {/* Top Section: Icon and Title */}
       <div className="flex items-center gap-5">
-        <div
-          className={clsx(
-            "h-8 w-8 rounded-full flex items-center justify-center",
-            "bg-[#EFEFFF] text-[#434494]"
-          )}
-        >
-          {data.icon}
-        </div>
+        {
+          data.icon && <div
+            className={clsx(
+              "h-8 w-8 rounded-full flex items-center justify-center",
+              "bg-[#EFEFFF] text-[#434494]"
+            )}
+          >
+            {data.icon}
+          </div>
+        }
         <p className="text-sm font-[500] text-[#5E5E5E]">{data.title}</p>
       </div>
 
@@ -36,7 +38,7 @@ const StatsCard = ({ data }: Props) => {
         <p className="font-[800] text-[30px] text-[#171313]">
           {isEarnings ? (showEarnings ? data.figure : "************") : data.figure}
         </p>
-        
+
         {isEarnings && (
           <button
             onClick={() => setShowEarnings(!showEarnings)}
