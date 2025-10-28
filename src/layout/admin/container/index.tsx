@@ -1,5 +1,5 @@
 "use client";
-import Topbar from "@/layout/general/topbar";
+import AdminTopbar from "@/layout/general/admin-topbar";
 import Sidebar from "../sidebar";
 // import useAuthStore from "@/store/useAuthStore";
 import { useEffect, useRef, useState } from "react";
@@ -69,13 +69,13 @@ const Container = ({ children, active, }: TProps) => {
            <Sidebar active={active} onCloseMobile={() => setShowSidebar(false)} />
          </div>
    
-         {/* Main Content */}
+        {/* Main Content */}
          <section className="w-full h-full overflow-y-hidden">
-           <Topbar
-             // search={search}
-             // handleSearch={handleSearch}
-             onToggleSidebar={() => setShowSidebar(true)}
-           />
+          <AdminTopbar
+            // search={search}
+            // handleSearch={handleSearch}
+            onToggleSidebar={() => setShowSidebar(true)}
+          />
            <section className="h-[calc(100vh-90px)] px-7 overflow-y-auto space-y-4 relative scrollbar-none">
              {children}
            </section>
