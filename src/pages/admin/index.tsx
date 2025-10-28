@@ -6,12 +6,23 @@ import Stats from "@/ui/stats";
 import {
   EarningsGraph,
   MagazinePickup,
-  NotificationCard,
   QuickActions,
   UpcomingPayout,
 } from "@/layout/driver/dashboard";
+import { FaWallet, FaNewspaper, FaUserEdit } from "react-icons/fa";
+import { PendingAction } from "@/layout/admin/pending-action";
+import { AdminNotificationCard } from "@/layout/admin/notification";
 
 const Dashboard = () => {
+
+
+  const actions = [
+    { icon:<FaNewspaper size={20} /> , label: "Manage Campaigns", color: "text-blue-600" },
+    { icon:<FaWallet size={20} /> , label: "Manage Magazines", color: "text-blue-600" },
+    { icon: <FaNewspaper size={20} />, label: "Manage Payouts", color: "text-blue-600" },
+  ];
+
+
   return (
     <Container>
       <section className="w-full lg:px-4 py-6 flex flex-col gap-8">
@@ -29,18 +40,10 @@ const Dashboard = () => {
         <div className="flex flex-col gap-3">
           <Stats data={Statistics} />
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <div className="lg:col-span-1 h-54">
-            <UpcomingPayout />
-          </div>
-          <div className="lg:col-span-2">
-            <EarningsGraph h="15" graphSize="34" />
-          </div>
-        </div>
-        <QuickActions />
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <MagazinePickup />
-          <NotificationCard />
+        <QuickActions  actions={actions} />
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">          
+          <PendingAction />
+          <AdminNotificationCard />
         </div>
       </section>
     </Container>

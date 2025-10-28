@@ -2,7 +2,6 @@
 import Container from '@/layout/advertiser/container';
 import { EarningsGraph, QuickActions } from '@/layout/driver/dashboard';
 import EarningTable from '@/layout/driver/tables/earnings';
-import { FaWallet } from 'react-icons/fa';
 import UpcomingPayout from '@/layout/driver/earning/upcoming-payout';
 import BankDetails from '@/layout/driver/earning/bank-details';
 import AvailableBalance from '@/layout/driver/earning/available-balance';
@@ -10,6 +9,7 @@ import Stats from '@/ui/stats';
 import CampaignTable from '@/layout/advertiser/tables/campaigns';
 import { earningData } from '@/data/earningData';
 import { campaignData } from '@/data/campaign';
+import { FaWallet, FaNewspaper, FaUserEdit } from "react-icons/fa";
 
 function Earnings() {
   // Mock data - replace with your actual data
@@ -34,6 +34,13 @@ function Earnings() {
   
   ];
 
+  const actions = [
+    { icon: <FaWallet size={20} />, label: "Withdraw Earnings", color: "text-blue-600" },
+    { icon: <FaNewspaper size={20} />, label: "Activate Magazine", color: "text-blue-600" },
+    { icon: <FaUserEdit size={20} />, label: "Update Profile", color: "text-blue-600" },
+  ];
+
+
   return (
     <Container>
       <section className="w-full px-4 py-6 flex flex-col gap-6">
@@ -52,7 +59,7 @@ function Earnings() {
         </div>
 
         <div className="flex flex-col gap-3">
-          <Stats grid={2} data={Statistics} />
+          <Stats data={Statistics} />
         </div>
 
 
@@ -60,7 +67,7 @@ function Earnings() {
         {/* Earnings Table */}
         <EarningsGraph h="h-90" />
         <EarningsGraph h="h-90" />
-        <QuickActions />
+        <QuickActions actions={actions} />
         <div className="bg-white border border-gray-200  overflow-hidden">
           <CampaignTable data={campaignData} />
        

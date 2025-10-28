@@ -3,9 +3,15 @@ import Container from "@/layout/driver/container";
 import { Statistics } from "@/lib/content/driver/stats";
 import Stats from "@/ui/stats";
 import { EarningsGraph, MagazinePickup, NotificationCard, QuickActions, UpcomingPayout } from "@/layout/driver/dashboard";
+import { FaWallet, FaNewspaper, FaUserEdit } from "react-icons/fa";
 
 const Dashboard = () => {
 
+  const actions = [
+    { icon: <FaWallet size={20} />, label: "Withdraw Earnings", color: "text-blue-600" },
+    { icon: <FaNewspaper size={20} />, label: "Activate Magazine", color: "text-blue-600" },
+    { icon: <FaUserEdit size={20} />, label: "Update Profile", color: "text-blue-600" },
+  ];
 
   return (
     <Container>
@@ -41,7 +47,7 @@ const Dashboard = () => {
             <EarningsGraph h="15" graphSize="34"/>
           </div>
         </div>
-        <QuickActions />
+        <QuickActions actions={actions} />
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <MagazinePickup />
           <NotificationCard />
