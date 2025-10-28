@@ -20,9 +20,9 @@ function Earnings() {
   const accountNumber = "0029394827";
 
   return (
-    <Container active="Invoices">
+    <Container active="Analytics">
       <section className="w-full px-4 py-6 flex flex-col gap-6"> 
-        <div className="bg-white border border-gray-200 rounded-2xl shadow-sm overflow-hidden">
+        <div className="overflow-hidden">
           <EarningTable data={earningData} />
         </div>
       </section>

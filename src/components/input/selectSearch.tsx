@@ -54,7 +54,7 @@ const SelectSearch = ({
     <div 
       ref={selectRef}
       className={clsx(
-        "h-10 relative",
+        "h-12 relative",
         className
       )}
     >
@@ -65,7 +65,7 @@ const SelectSearch = ({
         disabled={disabled}
         className={clsx(
           "w-full h-full flex items-center justify-between px-4 rounded-[6px]",
-          "border border-[#131364] bg-white",
+          "border border-[#444444] bg-white",
           "text-sm text-left outline-none transition-colors duration-200",
           disabled 
             ? "opacity-50 cursor-not-allowed bg-gray-50" 
@@ -89,7 +89,7 @@ const SelectSearch = ({
       {isOpen && !disabled && (
         <div className={clsx(
           "absolute top-full left-0 w-full mt-1 z-50",
-          "bg-white border border-[#131364] rounded-[6px]",
+          "bg-white border border-[#444444] rounded-[6px]",
           "shadow-lg max-h-60 overflow-y-auto"
         )}>
           {options.length > 0 ? (
