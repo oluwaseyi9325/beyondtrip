@@ -5,27 +5,24 @@ import { PiUsersThree } from "react-icons/pi";
 
 export const Statistics: TStats[] = [
   {
-    icon: <ImBook size={16} />,
-    title: "Total Courses",
-    figure: "0",
+    title: "Total Drivers",
+    figure: "1,800",
   },
   {
-    icon: <PiUsersThree size={20} />,
-    title: "Registered advertisers",
-    figure: "0",
+    title: "Total Advertisers",
+    figure: "650",
   },
   {
-    icon: <LuUsersRound size={16} />,
-    title: "No. of Instructors",
-    figure: "0",
+    title: "Active Campaigns",
+    description: "Last Updated, Dec. 22",
+    figure: "350",
   },
   {
-    icon: <LuSchool size={18} />,
-    title: "Archive Classes",
-    figure: "0",
+    title: "Total Revenue",
+    description: "Last Updated, Dec. 22",
+    figure: "₦650,000.00",
   },
 ];
-
 export const advertiserStatistics: TStats[] = [
   {
     icon: <ImBook size={16} />,
