@@ -6,6 +6,7 @@ interface Props {
   lineHeight?: "none" | "normal";
   children: React.ReactNode;
   color?: "black" | "grey" | "red" | "yellow" | "white";
+  className?: string;
 }
 
 const Text = ({
@@ -14,6 +15,7 @@ const Text = ({
   weight = "400",
   lineHeight = "normal",
   children,
+  className,
 }: Props) => {
   const SIZING = {
     h3: "text-[32px]",
@@ -49,7 +51,8 @@ const Text = ({
         SIZING[type],
         COLOR[color],
         WEIGHT[weight],
-        LINE_HEIGHT[lineHeight]
+        LINE_HEIGHT[lineHeight],
+        className
       )}
     >
       {children}

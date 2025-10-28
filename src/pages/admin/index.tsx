@@ -1,50 +1,49 @@
 "use client";
 import Container from "@/layout/admin/container";
-import { Statistics } from "@/lib/content/driver/stats";
+import Text from "@/components/typography";
+import { Statistics } from "@/lib/content/admin/stats";
 import Stats from "@/ui/stats";
-import { EarningsGraph, MagazinePickup, NotificationCard, QuickActions, UpcomingPayout } from "@/layout/driver/dashboard";
+import {
+  EarningsGraph,
+  MagazinePickup,
+  QuickActions,
+  UpcomingPayout,
+} from "@/layout/driver/dashboard";
+import { FaWallet, FaNewspaper, FaUserEdit } from "react-icons/fa";
+import { PendingAction } from "@/layout/admin/pending-action";
+import { AdminNotificationCard } from "@/layout/admin/notification";
 
 const Dashboard = () => {
+
+
+  const actions = [
+    { icon:<FaNewspaper size={20} /> , label: "Manage Campaigns", color: "text-blue-600" },
+    { icon:<FaWallet size={20} /> , label: "Manage Magazines", color: "text-blue-600" },
+    { icon: <FaNewspaper size={20} />, label: "Manage Payouts", color: "text-blue-600" },
+  ];
 
 
   return (
     <Container>
       <section className="w-full lg:px-4 py-6 flex flex-col gap-8">
         {/* Header */}
-        <div className="flex items-start justify-between ">
-          <div className="flex flex-col gap-2">
-            <div className="flex items-center gap-3">
-              <h1 className="lg:text-3xl text-xl font-bold text-gray-900">
-                Hello, Samuel Emmaeus
-              </h1>
-              <div className="flex items-center gap-2">
-                <span className="h-3 w-3 rounded-full bg-blue-600"></span>
-                <span className="text-2xl font-bold text-gray-900">4.8</span>
-                <span className="text-2xl">⭐</span>
-              </div>
-            </div>
-            <p className="text-base text-gray-600">
-              Get reward for every second spent with us and on the road!
-            </p>
-          </div>
+        <div className="flex flex-col gap-2">
+          <Text className="text-xl " weight="700" color="black">
+            Hello, Emmanuel Vicksons{" "}
+          </Text>
+          <Text className="text-sm " weight="500" color="grey">
+            Here’s an overview of today’s activities and key updates{" "}
+          </Text>
         </div>
 
         {/* Stats */}
         <div className="flex flex-col gap-3">
           <Stats data={Statistics} />
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <div className="lg:col-span-1 h-54">
-            <UpcomingPayout />
-          </div>
-          <div className="lg:col-span-2">
-            <EarningsGraph h="15" graphSize="34"/>
-          </div>
-        </div>
-        <QuickActions />
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <MagazinePickup />
-          <NotificationCard />
+        <QuickActions  actions={actions} />
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">          
+          <PendingAction />
+          <AdminNotificationCard />
         </div>
       </section>
     </Container>
