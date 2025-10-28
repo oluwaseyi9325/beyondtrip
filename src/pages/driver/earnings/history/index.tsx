@@ -1,79 +1,9 @@
+import { earningData } from '@/data/earningData'
 import Container from '@/layout/driver/container'
 import EarningTable from '@/layout/driver/tables/earnings'
 import React from 'react'
 
-export const earningData:any = [
-  {
-    id: 1,
-    date: "03 September 2025, 14:25:06",
-    amount: "₦50,000.00",
-    description: "Payout Withdrawal/Ref: 00456349cEAzU",
-    status: "Approved",
-  },
-  {
-    id: 2,
-    date: "03 September 2025, 14:25:06",
-    amount: "₦50,000.00",
-    description: "Payout Withdrawal/Ref: 00456349cEAzU",
-    status: "Pending",
-  },
-  {
-    id: 3,
-    date: "03 September 2025, 14:25:06",
-    amount: "₦50,000.00",
-    description: "Payout Withdrawal/Ref: 00456349cEAzU",
-    status: "Rejected",
-  },
-  {
-    id: 4,
-    date: "03 September 2025, 14:25:06",
-    amount: "₦50,000.00",
-    description: "Payout Withdrawal/Ref: 00456349cEAzU",
-    status: "Approved",
-  },
-  {
-    id: 5,
-    date: "03 September 2025, 14:25:06",
-    amount: "₦50,000.00",
-    description: "Payout Withdrawal/Ref: 00456349cEAzU",
-    status: "Approved",
-  },
-  {
-    id: 6,
-    date: "03 September 2025, 14:25:06",
-    amount: "₦50,000.00",
-    description: "Payout Withdrawal/Ref: 00456349cEAzU",
-    status: "Approved",
-  },
-  {
-    id: 7,
-    date: "03 September 2025, 14:25:06",
-    amount: "₦50,000.00",
-    description: "Payout Withdrawal/Ref: 00456349cEAzU",
-    status: "Approved",
-  },
-  {
-    id: 8,
-    date: "03 September 2025, 14:25:06",
-    amount: "₦50,000.00",
-    description: "Payout Withdrawal/Ref: 00456349cEAzU",
-    status: "Approved",
-  },
-  {
-    id: 9,
-    date: "03 September 2025, 14:25:06",
-    amount: "₦50,000.00",
-    description: "Payout Withdrawal/Ref: 00456349cEAzU",
-    status: "Approved",
-  },
-  {
-    id: 10,
-    date: "03 September 2025, 14:25:06",
-    amount: "₦50,000.00",
-    description: "Payout Withdrawal/Ref: 00456349cEAzU",
-    status: "Approved",
-  },
-];
+
 function Earnings() {
  
 

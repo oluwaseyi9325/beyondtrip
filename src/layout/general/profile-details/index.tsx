@@ -1,8 +1,9 @@
    import React, { useState } from 'react'
 import { BiKey } from 'react-icons/bi'
 import { MdEdit } from 'react-icons/md'
-import EditProfile from '../modals/profile/edit-profile'
+// import EditProfile from '../modals/profile/edit-profile'
 import ChangePassword from '../modals/profile/change-password'
+import EditProfile from '../modals/profile/edit-profile'
    
 function BasicDetailsContent() {
   const [open, setOpen] = useState(false)

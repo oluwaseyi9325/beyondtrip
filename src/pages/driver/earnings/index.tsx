@@ -3,11 +3,10 @@ import Container from '@/layout/driver/container';
 import { EarningsGraph } from '@/layout/driver/dashboard';
 import EarningTable from '@/layout/driver/tables/earnings';
 import { FaWallet } from 'react-icons/fa';
-// import { MdArrowForward } from 'react-icons/md';
-import { earningData } from './history';
 import UpcomingPayout from '@/layout/driver/earning/upcoming-payout';
 import BankDetails from '@/layout/driver/earning/bank-details';
 import AvailableBalance from '@/layout/driver/earning/available-balance';
+import { earningData } from '@/data/earningData';
 
 function Earnings() {
   // Mock data - replace with your actual data

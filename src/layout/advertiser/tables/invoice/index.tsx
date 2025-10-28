@@ -1,27 +1,30 @@
 import Table from "@/components/table";
-import { useEarningColumns } from "./data";
+import { useInvoiceColumns } from "./data";
 import { useState } from "react";
 // import driverToClass from "@/layout/general/modals/driver-to-class";
 
 import { useTableSearch } from "@/hooks/use-table-search";
 import TransactionDetails from "@/layout/general/modals/earnings/view-earning";
-// import TransactionDetails from "@/layout/general/modals/earnings/view-earning";
+// import TransactionDetails from "@/layout/gmeneral/modals/earnings/view-earning";
 // import Pagination from "@/components/pagination";
 
 export interface TAmbassador {
+  id: string;
+  campaign: string;
   date: string;
   amount: string;
   description: string;
-  status: "Approved" | "Pending" | "Rejected" | "Not Paid";
+  isPay: boolean;
+  status: "Paid" | "Pending" | "Unpaid" | "Not Paid"| "Active";
 }
-const EarningTable = ({ data }: { data: TAmbassador[] }) => {
+const InvoiceTable = ({ data }: { data: TAmbassador[] }) => {
   // const [driverId, setdriverId] = useState("");
   // const [open, setOpen] = useState(false);
 
   const [viewdriverOpen, setViewdriverOpen] = useState(false);
   const [driver, setdriver] = useState<TAmbassador | null>(null);
 
-  const columns = useEarningColumns({
+  const columns = useInvoiceColumns({
     handleClick: () => {
       // setdriverId(id);
       // setOpen(true);
@@ -72,4 +75,4 @@ const EarningTable = ({ data }: { data: TAmbassador[] }) => {
   );
 };
 
-export default EarningTable;
+export default InvoiceTable;

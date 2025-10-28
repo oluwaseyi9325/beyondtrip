@@ -1,3 +1,4 @@
+// import EditBank from '@/layout/general/modals/earnings/edit-bank';
 import EditBank from '@/layout/general/modals/earnings/edit-bank';
 import React, { useState } from 'react'
 import { BiKey } from 'react-icons/bi';
