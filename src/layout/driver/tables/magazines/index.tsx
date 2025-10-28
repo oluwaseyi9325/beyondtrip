@@ -21,7 +21,7 @@ interface Props {
   compactHeader?: boolean; // ✅ renamed from isCutData for clarity
 }
 
-const EarningTable = ({ data, compactHeader = false }: Props) => {
+const MagazineTable = ({ data, compactHeader = false }: Props) => {
   const [viewdriverOpen, setViewdriverOpen] = useState(false);
   const [driver, setdriver] = useState<TAmbassador | null>(null);
 
@@ -83,4 +83,4 @@ const EarningTable = ({ data, compactHeader = false }: Props) => {
   );
 };
 
-export default EarningTable;
+export default MagazineTable;

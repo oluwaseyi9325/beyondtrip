@@ -53,8 +53,8 @@ function Earnings() {
 
         {/* Earnings Table */}
         <EarningsGraph h="h-90" />
-        <div className="bg-white border border-gray-200 rounded-2xl shadow-sm overflow-hidden">
-          <EarningTable data={earningData} />
+        <div className="overflow-hidden">
+          <EarningTable compactHeader data={earningData} />
         </div>
       </section>
     </Container>
