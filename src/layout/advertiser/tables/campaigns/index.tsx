@@ -5,6 +5,9 @@ import { useState } from "react";
 
 import { useTableSearch } from "@/hooks/use-table-search";
 import TransactionDetails from "@/layout/general/modals/earnings/view-earning";
+import DateSort from "@/components/input/dateSort";
+import SelectSearch from "@/components/input/selectSearch";
+import { IoChevronForward } from "react-icons/io5";
 // import TransactionDetails from "@/layout/general/modnpals/earnings/view-earning";
 // import Pagination from "@/components/pagination";
 
@@ -14,8 +17,9 @@ export interface TAmbassador {
   duration: string;
   amount: string;
   status: "Active" | "Pending" | "Completed" | "Planned";
+  
 }
-const CampaignTable = ({ data }: { data: TAmbassador[] }) => {
+const CampaignTable = ({ data, compactHeader = false }: { data: TAmbassador[], compactHeader?:boolean }) => {
   // const [driverId, setdriverId] = useState("");
   // const [open, setOpen] = useState(false);
 
@@ -65,6 +69,37 @@ const CampaignTable = ({ data }: { data: TAmbassador[] }) => {
         }
 
       />
+
+         {compactHeader ? (
+              <div className="flex items-center justify-between py-4">
+                <h2 className="text-lg font-semibold text-gray-900">
+                 Campaigns
+                </h2>
+                <button className="flex items-center gap-1 text-blue-600 text-sm font-medium hover:underline">
+                  View All <IoChevronForward className="text-blue-600 text-base" />
+                </button>
+              </div>
+            ) : (
+              <div className="flex items-center justify-between flex-wrap gap-4 py-5">
+                <h2 className="text-2xl font-semibold text-gray-900">
+                Manage Campaigns
+                </h2>
+                <div className="flex items-center gap-3">
+                  <SelectSearch
+                    options={[
+                      { value: "paid", label: "Paid" },
+                      { value: "pending", label: "Pending" },
+                      { value: "failed", label: "Failed" },
+                    ]}
+                    placeholder="Payment Status"
+                  />
+                  <DateSort
+                    onDateChange={(dates) => console.log("Dates changed:", dates)}
+                  />
+                </div>
+              </div>
+            )}
+      
 
 
       <Table<TAmbassador> columns={columns} data={filterAmbassador} />
