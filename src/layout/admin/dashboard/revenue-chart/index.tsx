@@ -11,16 +11,16 @@ import {
   ResponsiveContainer,
   Area,
 } from "recharts";
-import { MdCircle } from 'react-icons/md';
+import { MdCircle } from "react-icons/md";
 
 type props = {
   h?: string;
   graphSize?: string;
 };
 
-export const CampaignChart = ({ h = "h-56", graphSize = "h-64" }: props) => {
-  const [dateRange, setDateRange] = useState("");
-  const [advertiserName, setAdvertiserName] = useState("");
+export const RevenueChart = ({ h = "h-96", graphSize = "h-64" }: props) => {
+  const [viewType, setViewType] = useState("Month");
+  const [year, setYear] = useState("Year");
 
   const chartData = [
     { month: "Jan", earnings: 15000 },
@@ -41,18 +41,36 @@ export const CampaignChart = ({ h = "h-56", graphSize = "h-64" }: props) => {
     if (active && payload && payload.length) {
       return (
         <div className="bg-[#2C4C9C] text-white p-3 rounded-lg shadow-lg text-sm">
-          <p className="font-semibold text-xs  ">July-Aug 2025 <br/> (ABC Digitals Ltd)</p>
-          <div className=" mt-4 text-[#FFFFFFCC] gap-13 flex items-center justify-between ">
-            <p className="text-xs">Total Active Campaigns</p>
-            <span className="font-bold text-white text-[15px] "  > 4</span>
+          <p className="font-semibold text-xs mb-1  ">
+            July 2025
+          </p>
+          <div className="text-[#FFFFFFCC] flex items-center gap-3 justify-between ">
+            <p className="text-xs flex items-center gap-1  ">
+              {" "}
+              <span>
+                {" "}
+                <MdCircle color="#336AEA" size={10} />
+              </span>{" "}
+              Total Revenue
+            </p>
+            <span className="font-bold text-white text-[15px] ">
+              {" "}
+              ₦{payload[0].value.toLocaleString()}.00
+            </span>
           </div>
           <div className="text-[#FFFFFFCC] flex items-center justify-between ">
-            <p className="text-xs flex items-center gap-1  "> <span> <MdCircle color="#336AEA" size={10} /></span>   Total Impressions</p>
-            <span className="font-bold text-white text-[15px] "   > {payload[0].value.toLocaleString()}</span>
-          </div>
-          <div className="text-[#FFFFFFCC] flex items-center justify-between ">
-          <p className="text-xs flex items-center gap-1  "> <span> <MdCircle color="#989898" size={10} /></span>  Total Barcode Scans</p>
-          <span className="font-bold text-white text-[15px] "  > {payload[0].value.toLocaleString()}</span>
+            <p className="text-xs flex items-center gap-1  ">
+              {" "}
+              <span>
+                {" "}
+                <MdCircle color="#989898" size={10} />
+              </span>{" "}
+              Total Payouts
+            </p>
+            <span className="font-bold text-white text-[15px] ">
+              {" "}
+              ₦{payload[0].value.toLocaleString()}.00
+            </span>
           </div>
         </div>
       );
@@ -62,35 +80,29 @@ export const CampaignChart = ({ h = "h-56", graphSize = "h-64" }: props) => {
 
   return (
     <div className={`bg-white border border-gray-200 rounded-2xl p-6  ${h}`}>
-      <div className=" flex flex-col lg:flex-row space-y-3 items-start lg:items-center justify-between mb-6">
-        <h2 className="text-xl font-bold text-gray-900">
-          Campaign Performance
+      <div className=" flex flex-col md:flex-row space-y-3 items-start md:items-center justify-between mb-6">
+      <h2 className="text-xl font-bold text-gray-900">
+          Revenue & Payout Summary{" "}
         </h2>
         <div className="flex gap-2">
           <select
-            value={dateRange}
-            onChange={(e) => setDateRange(e.target.value)}
-            className="px-4 py-2 focus:outline-none border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 cursor-pointer"
+            value={viewType}
+            onChange={(e) => setViewType(e.target.value)}
+            className="px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 cursor-pointer"
           >
-            <option value="" disabled hidden>
-              Date Range
-            </option>
-            <option>July - August</option>
-            <option>Sep - Oct</option>
-            <option>Nov - Dec</option>
+            <option>Month</option>
+            <option>Week</option>
+            <option>Day</option>
           </select>
           <select
-            value={advertiserName}
-            onChange={(e) => setAdvertiserName(e.target.value)}
-            className="px-4 py-2 focus:outline-none border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 cursor-pointer"
+            value={year}
+            onChange={(e) => setYear(e.target.value)}
+            className="px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 cursor-pointer"
           >
-            <option value="" disabled hidden>
-              Advertiser Name
-            </option>
-            <option>John Doe</option>
-            <option>John Doe</option>
-            <option>John Doe</option>
-
+            <option>Year</option>
+            <option>2025</option>
+            <option>2024</option>
+            <option>2023</option>
           </select>
         </div>
       </div>

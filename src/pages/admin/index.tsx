@@ -8,6 +8,7 @@ import { FaWallet, FaNewspaper, FaUserEdit } from "react-icons/fa";
 import { PendingAction } from "@/layout/admin/dashboard/pending-action";
 import { AdminNotificationCard } from "@/layout/admin/notification";
 import { CampaignChart } from "@/layout/admin/dashboard/campaign-chart";
+import { RevenueChart } from "@/layout/admin/dashboard/revenue-chart";
 
 const Dashboard = () => {
   const actions = [
@@ -46,11 +47,13 @@ const Dashboard = () => {
           <Stats data={Statistics} />
         </div>
 
-        <div>
-          <div>
+        <div className="grid w-full grid-cols-1 lg:grid-cols-7 gap-6">
+          <div className="lg:col-span-4   ">
+            <RevenueChart />
           </div>
-          <CampaignChart h="h-90" />
+          <div className="lg:col-span-3"></div>
         </div>
+        <CampaignChart h="h-90" />
         <QuickActions actions={actions} />
         <div className="grid w-full grid-cols-1 lg:grid-cols-7 gap-6">
           <div className="lg:col-span-3">
