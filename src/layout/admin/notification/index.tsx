@@ -35,7 +35,7 @@ export const AdminNotificationCard = ({ notifications }: NotificationProps) => {
   const notifList = notifications || defaultNotifications;
 
   return (
-    <div className="bg-white border border-gray-200 rounded-2xl p-6 ">
+    <div className="bg-white  border border-gray-200 rounded-2xl p-6 ">
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-xl font-bold text-gray-900">Notifications</h2>
         <button className="text-sm text-blue-600 hover:underline font-medium flex items-center gap-1">
