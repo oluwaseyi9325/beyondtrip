@@ -1,7 +1,7 @@
 // import Button from '@/components/button';
 import Container from '@/layout/advertiser/container';
-import { EarningsGraph, QuickActions } from '@/layout/driver/dashboard';
 import EarningTable from '@/layout/driver/tables/earnings';
+import { FaWallet } from 'react-icons/fa';
 import UpcomingPayout from '@/layout/driver/earning/upcoming-payout';
 import BankDetails from '@/layout/driver/earning/bank-details';
 import AvailableBalance from '@/layout/driver/earning/available-balance';
@@ -9,16 +9,11 @@ import Stats from '@/ui/stats';
 import CampaignTable from '@/layout/advertiser/tables/campaigns';
 import { earningData } from '@/data/earningData';
 import { campaignData } from '@/data/campaign';
-import { FaWallet, FaNewspaper, FaUserEdit } from "react-icons/fa";
+import { CustomGraph } from '@/layout/general/graph/CustomGraph';
+import { QuickActions } from '@/layout/advertiser/quick-actions';
 
 function Earnings() {
-  // Mock data - replace with your actual data
-  const totalEarnings = 165000.00;
-  const availableBalance = 55000.00;
-  const upcomingPayout = 55000.00;
-  const payoutDate = "Dec. 22";
-  const bankName = "First Bank";
-  const accountNumber = "0029394827";
+
 
   const Statistics: any = [
     {
@@ -33,13 +28,6 @@ function Earnings() {
     },
   
   ];
-
-  const actions = [
-    { icon: <FaWallet size={20} />, label: "Withdraw Earnings", color: "text-blue-600" },
-    { icon: <FaNewspaper size={20} />, label: "Activate Magazine", color: "text-blue-600" },
-    { icon: <FaUserEdit size={20} />, label: "Update Profile", color: "text-blue-600" },
-  ];
-
 
   return (
     <Container>
@@ -59,18 +47,14 @@ function Earnings() {
         </div>
 
         <div className="flex flex-col gap-3">
-          <Stats data={Statistics} />
+          <Stats grid={2} data={Statistics} />
         </div>
-
-
-
-        {/* Earnings Table */}
-        <EarningsGraph h="h-90" />
-        <EarningsGraph h="h-90" />
-        <QuickActions actions={actions} />
-        <div className="bg-white border border-gray-200  overflow-hidden">
-          <CampaignTable data={campaignData} />
-       
+      
+        <CustomGraph h="h-90" title='Ad Spend' />
+         <CustomGraph h="h-90" title='Campaign Performance'/>
+        <QuickActions />
+        <div className=" overflow-hidden">
+          <CampaignTable compactHeader data={campaignData} />
         </div>
       </section>
     </Container>
