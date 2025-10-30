@@ -9,6 +9,9 @@ import { PendingAction } from "@/layout/admin/dashboard/pending-action";
 import { AdminNotificationCard } from "@/layout/admin/notification";
 import { CampaignChart } from "@/layout/admin/dashboard/campaign-chart";
 import { RevenueChart } from "@/layout/admin/dashboard/revenue-chart";
+import { PastMagazines } from "@/layout/admin/dashboard/past-magazine";
+import { NewMagazines } from "@/layout/admin/dashboard/new-magazine";
+
 
 const Dashboard = () => {
   const actions = [
@@ -47,11 +50,14 @@ const Dashboard = () => {
           <Stats data={Statistics} />
         </div>
 
-        <div className="grid w-full grid-cols-1 lg:grid-cols-7 gap-6">
+        <div className="grid w-full grid-cols-1 lg:grid-cols-7 gap-4 ">
           <div className="lg:col-span-4   ">
             <RevenueChart />
           </div>
-          <div className="lg:col-span-3"></div>
+          <div className=" space-y-4 lg:col-span-3">
+            <NewMagazines/>
+            <PastMagazines/>
+          </div>
         </div>
         <CampaignChart h="h-90" />
         <QuickActions actions={actions} />

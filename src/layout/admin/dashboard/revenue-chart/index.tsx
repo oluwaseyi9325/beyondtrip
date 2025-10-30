@@ -18,7 +18,7 @@ type props = {
   graphSize?: string;
 };
 
-export const RevenueChart = ({ h = "h-96", graphSize = "h-64" }: props) => {
+export const RevenueChart = ({ h = "h-101", graphSize = "h-75" }: props) => {
   const [viewType, setViewType] = useState("Month");
   const [year, setYear] = useState("Year");
 
@@ -88,7 +88,7 @@ export const RevenueChart = ({ h = "h-96", graphSize = "h-64" }: props) => {
           <select
             value={viewType}
             onChange={(e) => setViewType(e.target.value)}
-            className="px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 cursor-pointer"
+            className="px-4 focus:outline-none py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 cursor-pointer"
           >
             <option>Month</option>
             <option>Week</option>
@@ -97,7 +97,7 @@ export const RevenueChart = ({ h = "h-96", graphSize = "h-64" }: props) => {
           <select
             value={year}
             onChange={(e) => setYear(e.target.value)}
-            className="px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 cursor-pointer"
+            className="px-4 focus:outline-none  py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 cursor-pointer"
           >
             <option>Year</option>
             <option>2025</option>
