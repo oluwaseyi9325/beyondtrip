@@ -1,23 +1,9 @@
 import Table from "@/components/table";
-import { adminColumns } from "./data";
-// import Pagination from "@/components/pagination";
+import { driverColumns, driverMockData, DriverRow } from "./data";
 
-export interface TAdmin {
-  firstName: string;
-  lastName: string;
-  emailAddress: string;
-  phoneNumber: string;
-  date: string;
-  accountStatus: string;
-}
-
-const AdminTable = ({ data }: { data: TAdmin[] }) => {
-  return (
-    <>
-      <Table<TAdmin> columns={adminColumns} data={data} />
-      {/* <Pagination /> */}
-    </>
-  );
+const AdminTable = ({ data }: { data?: DriverRow[] }) => {
+  const rows = data ?? driverMockData;
+  return <Table columns={driverColumns} data={rows} />;
 };
 
 export default AdminTable;

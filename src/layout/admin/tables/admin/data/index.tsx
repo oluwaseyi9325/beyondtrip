@@ -1,47 +1,77 @@
 import { TableColumn } from "react-data-table-component";
-import { TAdmin } from "..";
-import { AiOutlineMore } from "react-icons/ai";
-import clsx from "clsx";
 
-export const adminColumns: TableColumn<TAdmin>[] = [
+export interface DriverRow {
+  name: string;
+  idNo: string;
+  status: "Active" | "Inactive";
+  location: string;
+  earnings: string; // formatted currency string per mock
+  scans: number;
+  points: number;
+}
+
+export const driverMockData: DriverRow[] = [
+  { name: "JOHN DOE M.", idNo: "DRV-101", status: "Active", location: "Ikeja-Lagos", earnings: "₦50,000.00", scans: 300, points: 800 },
+  { name: "JOHN DOE M.", idNo: "DRV-101", status: "Inactive", location: "Ikeja-Lagos", earnings: "₦50,000.00", scans: 300, points: 800 },
+  { name: "JOHN DOE M.", idNo: "DRV-101", status: "Active", location: "Ikeja-Lagos", earnings: "₦50,000.00", scans: 300, points: 800 },
+  { name: "JOHN DOE M.", idNo: "DRV-101", status: "Active", location: "Ikeja-Lagos", earnings: "₦50,000.00", scans: 300, points: 800 },
+  { name: "JOHN DOE M.", idNo: "DRV-101", status: "Active", location: "Ikeja-Lagos", earnings: "₦50,000.00", scans: 300, points: 800 },
+  { name: "JOHN DOE M.", idNo: "DRV-101", status: "Active", location: "Ikeja-Lagos", earnings: "₦50,000.00", scans: 300, points: 800 },
+  { name: "JOHN DOE M.", idNo: "DRV-101", status: "Active", location: "Ikeja-Lagos", earnings: "₦50,000.00", scans: 300, points: 800 },
+  { name: "JOHN DOE M.", idNo: "DRV-101", status: "Inactive", location: "Ikeja-Lagos", earnings: "₦50,000.00", scans: 300, points: 800 },
+  { name: "JOHN DOE M.", idNo: "DRV-101", status: "Active", location: "Ikeja-Lagos", earnings: "₦50,000.00", scans: 300, points: 800 },
+  { name: "JOHN DOE M.", idNo: "DRV-101", status: "Active", location: "Ikeja-Lagos", earnings: "₦50,000.00", scans: 300, points: 800 },
+];
+
+// Columns definition (as done previously with column configs)
+
+export const driverColumns: TableColumn<DriverRow>[] = [
   {
     name: "Name",
-    width: "23%",
-    selector: (row) => `${row?.firstName} ${row?.lastName}`,
+    selector: (row) => row.name,
   },
   {
-    name: "Email",
-    width: "23%",
-    selector: (row) => row?.emailAddress,
+    name: "ID No",
+    selector: (row) => row.idNo,
   },
-  {
-    name: "Phone Number",
-    selector: (row) => row?.phoneNumber,
-  },
-
   {
     name: "Status",
     cell: (row) => (
-      <div
-        className={clsx(
-          "border text-sm font-[500] rounded-md px-3 py-[2px]",
-          row.accountStatus === "Active" &&
-            "bg-[#CBFFE5] border-[#CBFFE5] text-[#018844]",
-          row.accountStatus === "Inactive" &&
-            "bg-[#CDCDCD] border-[#CDCDCD] text-white"
-        )}
+      <span
+        className={
+          row.status === "Active"
+            ? "inline-flex items-center justify-center rounded-full w-[8rem] border border-[#008000] text-[#008000] bg-white text-xs px-2 py-1"
+            : "inline-flex w-[7rem] items-center justify-center rounded-full border border-[#FF0033] bg-white text-[#FF0033]  text-xs px-2 py-1"
+        }
       >
-        {row.accountStatus}
-      </div>
+        {row.status}
+      </span>
     ),
   },
   {
-    name: "",
-    width: "7%",
+    name: "Location",
+    selector: (row) => row.location,
+  },
+  {
+    name: "Earnings",
+    selector: (row) => row.earnings,
+  },
+  {
+    name: "Scans",
+    selector: (row) => String(row.scans),
+  },
+  {
+    name: "Points",
+    selector: (row) => String(row.points),
+  },
+  {
+    name: "Action",
     cell: () => (
-      <div className="cursor-pointer">
-        <AiOutlineMore size={24} />
-      </div>
+      <button
+        className="whitespace-nowrap inline-flex items-center justify-center border border-[#336AEA] text-[#336AEA] bg-white rounded-full px-6 py-1.5 text-sm font-medium hover:bg-[#2C4C9C]/5 active:bg-[#2C4C9C]/10 focus:outline-none"
+      >
+        View
+      </button>
     ),
   },
 ];

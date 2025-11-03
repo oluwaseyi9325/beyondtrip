@@ -3,7 +3,7 @@ import { GoPlus } from "react-icons/go";
 
 const Empty = ({ handleClick }: { handleClick: () => void }) => {
   return (
-    <div className="flex h-full items-center justify-center overflow-y-auto scrollbar-none">
+    <div className="flex h-full mt-10 items-center justify-center overflow-y-auto scrollbar-none">
       <div className="space-y-8">
         <p className="font-[500] text-[#7E7E7EEF]">
           There’s nothing here yet 😌

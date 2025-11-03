@@ -1,5 +1,6 @@
 "use client";
 
+import { color } from "framer-motion";
 import React from "react";
 import DataTable, { TableColumn } from "react-data-table-component";
 
@@ -27,8 +28,8 @@ function Table<T>({
     headRow: {
       style: {
         backgroundColor: "#C5E4FF",
-        fontWeight: 800,
-        fontSize: "12px",
+        fontWeight: 600,
+        fontSize: "14px",
         color: "#000000",
       },
     },
@@ -41,12 +42,13 @@ function Table<T>({
     rows: {
       style: {
         height: "56px",
+        color:"#444444"
       },
     },
   };
 
   return (
-    <div className="w-full min-h-[65vh]">
+    <div className="w-full mt-10 min-h-[65vh]">
       <DataTable
         columns={columns}
         data={data}

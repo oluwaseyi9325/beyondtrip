@@ -11,6 +11,7 @@ import { MdPayment, MdNotifications, MdPlaylistAddCheckCircle, MdSupport } from 
 interface Props {
   onToggleSidebar?: () => void;
   userName?: string;
+  title?:string;
   userRole?: string;
   onLogout?: () => void;
 }
@@ -19,6 +20,7 @@ const AdminTopbar = ({
   onToggleSidebar, 
   userName = "Super Admin",
   userRole = "Admin",
+  title,
   onLogout 
 }: Props) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -84,7 +86,7 @@ const AdminTopbar = ({
   };
 
   return (
-    <div className="w-full px-4 md:px-10 py-4 bg-white mb-4 flex items-center justify-between gap-2 border-b border-gray-100">
+    <div className="w-full px-4 md:px-7 py-4 bg-white mb-4 flex items-center justify-between gap-2 border-b border-gray-100">
       {/* Left side: hamburger + title */}
       <div className="flex items-center gap-3">
         {/* Hamburger (mobile only) */}
@@ -96,7 +98,7 @@ const AdminTopbar = ({
           <IoMenu size={24} />
         </button>
         <div>
-          <h3 className="font-bold text-lg md:text-xl text-gray-900">Admin Dashboard</h3>
+          <h3 className="font-[700] text-xl md:text-[28px] text-gray-900">{title}</h3>
         </div>
       </div>
 
