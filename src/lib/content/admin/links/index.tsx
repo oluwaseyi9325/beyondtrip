@@ -27,9 +27,9 @@ export const AdminLinks = [
     path: "",
     hasSub: true,
     sub: [
-      { text: "Overview", path: "/admin/advertisers/overview" },
-      { text: "Magazines", path: "/admin/advertisers/magazines" },
-      { text: "Manage Requests", path: "/admin/advertisers/requests" },
+      { text: "Overview", path: "/admin/drivers/overview" },
+      { text: "Magazines", path: "/admin/drivers/magazines" },
+      { text: "Manage Requests", path: "/admin/drivers/requests" },
     ],
   },
   {

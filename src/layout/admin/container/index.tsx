@@ -10,9 +10,10 @@ interface TProps {
   children: React.ReactNode;
   active?: string;
   search?: string;
+  title?:string;
   handleSearch?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
-const Container = ({ children, active, }: TProps) => {
+const Container = ({ children, active, title, }: TProps) => {
 
 // const Container = ({ children, active, search, handleSearch }: TProps) => {
   // const { role, updateProfile } = useAuthStore();
@@ -75,6 +76,7 @@ const Container = ({ children, active, }: TProps) => {
             // search={search}
             // handleSearch={handleSearch}
             onToggleSidebar={() => setShowSidebar(true)}
+            title={title}
           />
            <section className="h-[calc(100vh-90px)] px-7 overflow-y-auto space-y-4 relative scrollbar-none">
              {children}
