@@ -76,7 +76,7 @@ const Sidebar = ({ active = "Dashboard", onCloseMobile }: TSidebarProps) => {
                 isActive={isLinkActive(link)}
                 hasSub={link.hasSub}
                 sub={link.sub}
-                activeSubItem={active}
+                activePath={active}
               />
             ))}
           </div>

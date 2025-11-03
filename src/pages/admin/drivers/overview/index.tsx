@@ -1,25 +1,25 @@
-import Container from '@/layout/admin/container'
-import Text from "@/components/typography";
+import Tabs from "@/components/tab"
+import Container from "@/layout/admin/container"
+import BasicDetailsContent from "@/layout/general/profile-details";
+import BankDetailsContent from "@/layout/driver/profile/bank-details-content";
+import Ratings from "@/layout/driver/profile/ratings";
 
-import React from 'react'
+const Security = () => {
 
-function index() {
+
   return (
     <>
-      <Container active='Overview' title='Drivers - Overview' >
-        <section className="w-full px-4 py-6 flex flex-col gap-6">
-          {/* Header */}
-          <Text className="text-[24px] " weight="700" color="black">
-            Drivers Management
-          </Text>
-          <div>
-            
-          </div>
-
-        </section>
+      <Container active="/admin/drivers/overview">
+        {/* <section className=" py-6 h-full overflow-y-hidden"> */}
+        <div className="py-6">
+           
+        </div>
+        {/* </section> */}
       </Container>
+
+
     </>
   )
 }
 
-export default index
+export default Security
