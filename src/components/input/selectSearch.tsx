@@ -70,7 +70,7 @@ const SelectSearch = ({
           disabled 
             ? "opacity-50 cursor-not-allowed bg-gray-50" 
             : "cursor-pointer hover:border-[#1a1a7a]",
-          selectedOption ? "text-black" : "text-[#CDCDCD]"
+          selectedOption ? "text-black" : "text-[#444444]"
         )}
       >
         <span className="truncate">
@@ -79,7 +79,7 @@ const SelectSearch = ({
         <IoChevronDown 
           size={16} 
           className={clsx(
-            "text-[#CBCBCB] transition-transform duration-200 flex-shrink-0 ml-2",
+            "text-[#444444] transition-transform duration-200 flex-shrink-0 ml-2",
             isOpen && "rotate-180"
           )} 
         />
@@ -89,7 +89,7 @@ const SelectSearch = ({
       {isOpen && !disabled && (
         <div className={clsx(
           "absolute top-full left-0 w-full mt-1 z-50",
-          "bg-white border border-[#444444] rounded-[6px]",
+          "bg-white  border border-[#444444] rounded-[6px]",
           "shadow-lg max-h-60 overflow-y-auto"
         )}>
           {options.length > 0 ? (
@@ -99,7 +99,7 @@ const SelectSearch = ({
                 type="button"
                 onClick={() => handleOptionClick(option.value)}
                 className={clsx(
-                  "w-full px-4 py-2 text-sm text-left hover:bg-gray-50",
+                  "w-full px-4 py-2 text-sm text-left  hover:bg-gray-50",
                   "border-b border-gray-100 last:border-b-0",
                   "transition-colors duration-150 focus:outline-none focus:bg-gray-50",
                   value === option.value && "bg-blue-50 text-[#131364] font-medium"

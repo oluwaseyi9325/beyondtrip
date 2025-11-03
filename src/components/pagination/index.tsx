@@ -47,14 +47,25 @@ const Pagination = ({
   const startItem = (currentPage - 1) * itemsPerPage + 1;
   const endItem = Math.min(currentPage * itemsPerPage, calculatedTotalItems);
 
-  // If no totalItems provided and only basic props available, show basic pagination
-  const showSimplified = totalItems !== undefined && onItemsPerPageChange !== undefined;
+  // Show info text if totalItems is provided; only show rows-per-page control if handler provided
+  const showInfoText = totalItems !== undefined;
+  const showRowsPerPage = onItemsPerPageChange !== undefined;
+
+  // Build page numbers (windowed)
+  const visibleCount = 5;
+  const half = Math.floor(visibleCount / 2);
+  let startPage = Math.max(1, currentPage - half);
+  let endPage = Math.min(totalPages, startPage + visibleCount - 1);
+  if (endPage - startPage + 1 < visibleCount) {
+    startPage = Math.max(1, endPage - visibleCount + 1);
+  }
+  const pages = Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
 
   return (
-    <div className="flex items-center justify-center px-4 py-3 bg-white border-t border-gray-200">
-      <div className="flex items-center gap-6">
-        {/* Rows per page - only show if callback provided */}
-        {showSimplified && (
+    <div className="flex items-center justify-between px-4 py-3">
+      {/* Left: info */}
+      <div className="flex items-center gap-3">
+        {showRowsPerPage && (
           <div className="flex items-center gap-2">
             <span className="text-sm text-gray-700">Rows per page:</span>
             <div className="relative">
@@ -86,41 +97,56 @@ const Pagination = ({
           </div>
         )}
 
-        {/* Page info */}
-        {showSimplified ? (
-          <span className="text-sm text-gray-700">
-            {startItem}-{endItem} of {calculatedTotalItems.toLocaleString()}
-          </span>
-        ) : (
-          <span className="text-sm text-gray-700">
-            Page {currentPage} of {totalPages.toLocaleString()}
+        {showInfoText && (
+          <span className="text-[14px] font-medium text-[#444444]">
+            Showing {startItem} to {endItem} of {calculatedTotalItems.toLocaleString()}
           </span>
         )}
-        
-        {/* Navigation */}
-        <div className="flex items-center gap-2">
+      </div>
+
+      {/* Right: controls */}
+      <div className="flex items-center gap-2">
+        {/* Prev */}
+        <button
+          onClick={handlePrev}
+          disabled={currentPage === 1}
+          className={clsx(
+            "px-2 py-1 rounded  hover:bg-gray-100 transition-colors flex items-center gap-1",
+            currentPage === 1 && "opacity-50 cursor-not-allowed"
+          )}
+        >
+          <PiCaretLeft size={18} className="text-gray-600" />
+          <span className="text-sm text-[#00000080]">Previous</span>
+        </button>
+
+        {/* Page numbers */}
+        {pages.map((p) => (
           <button
-            onClick={handlePrev}
-            disabled={currentPage === 1}
+            key={p}
+            onClick={() => onPageChange(p)}
             className={clsx(
-              "p-1 rounded hover:bg-gray-100 transition-colors",
-              currentPage === 1 && "opacity-50 cursor-not-allowed"
+              "w-8 h-8 rounded-full text-sm flex items-center justify-center",
+              p === currentPage
+                ? "bg-[#CFE8FF] text-gray-900"
+                : "text-gray-700 hover:bg-gray-100"
             )}
           >
-            <PiCaretLeft size={20} className="text-gray-600" />
+            {p}
           </button>
-          {currentPage}
-          <button
-            onClick={handleNext}
-            disabled={currentPage === totalPages}
-            className={clsx(
-              "p-1 rounded hover:bg-gray-100 transition-colors",
-              currentPage === totalPages && "opacity-50 cursor-not-allowed"
-            )}
-          >
-            <PiCaretRight size={20} className="text-gray-600" />
-          </button>
-        </div>
+        ))}
+
+        {/* Next */}
+        <button
+          onClick={handleNext}
+          disabled={currentPage === totalPages}
+          className={clsx(
+            "px-2 py-1 rounded hover:bg-gray-100 transition-colors flex items-center gap-1",
+            currentPage === totalPages && "opacity-50 cursor-not-allowed"
+          )}
+        >
+          <span className="text-sm text-gray-700">Next</span>
+          <PiCaretRight size={18} className="text-gray-600" />
+        </button>
       </div>
     </div>
   );
