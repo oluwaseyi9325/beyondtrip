@@ -3,16 +3,22 @@ import Container from "@/layout/admin/container"
 import BasicDetailsContent from "@/layout/general/profile-details";
 import BankDetailsContent from "@/layout/driver/profile/bank-details-content";
 import Ratings from "@/layout/driver/profile/ratings";
+import AccountDetailsTab from "@/layout/admin/account";
+import SystemPreferencesTab from "@/layout/admin/preferences";
+import RolesPermissionsTab from "@/layout/admin/permission";
+import SystemConfigurationTab from "@/layout/admin/configuration";
 
 const Security = () => {
   const tabsData: any = [
     {
       title: "Account",
-      content: <BasicDetailsContent />
+      // content: <BasicDetailsContent />
+      content: <AccountDetailsTab />
+
     },
     {
       title: "System Preferences",
-      content: <BankDetailsContent />
+      content: <SystemPreferencesTab />
     },
     {
       title: "Payments",
@@ -20,11 +26,11 @@ const Security = () => {
       },
     {
       title: "Roles & Permissions",
-      content: <Ratings />
+      content: <RolesPermissionsTab />
       },
     {
       title: "System Configurations",
-      content: <Ratings />
+      content: <SystemConfigurationTab />
     }
   ];
 
