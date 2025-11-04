@@ -221,7 +221,7 @@ const AccountDetailsTab = () => {
              </div>
 
                 {/* Change Password Section */}
-                <div className="pt-6 border-t border-gray-200 bg-white p-8 rounded-lg">
+                <div className="pt-6 bg-white p-8 rounded-lg">
                     <h3 className="text-xl font-bold text-gray-900 mb-6">
                         Change Password
                     </h3>
