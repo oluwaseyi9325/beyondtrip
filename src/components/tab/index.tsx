@@ -86,14 +86,23 @@ interface TabsProps {
   tabs: TabItem[];
   defaultTab?: number;
   className?: string;
+  activeTab?: number; // optional controlled active tab
+  onTabChange?: (index: number) => void; // callback when tab changes
 }
 
 const Tabs = ({ 
   tabs, 
   defaultTab = 0,
-  className 
+  className,
+  activeTab: controlledActiveTab,
+  onTabChange,
 }: TabsProps) => {
-  const [activeTab, setActiveTab] = useState(defaultTab);
+  const [uncontrolledActiveTab, setUncontrolledActiveTab] = useState(defaultTab);
+  const activeTab = controlledActiveTab ?? uncontrolledActiveTab;
+  const setActive = (index: number) => {
+    if (onTabChange) onTabChange(index);
+    if (controlledActiveTab === undefined) setUncontrolledActiveTab(index);
+  };
 
   return (
     <div className={clsx("w-full", className)}>
@@ -102,7 +111,7 @@ const Tabs = ({
         {tabs.map((tab, index) => (
           <button
             key={index}
-            onClick={() => setActiveTab(index)}
+            onClick={() => setActive(index)}
             className={clsx(
               "px-8 py-3 font-medium text-sm transition-all duration-300 cursor-pointer rounded-t-lg",
               "border-b-2",

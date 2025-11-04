@@ -22,7 +22,7 @@ function Table<T>({
   const customStyles = {
     tableWrapper: {
       style: {
-        minHeight: "400px",
+        paddingBottom: 2,
       },
     },
     headRow: {
@@ -48,7 +48,7 @@ function Table<T>({
   };
 
   return (
-    <div className="w-full mt-10 min-h-[65vh]">
+    <div className="w-full overflow-x-auto">
       <DataTable
         columns={columns}
         data={data}

@@ -1,42 +1,66 @@
 "use client";
 
 import Table from "@/components/table";
-import { useEarningColumns } from "./data";
+import { useMagazineColumns, MAGAZINE_MOCK } from "./data";
 import { useState } from "react";
 import { useTableSearch } from "@/hooks/use-table-search";
 import TransactionDetails from "@/layout/general/modals/earnings/view-earning";
-import DateSort from "@/components/input/dateSort";
 import SelectSearch from "@/components/input/selectSearch";
 import { IoChevronForward } from "react-icons/io5";
+import DateInput from "@/components/input/date";
+import { useForm } from "react-hook-form";
+import Pagination from "@/components/pagination";
 
-export interface TAmbassador {
-  date: string;
-  amount: string;
-  description: string;
-  status: "Approved" | "Pending" | "Rejected" | "Not Paid";
+
+export interface TMagazineRow {
+  date: string; // e.g., "02 June, 2025"
+  edition: string; // e.g., "March Edition"
+  status: "Picked" | "Returned" | "Not Picked";
+  location: string; // e.g., "Ikeja-Lagos"
 }
 
 interface Props {
-  data: TAmbassador[];
+  data?: TMagazineRow[];
   compactHeader?: boolean; // ✅ renamed from isCutData for clarity
 }
 
-const MagazineTable = ({ data, compactHeader = false }: Props) => {
-  const [viewdriverOpen, setViewdriverOpen] = useState(false);
-  const [driver, setdriver] = useState<TAmbassador | null>(null);
+type FilterForm = {
+  date: Date | null;
+};
 
-  const columns = useEarningColumns({
+const MagazineTable = ({ data = MAGAZINE_MOCK, compactHeader = false }: Props) => {
+  const [viewdriverOpen, setViewdriverOpen] = useState(false);
+  const [driver, setdriver] = useState<TMagazineRow | null>(null);
+
+  const { control, reset, setValue } = useForm<FilterForm>({
+    defaultValues: { date: null },
+  });
+  const [status, setStatus] = useState<string | undefined>(undefined);
+
+  const columns = useMagazineColumns({
     handleClickView: (row) => {
       setdriver(row);
       setViewdriverOpen(true);
     },
     total: data?.length,
+    handleClick: () => {},
   });
 
   const { filteredData } = useTableSearch({
     data: data,
-    searchFields: ["firstName", "lastName", "email"],
+    searchFields: ["date", "edition", "status", "location"],
   });
+
+  // Pagination state
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
+  const totalPages = Math.max(1, Math.ceil(filteredData.length / itemsPerPage));
+
+  // Ensure current page is within bounds when filters change
+  const pageSafe = currentPage > totalPages ? totalPages : currentPage;
+  const startIndex = (pageSafe - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const pagedData = filteredData.slice(startIndex, endIndex);
 
   return (
     <>
@@ -49,36 +73,65 @@ const MagazineTable = ({ data, compactHeader = false }: Props) => {
       {/* Header Section */}
       {compactHeader ? (
         <div className="flex items-center justify-between py-4">
-          <h2 className="text-lg font-semibold text-gray-900">
-            Payout History
-          </h2>
+          <h2 className="text-lg mb-2 sm:mb-0  sm:text-sm font-semibold text-gray-900">
+            Magazine Pickup History          
+            </h2>
           <button className="flex items-center gap-1 text-blue-600 text-sm font-medium hover:underline">
             View All <IoChevronForward className="text-blue-600 text-base" />
           </button>
         </div>
       ) : (
-        <div className="flex items-center justify-between flex-wrap gap-4 py-5">
-          <h2 className="text-2xl font-semibold text-gray-900">
-          Payout History
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-x-3 py-5">
+          <h2 className="text-lg mb-2 sm:mb-0  sm:text-sm font-semibold text-gray-900">
+          Magazine Pickup History          
           </h2>
-          <div className="flex items-center gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 w-full lg:flex-1 items-center">
+         
             <SelectSearch
+              className="w-full"
+              value={status}
+              handleChange={(v) => setStatus(v)}
               options={[
                 { value: "paid", label: "Paid" },
                 { value: "pending", label: "Pending" },
                 { value: "failed", label: "Failed" },
               ]}
-              placeholder="Payment Status"
+              placeholder="Status"
             />
-            <DateSort
-              onDateChange={(dates) => console.log("Dates changed:", dates)}
+            <DateInput
+              name="date"
+              placeholder="DD/MM/YYYY"
+              control={control}
+              dateFormat="dd/MM/yyyy"
+              className="w-full"
             />
+            <button
+              type="button"
+              onClick={() => { setStatus(undefined); reset(); setValue('date', null); }}
+              className="text-black text-start lg:text-center whitespace-nowrap hover:underline text-sm"
+            >
+              Clear filters
+            </button>
           </div>
         </div>
       )}
 
       {/* Table */}
-      <Table<TAmbassador> columns={columns} data={filteredData} />
+      <div className="overflow-x-auto  ">
+        <Table<TMagazineRow> columns={columns} data={pagedData} />
+      </div>
+      {/* pagination */}
+      <Pagination
+        currentPage={pageSafe}
+        totalPages={totalPages}
+        onPageChange={(p) => setCurrentPage(p)}
+        totalItems={filteredData.length}
+        itemsPerPage={itemsPerPage}
+        onItemsPerPageChange={(n) => { setItemsPerPage(n); setCurrentPage(1); }}
+        className="px-0 py-2 "
+      />
+
+        
     </>
   );
 };
