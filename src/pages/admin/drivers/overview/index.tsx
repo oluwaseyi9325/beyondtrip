@@ -48,7 +48,6 @@ const Security = () => {
               placeholder="Search by name, ID, location"
               searchTerm={searchTerm}
               onSearchChange={setSearchTerm}
-              onClearSearch={() => setSearchTerm("")}
             />
             <SelectSearch
               options={[

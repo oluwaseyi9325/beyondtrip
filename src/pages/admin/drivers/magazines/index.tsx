@@ -1,108 +1,164 @@
-import Container from "@/layout/admin/container"
-import { useMemo, useState } from "react";
-import Text from "@/components/typography";
-import SelectSearch from "@/components/input/selectSearch";
-import AdminTable from "@/layout/admin/tables/admin";
-import { driverMockData } from "@/layout/admin/tables/admin/data";
-import TableSearchInput from "@/layout/admin/tables/table-search-input";
-import Pagination from "@/components/pagination";
-import ViewDriver from "@/layout/admin/drawers/driver";
-import { DriverRow } from "@/layout/admin/tables/admin/data";
+import React from "react";
 import Tabs from "@/components/tab";
+import Container from "@/layout/admin/container";
+import EditionMagazineTable from "@/layout/driver/magazine/edition-magazine-table";
+import PickupMagazineTable from "@/layout/driver/magazine/pickup-magazine-table";
+import DestributionMagazineTable from "@/layout/driver/magazine/destribution-magazine-table";
+import TrackingMagazineTable from "@/layout/driver/magazine/tracking-magazine-table";
+// (inputs are handled inside the reusable FilterBar)
+import { useForm } from "react-hook-form";
+import FilterBar, { FilterConfig, FilterForm } from "@/components/filter/FilterBar";
 
 const Security = () => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(10);
+  const [activeTab, setActiveTab] = React.useState(0);
+  const [currentPage, setCurrentPage] = React.useState(1);
+  const [itemsPerPage, setItemsPerPage] = React.useState(10);
 
-  const totalItems = 250;
-  const totalPages = Math.max(1, Math.ceil(totalItems / itemsPerPage));
+  // Store search values per tab (for both single and multi-field search)
+  const [searchValues, setSearchValues] = React.useState<Record<number, Record<string, string>>>({
+    0: { main: "" },
+    1: { locationName: "", address: "" },
+    2: { main: "" },
+    3: { main: "" },
+  });
 
-  const pagedData = useMemo(() => {
-    const start = (currentPage - 1) * itemsPerPage;
-    return driverMockData.slice(start, start + itemsPerPage);
-  }, [currentPage, itemsPerPage]);
+  //  React Hook Form for date filters
+  const { control, setValue } = useForm<FilterForm>({
+    defaultValues: { date: null },
+  });
 
-  const [open, setOpen] = useState(false);
-  const [selectedDriver, setSelectedDriver] = useState<DriverRow | null>(null);
+  // Tabs and configuration data
+  const tabsData = React.useMemo(
+    () => [
+      { title: "Editions", content: <EditionMagazineTable /> },
+      { title: "Pickup Locations", content: <PickupMagazineTable /> },
+      { title: "Distribution Tracking", content: <DestributionMagazineTable /> },
+      { title: "Tracking History", content: <TrackingMagazineTable /> },
+    ],
+    []
+  );
 
-  const handleViewDriver = (driver: DriverRow) => {
-    setSelectedDriver(driver);
-    setOpen(true);
+  const headerTabs = React.useMemo(() => tabsData.map((t) => ({ title: t.title })), [tabsData]);
+
+  const filtersByTab: Record<number, FilterConfig> = React.useMemo(() => ({
+    0: {
+      search: { placeholder: "Edition title (e.g., Issue Vol. 09)" },
+      date: { name: "date", placeholder: "DD/MM/YYYY", dateFormat: "dd/MM/yyyy" },
+      status: {
+        placeholder: "Status",
+        options: [
+          { value: "active", label: "Active" },
+          { value: "inactive", label: "Inactive" },
+        ],
+      },
+      createButton: { text: "Create Edition" },
+      clear: { text: "Clear filters" },
+    },
+    1: {
+      search: {
+        fields: [
+          { key: "locationName", placeholder: "Enter location name" },
+          { key: "address", placeholder: "Address" },
+        ],
+      },
+      status: {
+        placeholder: "Status",
+        options: [
+          { value: "active", label: "Active" },
+          { value: "closed", label: "Closed" },
+        ],
+      },
+      createButton: { text: "Add Location" },
+      clear: { text: "Clear Filters" },
+    },
+    2: {
+      search: { placeholder: "Search by Hub/location name, edition", grow: true },
+      date: { name: "distDate", placeholder: "YYYY-MM-DD", dateFormat: "yyyy-MM-dd" },
+      clear: { text: "Clear Filters" },
+    },
+    3: {
+      search: { placeholder: "Search by Driver Name" },
+      selects: [
+        {
+          placeholder: "Edition Title",
+          options: [
+            { value: "edition_1", label: "Edition 1" },
+            { value: "edition_2", label: "Edition 2" },
+          ],
+        },
+        {
+          placeholder: "Status",
+          options: [
+            { value: "active", label: "Active" },
+            { value: "closed", label: "Closed" },
+          ],
+        },
+        {
+          placeholder: "Select Filter",
+          options: [
+            { value: "today", label: "Today" },
+            { value: "this_week", label: "This Week" },
+          ],
+        },
+      ],
+      date: { name: "date", placeholder: "DD/MM/YYYY", dateFormat: "dd/MM/yyyy" },
+      clear: { text: "Clear Filter" },
+      createButton: { text: "Download List" },
+    },
+  }), []);
+
+  //  Update search field value for each tab safely
+  const handleSearchChange = (tabIndex: number, key: string, value: string) => {
+    setSearchValues((prev) => ({
+      ...prev,
+      [tabIndex]: {
+        ...prev[tabIndex],
+        [key]: value,
+      },
+    }));
   };
 
-  const tabsData: any = [
-    {
-      title: "Editions",
-      content:   <AdminTable data={pagedData} onViewDriver={handleViewDriver} />
-    },
-    {
-      title: "Pickup Locations",
-      content: <></>
-    },
-    {
-      title: "Distribution Tracking",
-      content: ""
-    },
-    {
-      title: "Tracking History",
-      content: <></>
-    }
-  ];
-
+  const handleClear = React.useCallback(() => {
+    setSearchValues((prev) => ({
+      ...prev,
+      [activeTab]: Object.fromEntries(
+        Object.keys(prev[activeTab] || {}).map((k) => [k, ""])
+      ),
+    }));
+    setValue("date", null);
+  }, [activeTab, setValue]);
 
   return (
-    <>
-      <ViewDriver
-        open={open}
-        handleClose={() => setOpen(false)}
-        driver={selectedDriver}
-      />
-      <Container title="Drivers - Magazines " active="/admin/drivers/magazines">
-        <div className="py-3 h-full overflow-y-auto scrollbar-none">
-          <Text className="text-2xl mb-6" weight="700" color="black">
-            Drivers Management
-          </Text>
+    <Container title="Drivers - Magazines" active="/admin/drivers/magazines">
+      <div className="py-6 h-full overflow-y-auto scrollbar-none">
+        <div className="flex flex-col mb-9 rounded-[8px] bg-[#C5E4FF] p-[30px] sm:p-[42px]">
+          <h1 className="text-2xl font-bold text-black">Magazines Management</h1>
 
-          <div className="mb-9 rounded-[8px] bg-[#C5E4FF] p-[30px] sm:p-[42px]">
-            
-            <div className="flex items-center gap-4  rounded-[8px]  ">
-              <TableSearchInput
-                placeholder="Search by name, ID, location"
-                searchTerm={searchTerm}
-                onSearchChange={setSearchTerm}
-                onClearSearch={() => setSearchTerm("")}
-              />
-              <SelectSearch
-                options={[
-                  { value: "active", label: "Active" },
-                  { value: "inactive", label: "inactive" },
-                ]}
-                placeholder="Status"
-              />
-              <button className="text-black hover:underline text-sm whitespace-nowrap">
-                Clear filters
-              </button>
-            </div>
-
-            {/* <Tabs tabs={tabsData} defaultTab={0} /> */}
-          </div>
-          {/* Table */}
-        <Tabs tabs={tabsData} defaultTab={0} />
-          {/* pagination */}
-          <div className="mt-4">
-            <Pagination
-              currentPage={currentPage}
-              totalPages={totalPages}
-              onPageChange={(p) => setCurrentPage(p)}
-              totalItems={totalItems}
-              itemsPerPage={itemsPerPage}
+          <div className="mt-6">
+            <Tabs
+              tabs={headerTabs}
+              defaultTab={0}
+              activeTab={activeTab}
+              onTabChange={setActiveTab}
             />
           </div>
-        </div>
-      </Container>
-    </>
-  )
-}
 
-export default Security
+          {/* FilterBar with stable identity and props */}
+          <FilterBar
+            cfg={filtersByTab[activeTab]}
+            activeTab={activeTab}
+            searchValues={searchValues}
+            onSearchChange={handleSearchChange}
+            control={control}
+            onClear={handleClear}
+          />
+        </div>
+
+        {/* Tab Content */}
+        <div>{tabsData[activeTab]?.content}</div>
+      </div>
+    </Container>
+  );
+};
+
+export default Security;
