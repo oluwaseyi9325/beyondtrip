@@ -13,6 +13,7 @@ export type FilterConfig = {
     | {
         placeholder?: string;
         grow?: boolean; // if true, search takes remaining horizontal space
+        fullWidth?: boolean; // if true, search fills available space but allows other items beside it
         className?: string;
       }
     | {
@@ -29,7 +30,7 @@ export type FilterConfig = {
     options?: { value: string; label: string }[];
   } | false;
   selects?: { placeholder?: string; options?: { value: string; label: string }[] }[];
-  createButton?: { text?: string } | false;
+  createButton?: { text?: string } | { text?: string }[] | false;
   clear?: { text?: string } | false;
 };
 
@@ -60,13 +61,13 @@ export const FilterBar = React.memo(({ cfg, activeTab, searchValues, onSearchCha
       ));
     }
 
-    const singleSearchExtraClass = `${cfg.search.grow ? "flex-1 min-w-0" : ""} ${cfg.search.className || ""}`.trim();
+    const singleSearchExtraClass = `${cfg.search.grow ? "flex-1 min-w-[200px]" : cfg.search.fullWidth ? "flex-1 min-w-[200px]" : ""} ${cfg.search.className || ""}`.trim();
     return (
       <TableSearchInput
         placeholder={cfg.search.placeholder || "Search"}
         searchTerm={searchValues[activeTab]?.main || ""}
         onSearchChange={(val) => onSearchChange(activeTab, "main", val)}
-        className={`text-sm  ${singleSearchExtraClass}`}
+        className={`text-sm ${singleSearchExtraClass}`}
       />
     );
   };
@@ -101,9 +102,20 @@ export const FilterBar = React.memo(({ cfg, activeTab, searchValues, onSearchCha
       ))}
 
       {cfg.createButton && (
-        <button className="rounded-[8px] text-base px-4 py-3 cursor-pointer text-white font-medium bg-[#336AEA]">
-          {cfg.createButton.text || "Create"}
-        </button>
+        Array.isArray(cfg.createButton) ? (
+          cfg.createButton.map((btn, idx) => (
+            <button
+              key={idx}
+              className="rounded-[8px] text-base px-4 py-3 cursor-pointer text-white font-medium bg-[#336AEA]"
+            >
+              {btn.text || "Create"}
+            </button>
+          ))
+        ) : (
+          <button className="rounded-[8px] text-base px-4 py-3 cursor-pointer text-white font-medium bg-[#336AEA]">
+            {cfg.createButton.text || "Create"}
+          </button>
+        )
       )}
 
       {cfg.clear && (
