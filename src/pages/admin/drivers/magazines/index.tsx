@@ -42,7 +42,7 @@ const Security = () => {
 
   const filtersByTab: Record<number, FilterConfig> = React.useMemo(() => ({
     0: {
-      search: { placeholder: "Edition title (e.g., Issue Vol. 09)" },
+      search: { placeholder: "Edition title (e.g., Issue Vol. 09)", fullWidth: true },
       date: { name: "date", placeholder: "DD/MM/YYYY", dateFormat: "dd/MM/yyyy" },
       status: {
         placeholder: "Status",
@@ -57,8 +57,8 @@ const Security = () => {
     1: {
       search: {
         fields: [
-          { key: "locationName", placeholder: "Enter location name" },
-          { key: "address", placeholder: "Address" },
+          { key: "locationName", placeholder: "Enter location name", fullWidth: true },
+          { key: "address", placeholder: "Address", grow: true},
         ],
       },
       status: {
@@ -72,12 +72,12 @@ const Security = () => {
       clear: { text: "Clear Filters" },
     },
     2: {
-      search: { placeholder: "Search by Hub/location name, edition", grow: true },
+      search: { placeholder: "Search by Hub/location name, edition", fullWidth: true },
       date: { name: "distDate", placeholder: "YYYY-MM-DD", dateFormat: "yyyy-MM-dd" },
       clear: { text: "Clear Filters" },
     },
     3: {
-      search: { placeholder: "Search by Driver Name" },
+      search: { placeholder: "Search by Driver Name" , fullWidth: true},
       selects: [
         {
           placeholder: "Edition Title",
