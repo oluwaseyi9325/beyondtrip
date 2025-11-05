@@ -79,7 +79,7 @@ import clsx from "clsx";
 
 export interface TabItem {
   title: string;
-  content: React.ReactNode;
+  content?: React.ReactNode;
 }
 
 interface TabsProps {
@@ -107,7 +107,7 @@ const Tabs = ({
   return (
     <div className={clsx("w-full", className)}>
       {/* Tab Headers */}
-      <div className="flex items-center gap-0 border-b  border-gray-200">
+      <div className="flex flex-wrap items-center gap-0 border-b  border-gray-200">
         {tabs.map((tab, index) => (
           <button
             key={index}

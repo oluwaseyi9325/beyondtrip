@@ -17,7 +17,7 @@ function CommentsTab() {
   };
 
   return (
-    <div className="bg-[#F7F7F7] max-w-[600px] py-6 space-y-4">
+    <div className="bg-[#F7F7F7] max-w-[600px]  space-y-4">
       {currentComments.map((comment) => (
         <CommentListItem key={comment.id} comment={comment} />
       ))}
