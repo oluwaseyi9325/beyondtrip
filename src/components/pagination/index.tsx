@@ -12,6 +12,7 @@ interface PaginationProps {
   onItemsPerPageChange?: (itemsPerPage: number) => void;
   // Option to use old style vs new style
   variant?: 'simple' | 'detailed';
+  className?: string;
 }
 
 const Pagination = ({
@@ -22,6 +23,7 @@ const Pagination = ({
   itemsPerPage = 10,
   onItemsPerPageChange,
   // variant = 'simple',
+  className,
 }: PaginationProps) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   
@@ -62,20 +64,20 @@ const Pagination = ({
   const pages = Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
 
   return (
-    <div className="flex items-center justify-between px-4 py-3">
+    <div className={clsx("flex items-center justify-between py-3", className)}>
       {/* Left: info */}
       <div className="flex items-center gap-3">
         {showRowsPerPage && (
           <div className="flex items-center gap-2">
-            <span className="text-sm text-gray-700">Rows per page:</span>
+            {/* <span className="text-sm text-gray-700">Rows per page:</span> */}
             <div className="relative">
-              <button
+              {/* <button
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                 className="flex items-center gap-1 px-2 py-1 text-sm text-gray-700 hover:bg-gray-50 rounded"
               >
                 {itemsPerPage}
                 <PiCaretDown size={16} />
-              </button>
+              </button> */}
               
               {isDropdownOpen && (
                 <div className="absolute bottom-full left-0 mb-1 bg-white border border-gray-200 rounded-md shadow-lg z-10 min-w-[80px]">

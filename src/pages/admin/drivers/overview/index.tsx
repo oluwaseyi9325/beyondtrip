@@ -130,7 +130,7 @@ const Security = () => {
             Drivers Management
           </Text>
 
-          <div className="flex items-center gap-4 rounded-[8px] bg-[#C5E4FF] p-[30px] sm:p-[42px]">
+          <div className="flex items-center gap-4 mb-9 rounded-[8px] bg-[#C5E4FF] p-[30px] sm:p-[42px]">
             <TableSearchInput
               placeholder="Search by name, ID, location"
               searchTerm={searchTerm}

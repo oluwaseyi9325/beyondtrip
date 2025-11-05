@@ -6,10 +6,12 @@ import Text from "../typography";
 
 interface Props {
   name: string;
-  label: string;
+  label?: string;
   placeholder?: string;
   control: any;
   error?: FieldError;
+  className?: string;
+  dateFormat?: string;
 }
 
 const DateInput = ({
@@ -18,6 +20,8 @@ const DateInput = ({
   placeholder = "Select a date",
   control,
   error,
+  className,
+  dateFormat = "dd/MM/yyyy",
 }: Props) => {
   return (
     <Stack spacing={4}>
@@ -33,8 +37,8 @@ const DateInput = ({
             id={name}
             selected={field.value}
             onChange={(date) => field.onChange(date)}
-            dateFormat="dd-MM-yyyy"
-            className="w-full h-14 bg-white border border-grey-200 rounded-md text-sm text-black placeholder:text-grey-300 outline-none pl-4"
+            dateFormat={dateFormat}
+            className={`w-full h-12 bg-white border border-[#444444] rounded-[6px] text-sm text-black placeholder:text-[#444444] outline-none px-4 ${className ?? ''}`}
             placeholderText={placeholder}
           />
         )}
