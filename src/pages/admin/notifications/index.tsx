@@ -1,28 +1,31 @@
 import Tabs from "@/components/tab"
+import Text from "@/components/typography";
 import Container from "@/layout/admin/container"
-import BasicDetailsContent from "@/layout/general/profile-details";
-import BankDetailsContent from "@/layout/driver/profile/bank-details-content";
-import Ratings from "@/layout/driver/profile/ratings";
+import AdvertiserNotifications from "@/layout/admin/notification/advertiser";
+import DriverNotifications from "@/layout/admin/notification/drivers";
+import PaymentNotifications from "@/layout/admin/notification/payment";
+import SystemNotifications from "@/layout/admin/notification/system";
+
 
 const Security = () => {
   const tabsData: any = [
     {
       title: "Drivers",
-      content: <BasicDetailsContent />
+      content: <DriverNotifications />
     },
     {
       title: "Advertisers",
-      content: <BankDetailsContent />
+      content: <AdvertiserNotifications />
     },
     {
       title: "Payment",
-      content: <Ratings />
-      },
+      content: <PaymentNotifications />
+    },
     {
       title: "System",
-      content: <Ratings />
-      },
-   
+      content: <SystemNotifications />
+    },
+
   ];
 
   return (
@@ -30,6 +33,10 @@ const Security = () => {
       <Container active="Nofifications">
         {/* <section className=" py-6 h-full overflow-y-hidden"> */}
         <div className="py-6">
+          <Text className="text-2xl mb-6" weight="700" color="black">
+            Notifications Management
+          </Text>
+
           <Tabs tabs={tabsData} defaultTab={0} />
         </div>
         {/* </section> */}

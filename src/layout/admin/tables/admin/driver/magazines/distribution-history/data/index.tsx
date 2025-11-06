@@ -8,6 +8,7 @@ export interface DriverRow {
   earnings: string; // formatted currency string per mock
   scans: number;
   points: number;
+  
 }
 
 export const driverMockData: DriverRow[] = [
