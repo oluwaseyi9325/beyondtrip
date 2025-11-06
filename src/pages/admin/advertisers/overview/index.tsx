@@ -10,7 +10,7 @@ import { advertisersOverviewMockData, AdvertisersOverviewRow } from "@/layout/ad
 import TableSearchInput from "@/layout/admin/tables/table-search-input";
 import Pagination from "@/components/pagination";
 import Drawer from "@/components/drawer";
-import ViewDriver from "@/layout/admin/drawers/driver";
+import AdvertiserDrawer from "@/layout/admin/drawers/advertiser";
 import AdminAdvertisersOverviewTable from "@/layout/admin/tables/admin-advertiser";
 
 const Security = () => {
@@ -27,19 +27,19 @@ const Security = () => {
   }, [currentPage, itemsPerPage]);
 
   const [open, setOpen] = useState(false);
-  const [selectedDriver, setSelectedDriver] = useState<any>(null);
+  const [selectedAdvertiser, setSelectedAdvertiser] = useState<AdvertisersOverviewRow | null>(null);
 
   const handleViewDriver = (driver: AdvertisersOverviewRow) => {
-    setSelectedDriver(driver);
+    setSelectedAdvertiser(driver);
     setOpen(true);
   };
 
   return (
     <>
-      <ViewDriver
+      <AdvertiserDrawer
         open={open}
-        handleClose={() => setOpen(false)}
-        driver={selectedDriver}
+        onClose={() => setOpen(false)}
+        advertiser={selectedAdvertiser}
       />
       <Container title="Advertisers - Overview " active="/admin/advertisers/overview">
         <div className="py-3 h-full overflow-y-auto scrollbar-none">

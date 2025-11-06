@@ -34,9 +34,9 @@ function ViewDriver({ open, handleClose, driver }: ViewDriverProps) {
     <Drawer
       open={open}
       handleClose={handleClose}
-      className="max-w-[600px]  bg-[#F7F7F7]"
+      className="max-w-[600px] z-999 bg-[#F7F7F7]"
     >
-      <div className="h-screen scrollbar-none overflow-y-auto bg-[#F7F7F7]">
+      <div className="h-screen  scrollbar-none overflow-y-auto bg-[#F7F7F7]">
         {/* Header Section */}
         <div className="p-6 bg-white ">
           <div className="flex items-start justify-between mb-2">
