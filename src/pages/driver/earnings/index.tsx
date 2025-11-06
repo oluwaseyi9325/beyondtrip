@@ -19,7 +19,7 @@ function Earnings() {
 
   return (
     <Container active="Earnings">
-      <section className="w-full px-4 py-6 flex flex-col gap-6">
+      <section className=" space-y-4">
         {/* Top Row: Total Earnings and Available Balance */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Total Earnings Card */}

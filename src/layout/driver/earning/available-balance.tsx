@@ -18,7 +18,7 @@ function AvailableBalance({ availableBalance }: any) {
             ₦{availableBalance.toLocaleString()}
           </h3>
         </div>
-        <div className="flex items-center justify-between gap-4">
+        <div className="lg:flex items-center justify-between gap-4">
           <button onClick={() => setIsBalance(true)} className="text-blue-600 hover:underline text-sm font-medium flex items-center gap-1">
             Click to view balance details
             <MdArrowForward size={16} />
