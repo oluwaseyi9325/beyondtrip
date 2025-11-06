@@ -36,7 +36,7 @@ const Security = () => {
 
   return (
     <>
-      <Container active="Settings">
+      <Container title="Settings" active="Settings">
         {/* <section className=" py-6 h-full overflow-y-hidden"> */}
         <div className="py-6">
           <Tabs tabs={tabsData} defaultTab={0} />
