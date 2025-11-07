@@ -1,12 +1,10 @@
 import Tabs from "@/components/tab"
 import Container from "@/layout/admin/container"
-import BasicDetailsContent from "@/layout/general/profile-details";
-import BankDetailsContent from "@/layout/driver/profile/bank-details-content";
-import Ratings from "@/layout/driver/profile/ratings";
 import AccountDetailsTab from "@/layout/admin/account";
 import SystemPreferencesTab from "@/layout/admin/preferences";
 import RolesPermissionsTab from "@/layout/admin/permission";
 import SystemConfigurationTab from "@/layout/admin/configuration";
+import SettingPayment from "@/layout/admin/payout/settingPayment";
 
 const Security = () => {
   const tabsData: any = [
@@ -22,7 +20,7 @@ const Security = () => {
     },
     {
       title: "Payments",
-      content: <Ratings />
+      content: <SettingPayment />
       },
     {
       title: "Roles & Permissions",
