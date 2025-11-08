@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -52,7 +52,6 @@ const AccountDetailsTab = () => {
         handleSubmit,
         formState: { errors },
         reset,
-        setValue,
     } = useForm<ProfileDetailsForm>({
         mode: "onBlur",
         resolver: yupResolver(schema),
