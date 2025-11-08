@@ -9,7 +9,6 @@ import SelectSearch from "@/components/input/selectSearch";
 import { advertisersOverviewMockData, AdvertisersOverviewRow } from "@/layout/admin/tables/admin-advertiser/data";
 import TableSearchInput from "@/layout/admin/tables/table-search-input";
 import Pagination from "@/components/pagination";
-import Drawer from "@/components/drawer";
 import AdvertiserDrawer from "@/layout/admin/drawers/advertiser";
 import AdminAdvertisersOverviewTable from "@/layout/admin/tables/admin-advertiser";
 
@@ -47,11 +46,12 @@ const Security = () => {
             Advertisers Management          
           </Text>
 
-          <div className="flex items-center gap-4 mb-9 rounded-[8px] bg-[#C5E4FF] p-[30px] sm:p-[42px]">
+         <div className="flex flex-col md:flex-row items-stretch sm:items-center gap-4 mb-9 rounded-lg bg-[#C5E4FF] p-[30px] sm:p-[42px]">
             <TableSearchInput
-              placeholder="Search by name, ID"
+              placeholder="Search by name, ID, location"
               searchTerm={searchTerm}
               onSearchChange={setSearchTerm}
+              className="w-full md:flex-1"
             />
             <SelectSearch
               options={[
@@ -59,11 +59,13 @@ const Security = () => {
                 { value: "inactive", label: "inactive" },
               ]}
               placeholder="Status"
+              className="w-full md:w-auto"
             />
-            <button className="text-black hover:underline text-sm whitespace-nowrap">
+            <button className="text-black text-left hover:underline text-sm whitespace-nowrap w-full md:w-auto">
               Clear filters
             </button>
           </div>
+
           {/* Table */}
           <AdminAdvertisersOverviewTable data={pagedData} onViewDriver={handleViewDriver} />
           {/* pagination */}

@@ -33,7 +33,7 @@ function ViewTab({ setActiveTab }: ViewTabProps) {
     };
 
     return (
-        <div className="bg-[#F7F7F7] max-w-[600px]  overflow-x-auto ">
+        <div className="bg-[#F7F7F7] max-w-[400px] sm:max-w-[600px]  overflow-x-auto ">
             <div className="grid sm:grid-cols-2 gap-4">
                 <div className="bg-white rounded-md p-4">
                     <p className="text-sm text-[#00000080] font-semibold mb-4">Company Details</p>
@@ -95,7 +95,7 @@ function ViewTab({ setActiveTab }: ViewTabProps) {
                 </div>
             </div>
             <div className="my-6 ">
-                <div className="flex justify-between items-center gap-3 mb-3">
+                <div className="flex flex-wrap justify-between items-center gap-3 mb-3">
                     <p className="text-sm font-semibold mb-3">Campaign History</p>
                     <div className="flex gap-3  " >
                         <SelectSearch
@@ -114,8 +114,8 @@ function ViewTab({ setActiveTab }: ViewTabProps) {
                 </div>
 
                 <div className="">
-                    <div className="  mt-4">
-                        <div className="overflow-x-auto  ">
+                    <div className="overflow-x-auto  mt-4">
+                        <div className=" min-w-[700px] ">
                             <Table<HistoryRow> columns={historyColumns} data={mockHistory} />
                         </div>
                     </div>
@@ -129,8 +129,8 @@ function ViewTab({ setActiveTab }: ViewTabProps) {
                 itemsPerPage={itemsPerPage}
             />
             <div className="p-6 flex justify-center items-center gap-3">
-                <button className="px-6 py-3 max-w-[260px] w-full rounded-[8px] bg-[#336AEA] text-white font-medium">Cancel</button>
-                <button className="px-6 py-3 rounded-[8px] max-w-[260px] w-full border border-[#FF0033] text-[#FF0033] font-medium">Suspend</button>
+                <button className="px-6 py-3 max-w-[260px] w-full rounded-lg bg-[#336AEA] text-white font-medium">Cancel</button>
+                <button className="px-6 py-3 rounded-lg max-w-[260px] w-full border border-[#FF0033] text-[#FF0033] font-medium">Suspend</button>
             </div>
         </div>
     );

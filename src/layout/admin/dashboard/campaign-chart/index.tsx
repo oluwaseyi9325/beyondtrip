@@ -18,7 +18,7 @@ type props = {
   graphSize?: string;
 };
 
-export const CampaignChart = ({ h = "h-56", graphSize = "h-64" }: props) => {
+export const CampaignChart = ({ h = "h-76", graphSize = "h-56" }: props) => {
   const [dateRange, setDateRange] = useState("");
   const [advertiserName, setAdvertiserName] = useState("");
 
@@ -61,7 +61,7 @@ export const CampaignChart = ({ h = "h-56", graphSize = "h-64" }: props) => {
   };
 
   return (
-    <div className={`bg-white border border-gray-200 rounded-2xl p-6  ${h}`}>
+    <div className={`bg-white border border-gray-200 rounded-2xl p-6  ${h}  lg:h-83 `}>
       <div className=" flex flex-col lg:flex-row space-y-3 items-start lg:items-center justify-between mb-6">
         <h2 className="text-xl font-bold text-gray-900">
           Campaign Performance

@@ -4,7 +4,7 @@ import Text from "@/components/typography";
 import { Statistics } from "@/lib/content/admin/stats";
 import Stats from "@/ui/stats";
 import { QuickActions } from "@/layout/driver/dashboard";
-import { FaWallet, FaNewspaper, FaUserEdit } from "react-icons/fa";
+import { FaWallet, FaNewspaper } from "react-icons/fa";
 import { PendingAction } from "@/layout/admin/dashboard/pending-action";
 import { AdminNotificationCard } from "@/layout/admin/notification";
 import { CampaignChart } from "@/layout/admin/dashboard/campaign-chart";
@@ -24,13 +24,13 @@ const Dashboard = () => {
       icon: <FaWallet size={20} />,
       label: "Manage Magazines",
       color: "text-blue-600",
-    },
-    {
+    },         
+    { 
       icon: <FaNewspaper size={20} />,
       label: "Manage Payouts",
       color: "text-blue-600",
     },
-  ];
+  ]; 
 
   return (
     <Container title="Admin Dashboard" >
