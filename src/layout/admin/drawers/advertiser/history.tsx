@@ -15,7 +15,6 @@ type FilterForm = { historyDate: Date | null };
 function HistoryTab() {
 
     const { control } = useForm<FilterForm>({ defaultValues: { historyDate: null } });
-    const [activeTab, setActiveTab] = React.useState(0);
 
     const [currentPage, setCurrentPage] = React.useState(1);
     const itemsPerPage = 4;
@@ -30,10 +29,10 @@ function HistoryTab() {
     };
 
     return (
-        <div className="bg-[#F7F7F7] max-w-[600px]  overflow-x-auto ">
+        <div className="bg-[#F7F7F7] max-w-[400px] sm:max-w-[600px]  overflow-x-auto ">
           
             <div>
-                <div  className="flex items-center justify-between " >
+                <div  className="flex flex-wrap space-y-2 items-center justify-between " >
                 <h2 className="text-small font-semibold " >Invoice History</h2>
                 <div className="flex items-center gap-3 mb-3">
                     <SelectSearch
@@ -67,7 +66,7 @@ function HistoryTab() {
                 itemsPerPage={itemsPerPage}
             />
             <div className="p-6 flex justify-center items-center gap-3">
-                <button className="px-6 py-3 max-w-[260px] w-full rounded-[8px] bg-[#336AEA] text-white font-medium">Cancel</button>
+                <button className="px-6 py-3 max-w-[260px] w-full rounded-lg bg-[#336AEA] text-white font-medium">Cancel</button>
             </div>
         </div>
     );

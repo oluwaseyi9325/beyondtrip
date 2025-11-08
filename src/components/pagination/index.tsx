@@ -1,16 +1,14 @@
 import clsx from "clsx";
-import { PiCaretLeft, PiCaretRight, PiCaretDown } from "react-icons/pi";
+import { PiCaretLeft, PiCaretRight } from "react-icons/pi";
 import { useState } from "react";
 
 interface PaginationProps {
   currentPage: number;
   totalPages: number;
   onPageChange: (page: number) => void;
-  // Optional props for the new simplified style
   totalItems?: number;
   itemsPerPage?: number;
   onItemsPerPageChange?: (itemsPerPage: number) => void;
-  // Option to use old style vs new style
   variant?: 'simple' | 'detailed';
   className?: string;
 }
@@ -22,7 +20,6 @@ const Pagination = ({
   totalItems,
   itemsPerPage = 10,
   onItemsPerPageChange,
-  // variant = 'simple',
   className,
 }: PaginationProps) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -44,17 +41,17 @@ const Pagination = ({
     setIsDropdownOpen(false);
   };
 
-  // Calculate items info - fallback to page-based calculation if totalItems not provided
+  // Calculate items info
   const calculatedTotalItems = totalItems || totalPages * itemsPerPage;
   const startItem = (currentPage - 1) * itemsPerPage + 1;
   const endItem = Math.min(currentPage * itemsPerPage, calculatedTotalItems);
 
-  // Show info text if totalItems is provided; only show rows-per-page control if handler provided
   const showInfoText = totalItems !== undefined;
   const showRowsPerPage = onItemsPerPageChange !== undefined;
 
-  // Build page numbers (windowed)
-  const visibleCount = 5;
+  // Build page numbers - fewer pages on mobile
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 640;
+  const visibleCount = isMobile ? 3 : 5;
   const half = Math.floor(visibleCount / 2);
   let startPage = Math.max(1, currentPage - half);
   let endPage = Math.min(totalPages, startPage + visibleCount - 1);
@@ -64,21 +61,12 @@ const Pagination = ({
   const pages = Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
 
   return (
-    <div className={clsx("flex items-center justify-between py-3", className)}>
+    <div className={clsx("flex flex-col sm:flex-row items-center justify-between gap-3 py-3", className)}>
       {/* Left: info */}
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-3 w-full sm:w-auto justify-center sm:justify-start">
         {showRowsPerPage && (
           <div className="flex items-center gap-2">
-            {/* <span className="text-sm text-gray-700">Rows per page:</span> */}
             <div className="relative">
-              {/* <button
-                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                className="flex items-center gap-1 px-2 py-1 text-sm text-gray-700 hover:bg-gray-50 rounded"
-              >
-                {itemsPerPage}
-                <PiCaretDown size={16} />
-              </button> */}
-              
               {isDropdownOpen && (
                 <div className="absolute bottom-full left-0 mb-1 bg-white border border-gray-200 rounded-md shadow-lg z-10 min-w-[80px]">
                   {rowsPerPageOptions.map((option) => (
@@ -100,42 +88,44 @@ const Pagination = ({
         )}
 
         {showInfoText && (
-          <span className="text-[14px] font-medium text-[#444444]">
+          <span className="text-[12px] sm:text-[14px] font-medium text-[#444444] text-center sm:text-left">
             Showing {startItem} to {endItem} of {calculatedTotalItems.toLocaleString()}
           </span>
         )}
       </div>
 
       {/* Right: controls */}
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-1 sm:gap-2 flex-wrap justify-center">
         {/* Prev */}
         <button
           onClick={handlePrev}
           disabled={currentPage === 1}
           className={clsx(
-            "px-2 py-1 rounded  hover:bg-gray-100 transition-colors flex items-center gap-1",
+            "px-2 py-1 rounded hover:bg-gray-100 transition-colors flex items-center gap-1",
             currentPage === 1 && "opacity-50 cursor-not-allowed"
           )}
         >
           <PiCaretLeft size={18} className="text-gray-600" />
-          <span className="text-sm text-[#00000080]">Previous</span>
+          <span className="text-xs sm:text-sm text-[#00000080] hidden sm:inline">Previous</span>
         </button>
 
         {/* Page numbers */}
-        {pages.map((p) => (
-          <button
-            key={p}
-            onClick={() => onPageChange(p)}
-            className={clsx(
-              "w-8 h-8 rounded-full text-sm flex items-center justify-center",
-              p === currentPage
-                ? "bg-[#CFE8FF] text-gray-900"
-                : "text-gray-700 hover:bg-gray-100"
-            )}
-          >
-            {p}
-          </button>
-        ))}
+        <div className="flex items-center gap-1">
+          {pages.map((p) => (
+            <button
+              key={p}
+              onClick={() => onPageChange(p)}
+              className={clsx(
+                "w-7 h-7 sm:w-8 sm:h-8 rounded-full text-xs sm:text-sm flex items-center justify-center",
+                p === currentPage
+                  ? "bg-[#CFE8FF] text-gray-900"
+                  : "text-gray-700 hover:bg-gray-100"
+              )}
+            >
+              {p}
+            </button>
+          ))}
+        </div>
 
         {/* Next */}
         <button
@@ -146,7 +136,7 @@ const Pagination = ({
             currentPage === totalPages && "opacity-50 cursor-not-allowed"
           )}
         >
-          <span className="text-sm text-gray-700">Next</span>
+          <span className="text-xs sm:text-sm text-gray-700 hidden sm:inline">Next</span>
           <PiCaretRight size={18} className="text-gray-600" />
         </button>
       </div>

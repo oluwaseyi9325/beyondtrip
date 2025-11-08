@@ -18,7 +18,7 @@ type props = {
   graphSize?: string;
 };
 
-export const RevenueChart = ({ h = "h-101", graphSize = "h-75" }: props) => {
+export const RevenueChart = ({ h = "h-110", graphSize = "h-75" }: props) => {
   const [viewType, setViewType] = useState("Month");
   const [year, setYear] = useState("Year");
 
@@ -79,7 +79,7 @@ export const RevenueChart = ({ h = "h-101", graphSize = "h-75" }: props) => {
   };
 
   return (
-    <div className={`bg-white border border-gray-200 rounded-2xl p-6  ${h}`}>
+<div className={`bg-white border border-gray-200 rounded-2xl p-6 ${h} lg:h-100`}>
       <div className=" flex flex-col md:flex-row space-y-3 items-start md:items-center justify-between mb-6">
       <h2 className="text-xl font-bold text-gray-900">
           Revenue & Payout Summary{" "}
