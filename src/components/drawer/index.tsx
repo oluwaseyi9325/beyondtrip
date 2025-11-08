@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { LuX } from "react-icons/lu";
+
 
 interface TDrawer {
   open: boolean;
@@ -49,13 +49,7 @@ const Drawer = ({
     bottom: "bottom-0 left-0 w-full"
   };
 
-  // Close button position based on side
-  const closeButtonClasses = {
-    left: "right-4 top-4",
-    right: "left-4 top-4",
-    top: "right-4 bottom-4",
-    bottom: "right-4 top-4"
-  };
+
 
   return (
     <AnimatePresence>

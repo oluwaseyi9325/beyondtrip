@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { PiCaretLeft, PiCaretRight, PiCaretDown } from "react-icons/pi";
+import { PiCaretLeft, PiCaretRight } from "react-icons/pi";
 import { useState } from "react";
 
 interface PaginationProps {
@@ -57,7 +57,7 @@ const Pagination = ({
   const visibleCount = 5;
   const half = Math.floor(visibleCount / 2);
   let startPage = Math.max(1, currentPage - half);
-  let endPage = Math.min(totalPages, startPage + visibleCount - 1);
+  const endPage = Math.min(totalPages, startPage + visibleCount - 1);
   if (endPage - startPage + 1 < visibleCount) {
     startPage = Math.max(1, endPage - visibleCount + 1);
   }

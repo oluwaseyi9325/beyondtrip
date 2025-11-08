@@ -87,7 +87,7 @@ const SystemConfigurationTab = () => {
 
   const handleCancel = () => {
     reset();
-    toast.info("Changes cancelled");
+    toast.error("Changes cancelled");
   };
 
   const handleHealthCheck = async () => {
@@ -95,7 +95,7 @@ const SystemConfigurationTab = () => {
     try {
       await new Promise((resolve) => setTimeout(resolve, 2000));
       toast.success("Health check passed!");
-    } catch (err) {
+    } catch () {
       toast.error("Health check failed!");
     } finally {
       setIsTestingHealth(false);
