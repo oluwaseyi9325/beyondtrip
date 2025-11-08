@@ -29,7 +29,7 @@ function HistoryTab() {
     };
 
     return (
-        <div className="bg-[#F7F7F7] max-w-[400px] sm:max-w-[600px]  overflow-x-auto ">
+        <div className="bg-[#F7F7F7] max-w-[300px] sm:max-w-[600px]  overflow-x-auto ">
           
             <div>
                 <div  className="flex flex-wrap space-y-2 items-center justify-between " >

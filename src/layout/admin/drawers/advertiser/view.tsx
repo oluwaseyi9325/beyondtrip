@@ -1,7 +1,5 @@
 
 import React from "react";
-import Drawer from "@/components/drawer";
-import { AdvertisersOverviewRow } from "@/layout/admin/tables/admin-advertiser/data";
 import SelectSearch from "@/components/input/selectSearch";
 import DateInput from "@/components/input/date";
 import { useForm } from "react-hook-form";
@@ -33,7 +31,7 @@ function ViewTab({ setActiveTab }: ViewTabProps) {
     };
 
     return (
-        <div className="bg-[#F7F7F7] max-w-[400px] sm:max-w-[600px]  overflow-x-auto ">
+        <div className="bg-[#F7F7F7] max-w-[300px] sm:max-w-[600px]  overflow-x-auto ">
             <div className="grid sm:grid-cols-2 gap-4">
                 <div className="bg-white rounded-md p-4">
                     <p className="text-sm text-[#00000080] font-semibold mb-4">Company Details</p>
