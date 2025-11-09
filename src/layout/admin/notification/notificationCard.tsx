@@ -6,11 +6,11 @@ import { IoMdClose } from "react-icons/io";
 
 function NotificationCard({ notification, onView, onDismiss }:any) {
   return (
-    <div className="bg-white border border-gray-200 rounded-lg p-6 flex items-center justify-between hover:shadow-md transition-shadow">
+    <div className="bg-white flex-wrap gap-4 border border-gray-200 rounded-lg p-6 flex items-center justify-between hover:shadow-md transition-shadow">
         {/* Left Section - Icon and Content */}
-        <div className="flex items-center gap-4">
+        <div className="flex flex-wrap items-center gap-4">
           {/* Icon */}
-          <div className="w-12 h-12 bg-[#27458F] rounded-full flex items-center justify-center flex-shrink-0">
+          <div className="w-12 h-12 bg-[#27458F] rounded-full flex items-center justify-center shrink-0">
             <MdEmail className="w-6 h-6 text-white" />
           </div>
   

@@ -147,7 +147,7 @@ const DriverNotifications = () => {
   return (
     <div className="bg-gray-50 min-h-screen">
       {/* Notifications List */}
-      <div className="space-y-4">
+      <div className="space-y-4 ">
         {currentNotifications.map((notification) => (
           <NotificationCard
             key={notification.id}

@@ -275,11 +275,11 @@ const SystemConfigurationTab = () => {
         </section>
 
         {/* Action Buttons */}
-        <div className="flex  justify-end gap-4">
+        <div className="flex flex-wrap justify-end gap-4">
           <Button
             type="submit"
             size="md"
-            className="!w-auto px-12 bg-[#336AEA] text-white rounded-lg font-medium hover:bg-[#2952b8] transition-colors"
+            className="w-auto! whitespace-nowrap text-sm sm:text-base px-12 bg-[#336AEA] text-white rounded-lg font-medium hover:bg-[#2952b8] transition-colors"
           >
             Save Changes
           </Button>
@@ -290,7 +290,7 @@ const SystemConfigurationTab = () => {
             size="md"
             borderColor="#336AEA"
             borderWidth="1"
-            className="!w-auto px-12 bg-white text-[#336AEA] rounded-lg font-medium hover:bg-gray-50 transition-colors"
+            className="w-auto! px-12 text-sm sm:text-base bg-white text-[#336AEA] rounded-lg font-medium hover:bg-gray-50 transition-colors"
             handleClick={handleCancel}
           >
             Cancel
