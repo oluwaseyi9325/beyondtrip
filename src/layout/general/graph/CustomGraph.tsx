@@ -42,8 +42,8 @@ const DEFAULT_CHART_DATA: ChartDataPoint[] = [
 // Component
 // ------------------------------------------------
 export const CustomGraph = ({ 
-  h = "h-56", 
-  graphSize = "h-64",
+  h = "h-70", 
+  graphSize = "h-58",
   title = "Overview",
   data = DEFAULT_CHART_DATA,
   showFilters = true,
@@ -67,7 +67,7 @@ export const CustomGraph = ({
 
   return (
     <div className={`bg-white border border-gray-200 rounded-2xl p-6 shadow-sm ${h}`}>
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex flex-wrap gap-2 items-center justify-between mb-6">
         <h2 className="text-xl font-bold text-gray-900">{title}</h2>
         {showFilters && (
           <div className="flex gap-2">

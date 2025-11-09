@@ -31,7 +31,7 @@ function Earnings() {
 
   return (
     <Container>
-      <section className="w-full px-4 py-6 flex flex-col gap-6">
+      <section className="w-full py-6 flex flex-col gap-6">
         <div className="flex items-start justify-between ">
           <div className="flex flex-col gap-2">
             <div className="flex items-center gap-3">
