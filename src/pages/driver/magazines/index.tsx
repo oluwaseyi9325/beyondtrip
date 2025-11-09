@@ -69,7 +69,7 @@ function Earnings() {
 
     return (
         <Container active='Magazines'>
-            <section className="py-6 h-full overflow-y-hidden">
+            <section className="py-6 h-full overflow-y-auto scrollbar-none">
                 <Tabs tabs={tabsData} defaultTab={0} />
             </section>
         </Container>

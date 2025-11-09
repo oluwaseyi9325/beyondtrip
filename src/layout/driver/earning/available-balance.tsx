@@ -9,7 +9,7 @@ function AvailableBalance({ availableBalance }: any) {
   const [isBalance, setIsBalance] = useState(false)
   return (
     <>
-      <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm col-span-2 flex flex-col justify-between">
+      <div className="bg-white mb-3 lg:mb-0 border border-gray-200 rounded-2xl p-6 shadow-sm col-span-2 flex flex-col justify-between">
         <div className="flex-1">
           <h2 className="text-lg font-semibold text-gray-900 mb-2">
             Available Balance

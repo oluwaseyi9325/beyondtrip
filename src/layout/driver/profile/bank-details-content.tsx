@@ -10,14 +10,14 @@ function BankDetailsContent() {
             <div className="space-y-6">
                 {/* Bank Details Display */}
                 <div className="bg-white p-8 rounded-lg">
-                    <div className="flex items-center justify-between mb-6">
+                    <div className="flex flex-wrap gap-2 items-center justify-between mb-6">
                         <h2 className="text-xl font-semibold text-gray-900">Bank/Payment Details</h2>
                         <button className="bg-green-600 text-white px-6 py-2 rounded-full font-medium hover:bg-green-700 transition-colors">
                             Verified
                         </button>
                     </div>
                     <div className="bg-white border border-gray-300 rounded-xl p-6">
-                        <div className="grid grid-cols-3 gap-6">
+                        <div className="grid sm;grid-cols-2 lg:grid-cols-3 gap-6">
                             <div>
                                 <p className="text-sm font-semibold text-gray-900 mb-1">Name of Bank</p>
                                 <p className="text-sm text-gray-500">First Bank</p>

@@ -110,7 +110,7 @@ const NotificationPagination = ({
   );
 };
 
-// ✅ Main System Notifications Component
+//  Main System Notifications Component
 const SystemNotifications = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;

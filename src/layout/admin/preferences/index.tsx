@@ -161,9 +161,9 @@ const SystemPreferencesTab = () => {
             {notificationItems.map((item) => (
               <div
                 key={item.key}
-                className="flex items-center justify-between py-3 border-b border-gray-100 last:border-0"
+                className="flex flex-wrap gap-2 items-center justify-between py-3 border-b border-gray-100 last:border-0"
               >
-                <span className="text-gray-900 font-medium">{item.label}</span>
+                <span className=" text-gray-900 font-medium">{item.label}</span>
                 <div className="flex items-center gap-6">
                   <Checkbox
                     name={item.emailName}
@@ -182,11 +182,11 @@ const SystemPreferencesTab = () => {
         </div>
 
         {/* Action Buttons */}
-        <div className="flex gap-4 justify-end">
+        <div className="flex flex-wrap gap-4 justify-end">
           <Button
             type="submit"
             size="md"
-            className="!w-auto px-12 bg-[#336AEA] text-white rounded-lg font-medium hover:bg-[#2952b8] transition-colors"
+            className="w-auto! px-12 whitespace-nowrap text-sm sm:text-base bg-[#336AEA] text-white rounded-lg font-medium hover:bg-[#2952b8] transition-colors"
           >
             Save Changes
           </Button>
@@ -196,7 +196,7 @@ const SystemPreferencesTab = () => {
             size="md"
             borderColor="#336AEA"
             borderWidth="1"
-            className="!w-auto px-12 bg-white text-[#336AEA] rounded-lg font-medium hover:bg-gray-50 transition-colors"
+            className="w-auto! text-sm sm:text-base px-12 bg-white text-[#336AEA] rounded-lg font-medium hover:bg-gray-50 transition-colors"
             handleClick={handleCancel}
           >
             Cancel

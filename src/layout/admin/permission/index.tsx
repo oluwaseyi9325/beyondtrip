@@ -165,7 +165,7 @@ const RolesPermissionsTab = () => {
           {adminMembers.map((member) => (
             <div
               key={member.id}
-              className="flex items-center justify-between gap-4 pb-4 border-b border-gray-200 last:border-0"
+              className="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-gray-200 last:border-0"
             >
               {/* Left: Avatar and Info */}
               <div className="flex items-center gap-3 flex-1">
@@ -246,7 +246,7 @@ const RolesPermissionsTab = () => {
         <h2 className="text-xl font-bold text-gray-900 mb-6">Permissions</h2>
 
         {/* Tabs */}
-        <div className="flex gap-2 mb-6">
+        <div className="flex flex-wrap gap-2 mb-6">
           <button
             onClick={() => setActiveTab("super")}
             className={`px-6 py-2 rounded-lg font-medium transition-colors ${
@@ -311,11 +311,11 @@ const RolesPermissionsTab = () => {
         </form>
       </section>
 
-       <div className="flex justify-end gap-4">
+       <div className="flex flex-wrap  justify-end gap-4">
             <Button
               type="submit"
               size="md"
-              className="!w-auto px-12 bg-[#336AEA] text-white rounded-lg font-medium hover:bg-[#2952b8] transition-colors"
+              className="w-auto! whitespace-nowrap text-sm sm:text-base px-12 bg-[#336AEA] text-white rounded-lg font-medium hover:bg-[#2952b8] transition-colors"
             >
               Save Changes
             </Button>
@@ -325,7 +325,7 @@ const RolesPermissionsTab = () => {
               size="md"
               borderColor="#336AEA"
               borderWidth="1"
-              className="!w-auto px-12 bg-white text-[#336AEA] rounded-lg font-medium hover:bg-gray-50 transition-colors"
+              className="w-auto! px-12 text-sm sm:text-base bg-white text-[#336AEA] rounded-lg font-medium hover:bg-gray-50 transition-colors"
               handleClick={handleCancel}
             >
               Cancel

@@ -51,7 +51,7 @@ function MagazineItem({ magazine }: { magazine: Magazine }) {
   return (
     <>
       <div className="bg-white border border-gray-300 rounded-2xl p-6 shadow-sm">
-        <div className="flex items-center justify-between">
+        <div className="flex flex-wrap gap-2 items-start justify-between">
           <div className="flex-1">
             {/* Status Badge */}
             <div className="mb-6">
@@ -61,21 +61,21 @@ function MagazineItem({ magazine }: { magazine: Magazine }) {
             {/* Magazine Details */}
             <div className="space-y-2">
               {magazine.edition && (
-                <div className="flex items-center gap-2">
+                <div className="flex whitespace-nowrap items-center gap-2">
                   <span className="text-base font-bold text-gray-900">Last Edition:</span>
-                  <span className="text-base text-gray-500">{magazine.edition}</span>
+                  <span className="text-base  text-gray-500">{magazine.edition}</span>
                 </div>
               )}
 
               {magazine.newEdition && (
-                <div className="flex items-center gap-2">
+                <div className="flex items-center whitespace-nowrap gap-2">
                   <span className="text-base font-bold text-gray-900">New Edition:</span>
                   <span className="text-base text-gray-500">{magazine.newEdition}</span>
                 </div>
               )}
 
               {magazine.location && (
-                <div className="flex items-center gap-2">
+                <div className="flex whitespace-nowrap items-center gap-2">
                   <span className="text-base font-bold text-gray-900">Location:</span>
                   <span className="text-base text-gray-500">{magazine.location}</span>
                 </div>
@@ -84,12 +84,12 @@ function MagazineItem({ magazine }: { magazine: Magazine }) {
           </div>
 
           {/* Action Button */}
-          <div className="ml-6">
+          <div className="gap-6">
             <Button
               rounded='full'
               size='md'
               handleClick={confirmBtn}
-              className="!w-auto bg-[#336AEA] text-white px-8 text-sm rounded-full font-medium hover:bg-[#2952b8] transition-colors whitespace-nowrap"
+              className="w-auto! bg-[#336AEA] text-white px-8 text-sm rounded-full font-medium hover:bg-[#2952b8] transition-colors whitespace-nowrap"
             >
               {magazine.buttonText}
             </Button>

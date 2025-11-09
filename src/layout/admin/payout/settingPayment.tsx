@@ -63,7 +63,7 @@ function SettingPayment() {
         <h2 className="text-xl font-bold text-gray-900 mb-6">
           Payment Gateway Integration
         </h2>
-        <div className='w-full flex gap-2 items-center justify-center text-lg w-full text-white  font-semibold py-[20px] px-4 rounded-[12px] bg-[#336AEA] cursor-pointer  ' >
+        <div className=' flex gap-2 items-center justify-center text-lg w-full text-white  font-semibold py-[20px] px-4 rounded-[12px] bg-[#336AEA] cursor-pointer  ' >
           <FaPlusCircle />
           <button>  Add New Gateway  </button>
         </div>
@@ -93,11 +93,11 @@ function SettingPayment() {
 
         </div>
 
-        <div className="flex mt-8  justify-end gap-4">
+        <div className="flex flex-wrap mt-8  justify-end gap-4">
           <Button
             type="submit"
             size="md"
-            className="!w-auto px-12 bg-[#336AEA] text-white rounded-lg font-medium hover:bg-[#2952b8] transition-colors"
+            className="w-auto! whitespace-nowrap text-sm sm:text-base px-12 bg-[#336AEA] text-white rounded-lg font-medium hover:bg-[#2952b8] transition-colors"
           >
             Save Changes
           </Button>
@@ -108,7 +108,7 @@ function SettingPayment() {
             size="md"
             borderColor="#336AEA"
             borderWidth="1"
-            className="!w-auto px-12 bg-white text-[#336AEA] rounded-lg font-medium transition-colors"
+            className=" text-sm sm:text-base  w-auto! px-12 bg-white text-[#336AEA] rounded-lg font-medium transition-colors"
           >
             Cancel
           </Button>
