@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
-import { IoMdClose } from "react-icons/io";
 import NotificationCard from "../notificationCard";
 
 const NotificationPagination = ({
@@ -31,7 +30,7 @@ const NotificationPagination = ({
       
       // Calculate range around current page
       let start = Math.max(2, currentPage - Math.floor(maxVisible / 2));
-      let end = Math.min(totalPages - 1, start + maxVisible - 1);
+      const end = Math.min(totalPages - 1, start + maxVisible - 1);
       
       // Adjust start if end is at the limit
       if (end === totalPages - 1) {

@@ -10,7 +10,6 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import * as yup from "yup";
 import { IoClose } from "react-icons/io5";
-import { FiUpload } from "react-icons/fi";
 import { FaFileUpload } from "react-icons/fa";
 // ------------------------------------------------
 // Types
@@ -46,7 +45,6 @@ const CreateCampaign = () => {
         handleSubmit,
         formState: { errors },
         reset,
-        watch,
     } = useForm<TCreateCampaign>({
         mode: "onBlur",
         resolver: yupResolver(schema),
@@ -55,8 +53,6 @@ const CreateCampaign = () => {
     const [files, setFiles] = useState<File[]>([]);
     const [previewFile, setPreviewFile] = useState<File | null>(null);
     const [showPreview, setShowPreview] = useState(false);
-
-    const adType = watch("adType");
 
     const onSubmit = async (data: TCreateCampaign) => {
         if (files.length === 0) {

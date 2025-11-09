@@ -1,6 +1,4 @@
-import clsx from 'clsx';
-import React, { useState } from 'react'
-import { FaStar, FaUser } from 'react-icons/fa';
+
 import { useForm } from 'react-hook-form'; // Add this import
 import Input from "@/components/input/input";
 import Select from "@/components/input/select";
@@ -10,7 +8,7 @@ import { FaPlusCircle } from 'react-icons/fa';
 
 function SettingPayment() {
 
-  const { control, handleSubmit, watch } = useForm({
+  const { control } = useForm({
     defaultValues: {
       approvalMode: 'manual',
     }
@@ -63,7 +61,7 @@ function SettingPayment() {
         <h2 className="text-xl font-bold text-gray-900 mb-6">
           Payment Gateway Integration
         </h2>
-        <div className='w-full flex gap-2 items-center justify-center text-lg w-full text-white  font-semibold py-[20px] px-4 rounded-[12px] bg-[#336AEA] cursor-pointer  ' >
+        <div className=' flex gap-2 items-center justify-center text-lg w-full text-white  font-semibold py-[20px] px-4 rounded-[12px] bg-[#336AEA] cursor-pointer  ' >
           <FaPlusCircle />
           <button>  Add New Gateway  </button>
         </div>

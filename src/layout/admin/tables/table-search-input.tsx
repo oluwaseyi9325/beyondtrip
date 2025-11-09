@@ -1,6 +1,5 @@
 "use client"
 
-import { HiMagnifyingGlass } from "react-icons/hi2"
 
 interface TableSearchInputProps {
   searchTerm?: string
@@ -13,7 +12,7 @@ interface TableSearchInputProps {
 const TableSearchInput = ({
   searchTerm,
   onSearchChange,
-  onClearSearch,
+  // onClearSearch,
   placeholder = "Search...",
   className = "w-full",
 }: TableSearchInputProps) => {

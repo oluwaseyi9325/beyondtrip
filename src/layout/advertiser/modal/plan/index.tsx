@@ -4,7 +4,6 @@ import { useState } from "react";
 import Modal from "@/components/modal";
 import Button from "@/components/button";
 import { FaCheck } from "react-icons/fa";
-import { MdClose } from "react-icons/md";
 
 // Plan interface
 interface Plan {
@@ -44,7 +43,7 @@ const UpgradePlanModal = ({ open, handleClose, plans, currentPlanId, onSelectPla
         <div className="space-y-4">
           {plans.map((plan) => {
             const isSelected = selectedPlan === plan.id;
-            const isCurrent = currentPlanId === plan.id;
+            // const isCurrent = currentPlanId === plan.id;
 
             return (
               <button

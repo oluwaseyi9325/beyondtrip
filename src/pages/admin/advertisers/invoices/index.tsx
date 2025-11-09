@@ -1,4 +1,3 @@
-import Tabs from "@/components/tab"
 import Container from "@/layout/admin/container"
 import { useMemo, useState } from "react";
 import Text from "@/components/typography";
@@ -12,8 +11,7 @@ import { InvoiceRow, invoiceMockData } from "@/layout/admin/tables/admin/admin-i
 const Security = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(10);
-
+  const itemsPerPage=10
   const totalItems = 250;
   const totalPages = Math.max(1, Math.ceil(totalItems / itemsPerPage));
 

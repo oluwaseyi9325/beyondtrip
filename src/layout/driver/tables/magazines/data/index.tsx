@@ -10,7 +10,6 @@ interface Props {
 }
 
 export const useMagazineColumns = ({
-  handleClickView,
 }: Props): TableColumn<TMagazineRow>[] => {
   // const [dropdownIndex, setDropdownIndex] = useState<number | null>(null);
 

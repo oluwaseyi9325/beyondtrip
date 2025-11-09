@@ -14,9 +14,9 @@ interface ViewDriverProps {
 }
 
 function ViewDriver({ open, handleClose, driver }: ViewDriverProps) {
-  if (!driver) return null;
-
   const [activeTab, setActiveTab] = React.useState(0);
+
+  if (!driver) return null;
 
   const tabsData: any = [
     {

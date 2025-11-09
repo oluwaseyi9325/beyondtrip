@@ -18,10 +18,10 @@ interface ProfileDetailsForm {
     firstName: string;
     lastName: string;
     email: string;
-    phoneNumber: string;
-    currentPassword: string;
-    newPassword: string;
-    confirmNewPassword: string;
+    phoneNumber?: string;
+    currentPassword?: string;
+    newPassword?: string;
+    confirmNewPassword?: string;
 }
 
 // ------------------------------------------------

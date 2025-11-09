@@ -1,5 +1,5 @@
 
-import { MdEmail, MdArrowForward } from "react-icons/md";
+import { MdEmail } from "react-icons/md";
 
 interface ActionsProps {
   notifications?: Array<{

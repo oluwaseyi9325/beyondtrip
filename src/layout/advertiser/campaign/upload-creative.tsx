@@ -4,21 +4,14 @@ import React, { useState } from "react";
 import Button from "@/components/button";
 import Input from "@/components/input/input";
 import Select from "@/components/input/select";
-import Modal from "@/components/modal";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import * as yup from "yup";
-import { FiUpload } from "react-icons/fi";
 import { FaFileUpload } from "react-icons/fa";
 // ------------------------------------------------
 // Types
 // ------------------------------------------------
-interface TUploadCreativeModal {
-    open: boolean;
-    handleClose: () => void;
-    refetch?: () => void;
-}
 
 export interface TUploadCreative {
     campaign: string;

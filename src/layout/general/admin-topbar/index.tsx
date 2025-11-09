@@ -5,8 +5,8 @@ import { useRouter } from "next/navigation";
 import { GoBellFill } from "react-icons/go";
 import { MdLogout } from "react-icons/md";
 import { IoMenu } from "react-icons/io5";
-import { FaUserCircle, FaMoneyCheck} from "react-icons/fa";
-import { MdPayment, MdNotifications, MdPlaylistAddCheckCircle, MdSupport } from "react-icons/md";
+import { FaUserCircle, } from "react-icons/fa";
+import {  MdNotifications, MdPlaylistAddCheckCircle } from "react-icons/md";
 
 interface Props {
   onToggleSidebar?: () => void;

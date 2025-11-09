@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { MdEmail, MdChevronLeft, MdChevronRight } from "react-icons/md";
+
+import { MdEmail, } from "react-icons/md";
 import { IoMdClose } from "react-icons/io";
 
 

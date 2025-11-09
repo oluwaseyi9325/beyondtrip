@@ -3,14 +3,7 @@
 import React from "react";
 import Drawer from "@/components/drawer";
 import { AdvertisersOverviewRow } from "@/layout/admin/tables/admin-advertiser/data";
-import SelectSearch from "@/components/input/selectSearch";
-import DateInput from "@/components/input/date";
-import { useForm } from "react-hook-form";
-import Table from "@/components/table";
-import { columns as historyColumns, mockHistory, HistoryRow } from "./data";
 import Tabs from "@/components/tab";
-import CommentsTab from "@/layout/admin/driversTab/comments";
-import Pagination from "@/components/pagination";
 import ViewTab from "./view";
 import HistoryTab from "./history";
 

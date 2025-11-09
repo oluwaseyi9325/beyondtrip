@@ -130,6 +130,6 @@ export const FilterBar = React.memo(({ cfg, activeTab, searchValues, onSearchCha
   );
 });
 
+FilterBar.displayName = "FilterBar";
+
 export default FilterBar;
-
-
