@@ -10,8 +10,6 @@ import FilterBar, { FilterConfig, FilterForm } from "@/components/filter/FilterB
 
 const Security = () => {
   const [activeTab, setActiveTab] = React.useState(0);
-  const [currentPage, setCurrentPage] = React.useState(1);
-  const [itemsPerPage, setItemsPerPage] = React.useState(10);
 
   // Store search values per tab (for both single and multi-field search)
   const [searchValues, setSearchValues] = React.useState<Record<number, Record<string, string>>>({

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -18,10 +18,10 @@ interface ProfileDetailsForm {
     firstName: string;
     lastName: string;
     email: string;
-    phoneNumber: string;
-    currentPassword: string;
-    newPassword: string;
-    confirmNewPassword: string;
+    phoneNumber?: string;
+    currentPassword?: string;
+    newPassword?: string;
+    confirmNewPassword?: string;
 }
 
 // ------------------------------------------------
@@ -52,7 +52,6 @@ const AccountDetailsTab = () => {
         handleSubmit,
         formState: { errors },
         reset,
-        setValue,
     } = useForm<ProfileDetailsForm>({
         mode: "onBlur",
         resolver: yupResolver(schema),
@@ -98,7 +97,7 @@ const AccountDetailsTab = () => {
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
                 <div className="bg-white p-8 rounded-lg space-y-8">
                        {/* Header */}
-                <div className="flex items-center justify-between">
+                <div className="flex flex-wrap gap-2 items-center justify-between">
                     <h2 className="text-xl font-bold text-gray-900">Profile Details</h2>
                     <button
                         type="button"
@@ -183,7 +182,7 @@ const AccountDetailsTab = () => {
                     <label className="block text-sm font-medium text-gray-700 mb-3">
                         Full Name
                     </label>
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid sm:grid-cols-2 gap-4">
                         <Input
                             label=""
                             placeholder="First Name"

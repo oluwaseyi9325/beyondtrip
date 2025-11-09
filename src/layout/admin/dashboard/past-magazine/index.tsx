@@ -13,7 +13,7 @@ export const PastMagazines = () => {
             onChange={(e) => setEditionName(e.target.value)}
             className="px-4 focus:outline-none  py-1 border border-gray-300 rounded-[4px] text-xs font-medium text-gray-700 hover:bg-gray-50 cursor-pointer"
           >
-            <option>"Edition Name"</option>
+            <option>Edition Name</option>
             
           </select>
         </div>

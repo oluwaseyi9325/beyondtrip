@@ -18,7 +18,7 @@ export interface TAmbassador {
 
 interface Props {
   data: TAmbassador[];
-  compactHeader?: boolean; // ✅ renamed from isCutData for clarity
+  compactHeader?: boolean; //  renamed from isCutData for clarity
 }
 
 const EarningTable = ({ data, compactHeader = false }: Props) => {

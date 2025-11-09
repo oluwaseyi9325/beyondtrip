@@ -54,7 +54,6 @@ const SettingsComponent = () => {
     control,
     handleSubmit,
     formState: { errors },
-    watch,
   } = useForm<SettingsFormData>({
     mode: "onBlur",
     resolver: yupResolver(schema),
@@ -78,7 +77,7 @@ const SettingsComponent = () => {
       await new Promise((resolve) => setTimeout(resolve, 1000));
       toast.success("Settings saved successfully!");
     } catch (err: any) {
-      toast.error("Failed to save settings");
+      toast.error("Failed to save settings", err);
     }
   };
 
@@ -89,7 +88,7 @@ const SettingsComponent = () => {
       await new Promise((resolve) => setTimeout(resolve, 2000));
       toast.success("Health check passed!");
     } catch (err) {
-      toast.error("Health check failed!");
+      toast.error("Health check failed!", err);
     } finally {
       setIsTestingHealth(false);
     }

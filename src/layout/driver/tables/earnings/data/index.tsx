@@ -35,7 +35,7 @@ export const useEarningColumns = ({
     },
     {
       name: "Status",
-        width: "15%",
+        width: "19%",
       cell: (row) => (
         <div
           className={clsx(

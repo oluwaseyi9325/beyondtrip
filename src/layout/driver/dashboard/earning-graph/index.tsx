@@ -42,8 +42,8 @@ export const EarningsGraph = ({ h = "h-56", graphSize="h-64" }: props) => {
 
   return (
     <div className={`bg-white border border-gray-200 rounded-2xl p-6  ${h}`}>
-      <div className="flex items-center justify-between mb-6">
-        <h2 className="text-xl font-bold text-gray-900">Earnings Overview</h2>
+      <div className="flex items-center gap-2 justify-between mb-6">
+        <h2 className=" tex-md sm:text-xl font-bold text-gray-900">Earnings Overview</h2>
         <div className="flex gap-2">
           <select 
             value={viewType}

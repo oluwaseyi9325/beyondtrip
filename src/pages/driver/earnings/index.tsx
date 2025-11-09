@@ -21,12 +21,12 @@ function Earnings() {
     <Container active="Earnings">
       <section className=" space-y-4">
         {/* Top Row: Total Earnings and Available Balance */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 lg:gap-6">
           {/* Total Earnings Card */}
-          <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm col-span-1 flex flex-col justify-between">
+          <div className="bg-white border mb-6 lg:mb-0 border-gray-200 rounded-2xl p-6 shadow-sm col-span-1 flex flex-col justify-between">
             <div>
               <div className="flex items-center gap-3 mb-6">
-                <div className="h-12 w-12 rounded-full bg-blue-100 flex items-center justify-center">
+                <div className="h-12 w-12  rounded-full bg-blue-100 flex items-center justify-center">
                   <FaWallet size={20} className="text-blue-600" />
                 </div>
                 <h2 className="text-lg font-semibold text-gray-900">Total Earnings</h2>
@@ -43,7 +43,7 @@ function Earnings() {
         </div>
 
         {/* Bottom Row: Upcoming Payout and Bank Details */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 lg:gap-6">
           {/* Upcoming Payout Card */}
           <UpcomingPayout upcomingPayout={upcomingPayout} payoutDate={payoutDate} />
           {/* Bank Details Card */}
@@ -53,7 +53,7 @@ function Earnings() {
 
         {/* Earnings Table */}
         <EarningsGraph h="h-90" />
-        <div className="overflow-hidden">
+        <div className="overflow-hidden ">
           <EarningTable compactHeader data={earningData} />
         </div>
       </section>

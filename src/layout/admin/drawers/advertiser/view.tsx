@@ -1,7 +1,5 @@
 
 import React from "react";
-import Drawer from "@/components/drawer";
-import { AdvertisersOverviewRow } from "@/layout/admin/tables/admin-advertiser/data";
 import SelectSearch from "@/components/input/selectSearch";
 import DateInput from "@/components/input/date";
 import { useForm } from "react-hook-form";
@@ -25,15 +23,15 @@ function ViewTab({ setActiveTab }: ViewTabProps) {
 
     const totalPages = Math.ceil(mockHistory.length / itemsPerPage);
 
-    const startIndex = (currentPage - 1) * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-    const currentHistory = mockHistory.slice(startIndex, endIndex);
+    // const startIndex = (currentPage - 1) * itemsPerPage;
+    // const endIndex = startIndex + itemsPerPage;
+    // const currentHistory = mockHistory.slice(startIndex, endIndex);
     const handlePageChange = (page: number) => {
         setCurrentPage(page);
     };
 
     return (
-        <div className="bg-[#F7F7F7] max-w-[600px]  overflow-x-auto ">
+        <div className="bg-[#F7F7F7] max-w-[300px] sm:max-w-[600px]  overflow-x-auto ">
             <div className="grid sm:grid-cols-2 gap-4">
                 <div className="bg-white rounded-md p-4">
                     <p className="text-sm text-[#00000080] font-semibold mb-4">Company Details</p>
@@ -70,7 +68,7 @@ function ViewTab({ setActiveTab }: ViewTabProps) {
                     <p className="text-sm font-semibold text-[#00000080] mb-3">Analytics</p>
                     <div className="flex flex-col items-start space-y-2 mb-3">
                         <p className="text-xs text-[#444444]  ">(Active Campaigns – 4)</p>
-                        <button className="rounded-full w-full my-3 border border-[#008000] text-[#008000] bg-white px-4 py-2 text-xs">"Campaign 1"</button>
+                        <button className="rounded-full w-full my-3 border border-[#008000] text-[#008000] bg-white px-4 py-2 text-xs">Campaign 1</button>
                     </div>
                     <div className="border p-3 border-gray-100 rounded-[5px]  " >
                         <div className="text-xs text-[#5E5E5E] ">Total impressions</div>
@@ -95,7 +93,7 @@ function ViewTab({ setActiveTab }: ViewTabProps) {
                 </div>
             </div>
             <div className="my-6 ">
-                <div className="flex justify-between items-center gap-3 mb-3">
+                <div className="flex flex-wrap justify-between items-center gap-3 mb-3">
                     <p className="text-sm font-semibold mb-3">Campaign History</p>
                     <div className="flex gap-3  " >
                         <SelectSearch
@@ -114,8 +112,8 @@ function ViewTab({ setActiveTab }: ViewTabProps) {
                 </div>
 
                 <div className="">
-                    <div className="  mt-4">
-                        <div className="overflow-x-auto  ">
+                    <div className="overflow-x-auto  mt-4">
+                        <div className=" min-w-[700px] ">
                             <Table<HistoryRow> columns={historyColumns} data={mockHistory} />
                         </div>
                     </div>
@@ -129,8 +127,8 @@ function ViewTab({ setActiveTab }: ViewTabProps) {
                 itemsPerPage={itemsPerPage}
             />
             <div className="p-6 flex justify-center items-center gap-3">
-                <button className="px-6 py-3 max-w-[260px] w-full rounded-[8px] bg-[#336AEA] text-white font-medium">Cancel</button>
-                <button className="px-6 py-3 rounded-[8px] max-w-[260px] w-full border border-[#FF0033] text-[#FF0033] font-medium">Suspend</button>
+                <button className="px-6 py-3 max-w-[260px] w-full rounded-lg bg-[#336AEA] text-white font-medium">Cancel</button>
+                <button className="px-6 py-3 rounded-lg max-w-[260px] w-full border border-[#FF0033] text-[#FF0033] font-medium">Suspend</button>
             </div>
         </div>
     );

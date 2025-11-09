@@ -14,7 +14,7 @@ function BasicDetailsContent() {
              {/* Profile Card */}
              <div className="bg-white p-8 rounded-lg">
                <div className="bg-white border border-gray-300 rounded-xl p-6">
-                 <div className="flex items-center justify-between">
+                 <div className="flex flex-wrap gap-2 items-center justify-between">
                    <div className="flex items-center gap-4">
                      <div className="h-14 w-14 rounded-full bg-[#2C4C9C] flex items-center justify-center text-white text-xl font-bold">
                        S
@@ -33,7 +33,7 @@ function BasicDetailsContent() {
        
              {/* Personal Information */}
              <div className="bg-white p-8 rounded-lg">
-               <div className="flex items-center justify-between mb-6">
+               <div className="flex flex-wrap gap-2 items-center justify-between mb-6">
                  <h2 className="text-xl font-semibold text-gray-900">Personal Information</h2>
                  <button onClick={()=>setOpen(true)} className="bg-[#2C4C9C] text-white px-6 py-2 rounded-lg font-medium hover:bg-[#234080] transition-colors flex items-center gap-2">
                    <MdEdit size={18} />
@@ -41,7 +41,7 @@ function BasicDetailsContent() {
                  </button>
                </div>
                <div className="bg-white border border-gray-300 rounded-xl p-6">
-                 <div className="grid grid-cols-3 gap-6">
+                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                    <div>
                      <p className="text-sm font-semibold text-gray-900 mb-1">First Name</p>
                      <p className="text-sm text-gray-500">Samuel</p>

@@ -1,4 +1,4 @@
-import Container from "@/layout/admin/container"
+import Container from "@/layout/admin/container";
 import { useMemo, useState } from "react";
 import Text from "@/components/typography";
 import SelectSearch from "@/components/input/selectSearch";
@@ -12,8 +12,7 @@ import { DriverRow } from "@/layout/admin/tables/admin/data";
 const Security = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(10);
-
+const itemsPerPage=10
   const totalItems = 250;
   const totalPages = Math.max(1, Math.ceil(totalItems / itemsPerPage));
 
@@ -32,8 +31,8 @@ const Security = () => {
 
   return (
     <>
-      <ViewDriver 
-        open={open} 
+      <ViewDriver
+        open={open}
         handleClose={() => setOpen(false)}
         driver={selectedDriver}
       />
@@ -43,11 +42,12 @@ const Security = () => {
             Drivers Management
           </Text>
 
-          <div className="flex items-center gap-4 mb-9 rounded-[8px] bg-[#C5E4FF] p-[30px] sm:p-[42px]">
+          <div className="flex flex-col md:flex-row items-stretch sm:items-center gap-4 mb-9 rounded-lg bg-[#C5E4FF] p-[30px] sm:p-[42px]">
             <TableSearchInput
               placeholder="Search by name, ID, location"
               searchTerm={searchTerm}
               onSearchChange={setSearchTerm}
+              className="w-full md:flex-1"
             />
             <SelectSearch
               options={[
@@ -55,8 +55,9 @@ const Security = () => {
                 { value: "inactive", label: "inactive" },
               ]}
               placeholder="Status"
+              className="w-full md:w-auto"
             />
-            <button className="text-black hover:underline text-sm whitespace-nowrap">
+            <button className="text-black text-left hover:underline text-sm whitespace-nowrap w-full md:w-auto">
               Clear filters
             </button>
           </div>
@@ -75,7 +76,7 @@ const Security = () => {
         </div>
       </Container>
     </>
-  )
-}
+  );
+};
 
-export default Security
+export default Security;

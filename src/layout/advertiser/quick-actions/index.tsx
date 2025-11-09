@@ -1,4 +1,4 @@
-import { FaWallet, FaChartBar, FaFileDownload } from "react-icons/fa";
+import { FaChartBar, FaFileDownload } from "react-icons/fa";
 import { MdCreateNewFolder } from "react-icons/md";
 
 export const QuickActions = () => {
