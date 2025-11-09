@@ -23,9 +23,9 @@ function ViewTab({ setActiveTab }: ViewTabProps) {
 
     const totalPages = Math.ceil(mockHistory.length / itemsPerPage);
 
-    const startIndex = (currentPage - 1) * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-    const currentHistory = mockHistory.slice(startIndex, endIndex);
+    // const startIndex = (currentPage - 1) * itemsPerPage;
+    // const endIndex = startIndex + itemsPerPage;
+    // const currentHistory = mockHistory.slice(startIndex, endIndex);
     const handlePageChange = (page: number) => {
         setCurrentPage(page);
     };
@@ -68,7 +68,7 @@ function ViewTab({ setActiveTab }: ViewTabProps) {
                     <p className="text-sm font-semibold text-[#00000080] mb-3">Analytics</p>
                     <div className="flex flex-col items-start space-y-2 mb-3">
                         <p className="text-xs text-[#444444]  ">(Active Campaigns – 4)</p>
-                        <button className="rounded-full w-full my-3 border border-[#008000] text-[#008000] bg-white px-4 py-2 text-xs">"Campaign 1"</button>
+                        <button className="rounded-full w-full my-3 border border-[#008000] text-[#008000] bg-white px-4 py-2 text-xs">Campaign 1</button>
                     </div>
                     <div className="border p-3 border-gray-100 rounded-[5px]  " >
                         <div className="text-xs text-[#5E5E5E] ">Total impressions</div>

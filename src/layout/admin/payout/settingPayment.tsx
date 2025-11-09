@@ -1,6 +1,4 @@
-import clsx from 'clsx';
-import React, { useState } from 'react'
-import { FaStar, FaUser } from 'react-icons/fa';
+
 import { useForm } from 'react-hook-form'; // Add this import
 import Input from "@/components/input/input";
 import Select from "@/components/input/select";
@@ -10,7 +8,7 @@ import { FaPlusCircle } from 'react-icons/fa';
 
 function SettingPayment() {
 
-  const { control, handleSubmit, watch } = useForm({
+  const { control } = useForm({
     defaultValues: {
       approvalMode: 'manual',
     }

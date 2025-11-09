@@ -1,9 +1,5 @@
-import Tabs from "@/components/tab"
 import Container from "@/layout/admin/container"
 import { useMemo, useState } from "react";
-import BasicDetailsContent from "@/layout/general/profile-details";
-import BankDetailsContent from "@/layout/driver/profile/bank-details-content";
-import Ratings from "@/layout/driver/profile/ratings";
 import Text from "@/components/typography";
 import SelectSearch from "@/components/input/selectSearch";
 import { advertisersOverviewMockData, AdvertisersOverviewRow } from "@/layout/admin/tables/admin-advertiser/data";
@@ -15,8 +11,7 @@ import AdminAdvertisersOverviewTable from "@/layout/admin/tables/admin-advertise
 const Security = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(10);
-
+  const itemsPerPage=10
   const totalItems = 250;
   const totalPages = Math.max(1, Math.ceil(totalItems / itemsPerPage));
 

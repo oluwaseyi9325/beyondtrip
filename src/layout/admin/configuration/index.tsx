@@ -95,8 +95,8 @@ const SystemConfigurationTab = () => {
     try {
       await new Promise((resolve) => setTimeout(resolve, 2000));
       toast.success("Health check passed!");
-    } catch () {
-      toast.error("Health check failed!");
+    } catch (err) {
+      toast.error("Health check failed!", err);
     } finally {
       setIsTestingHealth(false);
     }

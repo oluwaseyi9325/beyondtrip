@@ -4,7 +4,7 @@ import SelectSearch from "@/components/input/selectSearch";
 import DateInput from "@/components/input/date";
 import { useForm } from "react-hook-form";
 import Table from "@/components/table";
-import { columns as historyColumns, mockHistory, HistoryRow } from "./data";
+import {  mockHistory, } from "./data";
 import Pagination from "@/components/pagination";
 import { invoiceMockData } from "./data";
 import { InvoiceRow } from "./data";
@@ -21,9 +21,9 @@ function HistoryTab() {
 
     const totalPages = Math.ceil(mockHistory.length / itemsPerPage);
 
-    const startIndex = (currentPage - 1) * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-    const currentComments = mockHistory.slice(startIndex, endIndex);
+    // const startIndex = (currentPage - 1) * itemsPerPage;
+    // const endIndex = startIndex + itemsPerPage;
+    // const currentComments = mockHistory.slice(startIndex, endIndex);
     const handlePageChange = (page: number) => {
         setCurrentPage(page);
     };

@@ -1,13 +1,6 @@
-// import Button from '@/components/button';
 import Container from '@/layout/advertiser/container';
-import EarningTable from '@/layout/driver/tables/earnings';
-import { FaWallet } from 'react-icons/fa';
-import UpcomingPayout from '@/layout/driver/earning/upcoming-payout';
-import BankDetails from '@/layout/driver/earning/bank-details';
-import AvailableBalance from '@/layout/driver/earning/available-balance';
 import Stats from '@/ui/stats';
 import CampaignTable from '@/layout/advertiser/tables/campaigns';
-import { earningData } from '@/data/earningData';
 import { campaignData } from '@/data/campaign';
 import { CustomGraph } from '@/layout/general/graph/CustomGraph';
 import { QuickActions } from '@/layout/advertiser/quick-actions';

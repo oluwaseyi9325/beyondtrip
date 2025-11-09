@@ -3,7 +3,6 @@
 import React from "react";
 import Table from "@/components/table";
 import { TableColumn } from "react-data-table-component";
-import { PiCaretDown } from "react-icons/pi";
 import Pagination from "@/components/pagination";
 
 type RequestStatus = "Pending" | "Approved" | "Rejected";

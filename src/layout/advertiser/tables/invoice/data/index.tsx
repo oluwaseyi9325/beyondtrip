@@ -1,6 +1,5 @@
 
 import { TableColumn } from "react-data-table-component";
-import { IoIosArrowForward } from "react-icons/io";
 import clsx from "clsx";
 // import { useState } from "react";
 import { TAmbassador } from "..";
@@ -12,7 +11,6 @@ interface Props {
 }
 
 export const useInvoiceColumns = ({
-  handleClickView,
   // total,
 }: Props): TableColumn<TAmbassador>[] => {
   // const [dropdownIndex, setDropdownIndex] = useState<number | null>(null);
