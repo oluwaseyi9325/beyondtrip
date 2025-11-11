@@ -5,16 +5,17 @@ export interface DriverRow {
   idNo: string;
   status: "Active" | "Inactive";
   location: string;
-  earnings: string; // formatted currency string per mock
+  earnings: string;
   scans: number;
   points: number;
-  
+  edtion?: any;
 }
 
-export const driverMockData: DriverRow[] = [
-  { name: "JOHN DOE M.", Edtion: "DRV-101", status: "Active", location: "Ikeja-Lagos", earnings: "₦50,000.00", scans: 300, points: 800 },
- 
+
+export const driverMockData: any = [
+  { name: "JOHN DOE M.", edition: "DRV-101", status: "Active", location: "Ikeja-Lagos", earnings: "₦50,000.00", scans: 300, points: 800 },
 ];
+
 
 // Columns definition (as done previously with column configs)
 

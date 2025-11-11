@@ -58,7 +58,7 @@ const {
   reset,
 } = useForm<SystemConfigForm>({
   mode: "onBlur",
-  resolver: yupResolver(schema),
+  resolver: yupResolver(schema) as any,
   defaultValues: {
     approvalMode: "",
     pauseCampaign: "Campaigns above 1 month",
@@ -92,7 +92,7 @@ const {
     try {
       await new Promise((resolve) => setTimeout(resolve, 2000));
       toast.success("Health check passed!");
-    } catch (err) {
+    } catch (err:any) {
       toast.error("Health check failed!", err);
     } finally {
       setIsTestingHealth(false);
@@ -160,11 +160,13 @@ const {
                   placeholder="Edition Title"
                   register={register("editionTitle")}
                   error={errors.editionTitle}
+                  label=""
                 />
                 <Input
                   placeholder="No. of Copies"
                   register={register("copiesCount")}
                   error={errors.copiesCount}
+                  label=""
                 />
               </div>
             </div>

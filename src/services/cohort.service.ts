@@ -1,6 +1,5 @@
 import makeRequest from "@/config/api";
 import { transformDate } from "@/helpers/convert-data";
-import { TAddCohort } from "@/layout/general/modals/cohort/add-cohort";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
 export const useGetCohorts = (params?: any) => {
@@ -19,7 +18,7 @@ export const useGetCohorts = (params?: any) => {
 export const useCreateCohort = () => {
   return useMutation({
     mutationKey: ["create-cohort"],
-    mutationFn: async (data: TAddCohort) => {
+    mutationFn: async (data: any) => {
       const response = await makeRequest({
         url: "Cohort/add",
         method: "POST",

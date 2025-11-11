@@ -2,15 +2,16 @@
 
 import React from "react";
 import Drawer from "@/components/drawer";
-import { AdvertisersOverviewRow } from "@/layout/admin/tables/admin-advertiser/data";
+// import { AdvertisersOverviewRow } from "@/layout/admin/tables/admin-advertiser/data";
 import Tabs from "@/components/tab";
 import ViewTab from "./view";
 import HistoryTab from "./history";
+import { AnyARecord } from "dns";
 
 export interface AdvertiserDrawerProps {
   open: boolean;
   onClose: () => void;
-  advertiser: AdvertisersOverviewRow | null;
+  advertiser: AnyARecord;
 }
 
 
@@ -18,7 +19,7 @@ export interface AdvertiserDrawerProps {
 
 
 
-function AdvertiserDrawer({ open, onClose, advertiser }: AdvertiserDrawerProps) {
+function AdvertiserDrawer({ open, onClose, advertiser }: any) {
   const [activeTab, setActiveTab] = React.useState(0);
 
  

@@ -6,9 +6,9 @@ import clsx from "clsx";
 import { TAmbassador } from "..";
 
 interface Props {
-  handleClick: (id: string) => void;
-  total: number;
-  handleClickView: (row: TAmbassador) => void;
+  handleClick?: (id: string) => void;
+  total?: number;
+  handleClickView?: any;
 }
 
 export const useEarningColumns = ({

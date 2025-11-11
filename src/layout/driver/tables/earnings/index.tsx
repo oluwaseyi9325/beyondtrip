@@ -26,7 +26,7 @@ const EarningTable = ({ data, compactHeader = false }: Props) => {
   const [driver, setdriver] = useState<TAmbassador | null>(null);
 
   const columns = useEarningColumns({
-    handleClickView: (row) => {
+    handleClickView: (row:any) => {
       setdriver(row);
       setViewdriverOpen(true);
     },
