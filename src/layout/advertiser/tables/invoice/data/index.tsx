@@ -39,11 +39,10 @@ export const useInvoiceColumns = ({
     },
     {
       name: "Status",
-      width: "13%",
       cell: (row) => (
         <div
           className={clsx(
-            "border text-sm font-medium rounded-full px-5 py-[5px]",
+            "border text-sm w-65 text-center  font-medium rounded-full px-5 py-[5px]",
             row.status === "Paid" &&
             "  border-[#008000] bg-white text-[#008000]",
             row.status === "Unpaid" && "bg-white border-[#F29339] text-[#F29339]"
@@ -55,11 +54,10 @@ export const useInvoiceColumns = ({
     },
      {
       name: "Action",
-      width: "15%",
       cell: (row) => (
         <div
           className={clsx(
-            "border text-sm font-medium rounded-full px-5 py-[5px] cursor-pointer",
+            "border text-sm w-35 text-center font-medium rounded-full px-5 py-[5px] cursor-pointer",
             row.isPay === true &&
             "  border-[#336AEA] bg-white text-[#336AEA]",
             row.isPay === false && "bg-white border-[#FF0033] text-[#FF0033]"

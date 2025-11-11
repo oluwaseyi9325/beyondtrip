@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { InferType } from "yup";
 import toast from "react-hot-toast";
 import Input from "@/components/input/input";
 import Select from "@/components/input/select";
@@ -13,40 +14,35 @@ import Checkbox from "@/components/input/checkbox";
 // ------------------------------------------------
 // Types
 // ------------------------------------------------
-interface SystemConfigForm {
-  approvalMode: string;
-  pauseCampaign: string;
-  invoiceDeadline: string;
-  editionTitle: string;
-  copiesCount: string;
-  // Notifications
-  emailNotifications: boolean;
-  inAppNotifications: boolean;
-  escalationUnpaid: string;
-  escalationWebhook: string;
-  otherRequests: string;
-  // API
-  publicKey: string;
-  secretKey: string;
-  webhookUrl: string;
-}
+
+
 
 // ------------------------------------------------
 // Validation Schema
 // ------------------------------------------------
-const schema = yup.object().shape({
+
+
+const schema = yup.object({
   approvalMode: yup.string().required("Approval mode is required"),
   pauseCampaign: yup.string().required("Pause campaign is required"),
   invoiceDeadline: yup.string().required("Invoice deadline is required"),
   editionTitle: yup.string().required("Edition title is required"),
   copiesCount: yup.string().required("Number of copies is required"),
+
+  emailNotifications: yup.boolean().required(),
+  inAppNotifications: yup.boolean().required(),
+
   escalationUnpaid: yup.string().required("Escalation is required"),
   escalationWebhook: yup.string().required("Escalation is required"),
   otherRequests: yup.string().required("Other requests is required"),
-  publicKey: yup.string().optional(),
-  secretKey: yup.string().optional(),
-  webhookUrl: yup.string().url("Invalid URL").optional(),
+
+  publicKey: yup.string().nullable().notRequired(),
+  secretKey: yup.string().nullable().notRequired(),
+  webhookUrl: yup.string().url("Invalid URL").nullable().notRequired(),
 });
+
+type SystemConfigForm = InferType<typeof schema>;
+
 
 // ------------------------------------------------
 // Component
@@ -54,31 +50,32 @@ const schema = yup.object().shape({
 const SystemConfigurationTab = () => {
   const [isTestingHealth, setIsTestingHealth] = useState(false);
 
-  const {
-    register,
-    control,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = useForm<SystemConfigForm>({
-    mode: "onBlur",
-    resolver: yupResolver(schema),
-    defaultValues: {
-      approvalMode: "",
-      pauseCampaign: "Campaigns above 1 month",
-      invoiceDeadline: "",
-      editionTitle: "",
-      copiesCount: "",
-      emailNotifications: true,
-      inAppNotifications: true,
-      escalationUnpaid: "",
-      escalationWebhook: "",
-      otherRequests: "",
-      publicKey: "",
-      secretKey: "",
-      webhookUrl: "",
-    },
-  });
+const {
+  register,
+  control,
+  handleSubmit,
+  formState: { errors },
+  reset,
+} = useForm<SystemConfigForm>({
+  mode: "onBlur",
+  resolver: yupResolver(schema),
+  defaultValues: {
+    approvalMode: "",
+    pauseCampaign: "Campaigns above 1 month",
+    invoiceDeadline: "",
+    editionTitle: "",
+    copiesCount: "",
+    emailNotifications: true,
+    inAppNotifications: true,
+    escalationUnpaid: "",
+    escalationWebhook: "",
+    otherRequests: "",
+    publicKey: null,
+    secretKey: null,
+    webhookUrl: null,
+  },
+});
+
 
   const onSubmit = (data: SystemConfigForm) => {
     console.log("System configuration:", data);

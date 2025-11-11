@@ -80,11 +80,12 @@ const CampaignTable = ({ data, compactHeader = false }: { data: TAmbassador[], c
                 </button>
               </div>
             ) : (
+              <>
               <div className="flex items-center justify-between flex-wrap gap-4 py-5">
                 <h2 className="text-2xl font-semibold text-gray-900">
                 Manage Campaigns
                 </h2>
-                <div className="flex items-center gap-3">
+                <div className="flex flex-wrap items-center gap-3">
                   <SelectSearch
                     options={[
                       { value: "paid", label: "Paid" },
@@ -98,6 +99,7 @@ const CampaignTable = ({ data, compactHeader = false }: { data: TAmbassador[], c
                   />
                 </div>
               </div>
+              </>
             )}
       
 

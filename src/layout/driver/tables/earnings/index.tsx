@@ -61,7 +61,7 @@ const EarningTable = ({ data, compactHeader = false }: Props) => {
           <h2 className="text-2xl font-semibold text-gray-900">
           Payout History
           </h2>
-          <div className="flex items-center gap-3">
+          <div className="flex flex-wrap items-center gap-3">
             <SelectSearch
               options={[
                 { value: "paid", label: "Paid" },

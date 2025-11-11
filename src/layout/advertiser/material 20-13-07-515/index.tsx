@@ -1,10 +1,8 @@
-
-
-
 // components/advertiser/DocumentCard.tsx
 import { HiDocumentText, HiOutlineDocumentDownload, HiOutlineEye } from "react-icons/hi";
 import { HiVideoCamera, HiDocument, HiPhotograph } from "react-icons/hi";
 import { useState } from "react";
+import Image from "next/image";
 
 export interface DocumentCardProps {
   document: {
@@ -13,7 +11,7 @@ export interface DocumentCardProps {
     description: string;
     date: string;
     typeOfFile: string;
-    fileUrl: string
+    fileUrl: string;
   };
   isDefaultStyle: boolean;
   onDownload: (fileUrl: DocumentCardProps["document"]) => void;
@@ -24,7 +22,7 @@ const DocumentCard: React.FC<DocumentCardProps> = ({
   document,
   onDownload,
   isDefaultStyle,
-  onPreview
+  onPreview,
 }) => {
   const [showPreviewModal, setShowPreviewModal] = useState(false);
 
@@ -110,11 +108,15 @@ const DocumentCard: React.FC<DocumentCardProps> = ({
       );
     } else if (fileType.includes("image") || ["jpg", "png", "jpeg"].includes(fileType)) {
       return (
-        <img
-          src={document.fileUrl}
-          alt={document.title}
-          className="w-full max-h-96 object-contain rounded-lg"
-        />
+        <div className="relative w-full h-96">
+          <Image
+            src={document.fileUrl}
+            alt={document.title}
+            fill
+            className="object-contain rounded-lg"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+          />
+        </div>
       );
     } else if (fileType === "pdf") {
       return (
@@ -141,7 +143,7 @@ const DocumentCard: React.FC<DocumentCardProps> = ({
         <div className="bg-[#F8F8F8] rounded-2xl border border-[#F3F3F3] hover:shadow-md transition-shadow duration-200">
           <div className={`flex items-center ${isDefaultStyle ? "lg:p-5 p-2" : "p-2"}`}>
             {/* Icon */}
-            <div className={`flex-shrink-0 ${isDefaultStyle ? "lg:mr-4 mr-3" : "mr-3"}`}>
+            <div className={`shrink-0 ${isDefaultStyle ? "lg:mr-4 mr-3" : "mr-3"}`}>
               <div className={`${isDefaultStyle ? "lg:w-10 lg:h-12 w-6 h-6" : " w-6 h-6"} ${getFileColor()} rounded flex items-center justify-center`}>
                 {getFileIcon()}
               </div>
@@ -162,7 +164,7 @@ const DocumentCard: React.FC<DocumentCardProps> = ({
             </div>
 
             {/* Actions */}
-            <div className={`flex items-center space-x-2 flex-shrink-0 ${isDefaultStyle ? "lg:ml-4 ml-2" : "ml-2"}`}>
+            <div className={`flex items-center space-x-2 shrink-0 ${isDefaultStyle ? "lg:ml-4 ml-2" : "ml-2"}`}>
               {/* Preview Button */}
               <button
                 onClick={handlePreview}
@@ -189,9 +191,8 @@ const DocumentCard: React.FC<DocumentCardProps> = ({
 
       {/* Preview Modal */}
       {showPreviewModal && (
-        // <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-        <div className="fixed inset-0 bg-slate- bg-opacity-10 flex items-center justify-center z-50 p-4 border">
-          <div className="bg-white rounded-lg max-w-4xl w-full max-h-[100vh] overflow-hidden shadow-lg">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg max-w-4xl w-full max-h-screen overflow-hidden shadow-lg">
             {/* Modal Header */}
             <div className="flex items-center justify-between p-6 border-b">
               <div>

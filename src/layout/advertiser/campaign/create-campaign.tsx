@@ -11,6 +11,8 @@ import toast from "react-hot-toast";
 import * as yup from "yup";
 import { IoClose } from "react-icons/io5";
 import { FaFileUpload } from "react-icons/fa";
+import Image from "next/image";
+
 // ------------------------------------------------
 // Types
 // ------------------------------------------------
@@ -53,6 +55,7 @@ const CreateCampaign = () => {
     const [files, setFiles] = useState<File[]>([]);
     const [previewFile, setPreviewFile] = useState<File | null>(null);
     const [showPreview, setShowPreview] = useState(false);
+    const [previewUrl, setPreviewUrl] = useState<string>("");
 
     const onSubmit = async (data: TCreateCampaign) => {
         if (files.length === 0) {
@@ -102,7 +105,19 @@ const CreateCampaign = () => {
 
     const handlePreview = (file: File) => {
         setPreviewFile(file);
+        const url = URL.createObjectURL(file);
+        setPreviewUrl(url);
         setShowPreview(true);
+    };
+
+    const handleClosePreview = () => {
+        setShowPreview(false);
+        // Clean up object URL to prevent memory leaks
+        if (previewUrl) {
+            URL.revokeObjectURL(previewUrl);
+        }
+        setPreviewUrl("");
+        setPreviewFile(null);
     };
 
     const handleDragOver = (e: React.DragEvent) => {
@@ -125,13 +140,13 @@ const CreateCampaign = () => {
     ];
 
     return (
-        <div className="bg-white p-20 rounded-lg">
+        <div className="bg-white p-6 sm:p-12 lg:p-20 rounded-lg">
             <form
                 className="w-full flex flex-col gap-6"
                 onSubmit={handleSubmit(onSubmit)}
             >
                 {/* Header */}
-                <h2 className="text-2xl font-bold text-gray-900">Campaign Details</h2>
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-900">Campaign Details</h2>
 
                 {/* Campaign Name */}
                 <Input
@@ -152,10 +167,7 @@ const CreateCampaign = () => {
                         placeholder="₦50,000.00"
                     />
                     <div className="md:col-span-2">
-                        {/* <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Duration
-                        </label> */}
-                        <div className="grid grid-cols-2 gap-4">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <Input
                                 label="Start Duration"
                                 type="date"
@@ -184,7 +196,7 @@ const CreateCampaign = () => {
 
                 {/* Upload Creative File */}
                 <div>
-                    <label className="block text-xl font-semibold text-gray-900 mb-4">
+                    <label className="block text-lg sm:text-xl font-semibold text-gray-900 mb-4">
                         Upload Creative File
                     </label>
 
@@ -192,18 +204,17 @@ const CreateCampaign = () => {
                     <div
                         onDragOver={handleDragOver}
                         onDrop={handleDrop}
-                        className="border-2 border-dashed border-gray-300 rounded-lg p-12 text-center hover:border-blue-400 transition-colors cursor-pointer"
+                        className="border-2 border-dashed border-gray-300 rounded-lg p-8 sm:p-12 text-center hover:border-blue-400 transition-colors cursor-pointer"
                     >
                         <label className="cursor-pointer flex flex-col items-center gap-3">
-                            <div className=" ">
-                                {/* <FiUpload size={32} className="text-white" /> */}
+                            <div>
                                 <FaFileUpload size={42} className="text-blue-500"/>
                             </div>
-                            <p className="text-gray-700">
+                            <p className="text-sm sm:text-base text-gray-700">
                                 Drag and drop or{" "}
                                 <span className="text-blue-600 font-medium">click to upload</span>
                             </p>
-                            <p className="text-sm text-gray-500">
+                            <p className="text-xs sm:text-sm text-gray-500">
                                 (PDF, JPEG, PNG) max. size: 10MB
                             </p>
                             <input
@@ -222,14 +233,14 @@ const CreateCampaign = () => {
                             {files.map((file, index) => (
                                 <div
                                     key={index}
-                                    className="flex items-center justify-between bg-gray-50 border border-gray-200 rounded-lg p-4"
+                                    className="flex flex-col sm:flex-row items-start sm:items-center justify-between bg-gray-50 border border-gray-200 rounded-lg p-4 gap-2"
                                 >
-                                    <span className="text-gray-700 text-sm">{file.name}</span>
+                                    <span className="text-gray-700 text-sm break-all">{file.name}</span>
                                     <div className="flex items-center gap-3">
                                         <button
                                             type="button"
                                             onClick={() => handlePreview(file)}
-                                            className="text-blue-600 hover:underline text-sm font-medium"
+                                            className="text-blue-600 hover:underline text-sm font-medium whitespace-nowrap"
                                         >
                                             Click to preview
                                         </button>
@@ -249,8 +260,8 @@ const CreateCampaign = () => {
 
                 {/* Preview Area */}
                 {files.length > 0 && (
-                    <div className="bg-blue-100 rounded-lg p-12 flex items-center justify-center min-h-[300px]">
-                        <p className="text-gray-600 text-lg">Preview Area</p>
+                    <div className="bg-blue-100 rounded-lg p-8 sm:p-12 flex items-center justify-center min-h-[200px] sm:min-h-[300px]">
+                        <p className="text-gray-600 text-base sm:text-lg">Preview Area</p>
                     </div>
                 )}
 
@@ -259,7 +270,7 @@ const CreateCampaign = () => {
                     <label className="block text-base font-semibold text-gray-900 mb-3">
                         Ad Type
                     </label>
-                    <div className="flex gap-6">
+                    <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
                         <label className="flex items-center gap-2 cursor-pointer">
                             <input
                                 type="radio"
@@ -285,11 +296,11 @@ const CreateCampaign = () => {
                 </div>
 
                 {/* Buttons */}
-                <div className="flex gap-4 mt-6">
+                <div className="flex flex-col sm:flex-row gap-4 mt-6">
                     <Button
                         type="submit"
                         size="md"
-                        className="!w-auto px-12 bg-[#336AEA] text-white rounded-lg font-medium hover:bg-[#2952b8] transition-colors"
+                        className="!w-full sm:!w-auto px-12 bg-[#336AEA] text-white rounded-lg font-medium hover:bg-[#2952b8] transition-colors"
                     >
                         Submit Campaign
                     </Button>
@@ -300,7 +311,7 @@ const CreateCampaign = () => {
                         size="md"
                         borderColor="#336AEA"
                         borderWidth="1"
-                        className="!w-auto px-12 bg-white text-[#336AEA] rounded-lg font-medium hover:bg-gray-50 transition-colors"
+                        className="!w-full sm:!w-auto px-12 bg-white text-[#336AEA] rounded-lg font-medium hover:bg-gray-50 transition-colors"
                         handleClick={() => toast.success("Saved as draft")}
                     >
                         Save as draft
@@ -310,24 +321,28 @@ const CreateCampaign = () => {
 
             {/* Preview Modal */}
             {showPreview && previewFile && (
-                <Modal open={showPreview} handleClose={() => setShowPreview(false)} className="w-[800px]">
-                    <div className="p-6">
+                <Modal open={showPreview} handleClose={handleClosePreview} className="w-full max-w-[800px]">
+                    <div className="p-4 sm:p-6">
                         <div className="flex items-center justify-between mb-4">
-                            <h3 className="text-xl font-bold">File Preview</h3>
-                            <button onClick={() => setShowPreview(false)}>
+                            <h3 className="text-lg sm:text-xl font-bold">File Preview</h3>
+                            <button onClick={handleClosePreview}>
                                 <IoClose size={24} />
                             </button>
                         </div>
                         {previewFile.type.startsWith("image/") ? (
-                            <img
-                                src={URL.createObjectURL(previewFile)}
-                                alt="Preview"
-                                className="w-full rounded-lg"
-                            />
+                            <div className="relative w-full h-[300px] sm:h-[400px] lg:h-[500px]">
+                                <Image
+                                    src={previewUrl}
+                                    alt="Preview"
+                                    fill
+                                    className="object-contain rounded-lg"
+                                    sizes="(max-width: 768px) 100vw, 800px"
+                                />
+                            </div>
                         ) : (
-                            <div className="bg-gray-100 p-12 rounded-lg text-center">
+                            <div className="bg-gray-100 p-8 sm:p-12 rounded-lg text-center">
                                 <p className="text-gray-600">Preview not available for this file type</p>
-                                <p className="text-sm text-gray-500 mt-2">{previewFile.name}</p>
+                                <p className="text-sm text-gray-500 mt-2 break-all">{previewFile.name}</p>
                             </div>
                         )}
                     </div>

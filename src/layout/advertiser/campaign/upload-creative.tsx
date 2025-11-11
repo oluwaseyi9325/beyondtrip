@@ -110,7 +110,7 @@ const UploadCreative = () => {
     ];
 
     return (
-        <div className="bg-white rounded-lg p-20">
+        <div className="bg-white rounded-lg p-6 sm:p-12 lg:p-20">
             <form
                 className="w-full flex flex-col gap-8"
                 onSubmit={handleSubmit(onSubmit)}
@@ -194,11 +194,11 @@ const UploadCreative = () => {
                 )}
 
                 {/* Buttons */}
-                <div className="flex gap-4 mt-4">
+                <div className="flex flex-wrap gap-4 mt-4">
                     <Button
                         type="submit"
                         size="md"
-                        className="!w-auto px-12 bg-[#336AEA] text-white rounded-lg font-medium hover:bg-[#2952b8] transition-colors"
+                        className="w-auto! px-12 bg-[#336AEA] text-white rounded-lg font-medium hover:bg-[#2952b8] transition-colors"
                     >
                         Update Campaign
                     </Button>

@@ -45,8 +45,8 @@ const PendingCampaignCard = ({ campaign, onMakePayment, onViewDetails }: Pending
   };
 
   return (
-    <div className="bg-white border border-[#444444] rounded-2xl p-8">
-      <div className="flex items-center justify-between">
+    <div className="bg-white border border-[#444444] rounded-2xl p-5 sm:p-8">
+      <div className="flex flex-wrap gap-2 items-center justify-between">
         {/* Left: Campaign Info */}
         <div>
           <h3 className="text-lg font-bold text-gray-900 mb-1">{campaign.name}</h3>
@@ -56,7 +56,7 @@ const PendingCampaignCard = ({ campaign, onMakePayment, onViewDetails }: Pending
         </div>
 
         {/* Right: Action Button & Status */}
-        <div className="flex items-center gap-4">
+        <div className="flex flex-wrap items-center gap-3">
           {campaign.status === "approved" && (
             <Button
             rounded="full"
@@ -89,18 +89,18 @@ const PendingCampaignCard = ({ campaign, onMakePayment, onViewDetails }: Pending
 // ------------------------------------------------
 const SavedCampaignCard = ({ campaign, onEdit, onRemove }: SavedCampaignCardProps) => {
   return (
-    <div className="bg-white border border-[#444444] rounded-2xl p-8">
-      <div className="flex items-center justify-between">
+    <div className="bg-white border border-[#444444] rounded-2xl p-5 sm:p-8">
+      <div className="flex flex-wrap items-center justify-between">
         {/* Left: Campaign Info */}
         <div>
           <h3 className="text-lg font-bold text-gray-900 mb-1">{campaign.name}</h3>
-          <p className="text-[13px] text-gray-600">
+          <p className="text-[13px] mb-2 text-gray-600">
             <span className="font-semibold">Date Created:</span> {campaign.dateCreated}
           </p>
         </div>
 
         {/* Right: Action Buttons */}
-        <div className="flex items-center gap-4">
+        <div className="flex flex-wrap items-center gap-3">
           <Button
              rounded="full"
             size="md"
