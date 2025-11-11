@@ -2,9 +2,8 @@
 
 import { useRouter } from "next/router";
 import Button from "@/components/button";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback, useMemo } from "react";
 import { useGetMaterialByClass } from "@/services/material.service";
-// import DocumentCard from "@/layout/tutor/material";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { fetchAssignmentSubmissions, useGetAssignmentByCourseId, } from "@/services/assignment.service";
@@ -41,7 +40,9 @@ const Assignment = () => {
     const { data: materialData } = useGetMaterialByClass(id as string);
     const { data, isLoading, refetch } = useGetAssignmentByCourseId(id as string);
 
-    const assignments = data?.data?.items || [];
+    // Memoize assignments array to prevent unnecessary re-renders
+    const assignments = useMemo(() => data?.data?.items || [], [data?.data?.items]);
+
     const handleDownload = (doc: any) => {
         if (typeof window !== "undefined") {
             window.open(doc.fileUrl, "_blank");
@@ -53,18 +54,20 @@ const Assignment = () => {
         setOpen(true);
         setAssignmentId(id);
     };
-    // const { data: submisionDatas } = useGetAssignmentSubmissions(assignmentId as string);
 
     const [submissionsMap, setSubmissionsMap] = useState<Record<string, boolean>>({});
 
-    const fetchAllSubmissions = async () => {
+    // Wrap fetchAllSubmissions in useCallback to prevent recreation on every render
+    const fetchAllSubmissions = useCallback(async () => {
+        if (assignments.length === 0) return;
+
         const map: Record<string, boolean> = {};
 
         await Promise.all(
             assignments.map(async (assignment: any) => {
                 try {
                     const res = await fetchAssignmentSubmissions(assignment.id);
-                    map[assignment.id] = res?.data?.length > 0; // or whatever logic determines a "submitted" state
+                    map[assignment.id] = res?.data?.length > 0;
                 } catch (e) {
                     console.log(e)
                     map[assignment.id] = false;
@@ -73,18 +76,15 @@ const Assignment = () => {
         );
 
         setSubmissionsMap(map);
-    };
+    }, [assignments]);
 
     useEffect(() => {
-        if (assignments?.length > 0) {
-            fetchAllSubmissions();
-        }
-    }, [assignments]);
+        fetchAllSubmissions();
+    }, [fetchAllSubmissions]);
 
     const handleViewAssignment = (value: any) => {
         setOpenViewAssignment(true);
         setViewData(value);
-        // setAssignmentId(assignment)
     };
 
     const tabs = [
@@ -92,29 +92,31 @@ const Assignment = () => {
         { id: "materials", label: "Materials", icon: "📚" },
         { id: "assignments", label: "Assignment", icon: "📝" },
     ];
+
     console.log(scheduleData?.data?.classSchedules, "getting scheddduesss")
+
     const renderTabContent = () => {
         switch (activeTab) {
             case "schedules":
                 return (
-                    <div className="p-6">
-                         <div className="pt-3 border-t border-gray-100 mb-4 flex gap-5">
-                        <div className="flex items-center justify-between mb-2">
-                            <div className="flex items-center gap-2">
-                                <FiLink className="text-blue-600" size={16} />
-                                <span className="text-sm text-gray-600">Meeting Link:</span>
+                    <div className="p-4 sm:p-6">
+                        <div className="pt-3 border-t border-gray-100 mb-4 flex flex-col sm:flex-row gap-2 sm:gap-5">
+                            <div className="flex items-center justify-between sm:justify-start mb-2">
+                                <div className="flex items-center gap-2">
+                                    <FiLink className="text-blue-600" size={16} />
+                                    <span className="text-sm text-gray-600">Meeting Link:</span>
+                                </div>
                             </div>
+                            <a
+                                href={scheduleData?.data?.meetingLink}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-blue-600 hover:text-blue-800 text-sm break-all block truncate"
+                                title={scheduleData?.data?.meetingLink}
+                            >
+                                {scheduleData?.data?.meetingLink}
+                            </a>
                         </div>
-                        <a
-                            href={scheduleData?.data?.meetingLink}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-blue-600 hover:text-blue-800 text-sm break-all block truncate"
-                            title={scheduleData?.data?.meetingLink}
-                        >
-                            {scheduleData?.data?.meetingLink}
-                        </a>
-                    </div>
                         <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                             {scheduleData?.data?.classSchedules?.map((schedule: any, index: any) => (
                                 <ScheduleCard
@@ -131,7 +133,7 @@ const Assignment = () => {
 
             case "materials":
                 return (
-                    <div className="p-6">
+                    <div className="p-4 sm:p-6">
                         <div className="space-y-4">
                             {materialData?.data?.items?.map((document: any, i: any) => (
                                 <DocumentCard
@@ -147,7 +149,7 @@ const Assignment = () => {
 
             case "assignments":
                 return (
-                    <div className="p-6">
+                    <div className="p-4 sm:p-6">
                         {isLoading ? (
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                 {Array.from({ length: 6 }).map((_, index) => (
@@ -180,8 +182,6 @@ const Assignment = () => {
                                                     {item.assignmentTitle}
                                                 </h2>
                                                 <p dangerouslySetInnerHTML={{ __html: item.assignmentDescription }} className="text-sm text-gray-500 leading-relaxed line-clamp-3"/>
-                                                   
-                                               
 
                                                 <div className="flex justify-between mt-6 text-sm text-gray-600">
                                                     <div>
@@ -258,19 +258,17 @@ const Assignment = () => {
                         </Button>
 
                         <div>
-                            <h1 className="text-2xl font-bold text-gray-800">
+                            <h1 className="text-xl sm:text-2xl font-bold text-gray-800">
                                 {scheduleData?.data?.course?.courseName || "Class Management"}
                             </h1>
                         </div>
                     </div>
 
                     {/* Tab Navigation */}
-
-
                     <div className="bg-white rounded-lg shadow-sm border border-gray-200">
                         <div className="border-b border-gray-200">
                             <nav
-                                className="flex overflow-x-auto scrollbar-none sm:space-x-8"
+                                className="flex overflow-x-auto scrollbar-none"
                                 aria-label="Tabs"
                             >
                                 {tabs.map((tab) => (
@@ -278,15 +276,15 @@ const Assignment = () => {
                                         key={tab.id}
                                         onClick={() => setActiveTab(tab.id)}
                                         className={`
-            ${activeTab === tab.id
+                                            ${activeTab === tab.id
                                                 ? "border-blue-500 text-blue-600"
                                                 : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
                                             }
-            flex items-center gap-2 border-b-2 font-medium
-            text-sm sm:text-base
-            px-4 sm:px-6 py-3 sm:py-4
-            whitespace-nowrap transition-colors duration-200
-          `}
+                                            flex items-center gap-2 border-b-2 font-medium
+                                            text-sm sm:text-base
+                                            px-4 sm:px-6 py-3 sm:py-4
+                                            whitespace-nowrap transition-colors duration-200
+                                        `}
                                     >
                                         <span className="flex-shrink-0">{tab.icon}</span>
                                         <span className="truncate">{tab.label}</span>
@@ -300,7 +298,6 @@ const Assignment = () => {
                             {renderTabContent()}
                         </div>
                     </div>
-
                 </>
             </Container>
         </>

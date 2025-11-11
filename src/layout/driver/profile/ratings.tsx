@@ -1,7 +1,6 @@
-import clsx from 'clsx';
 import React, { useState } from 'react';
 import { FaStar, FaUser } from 'react-icons/fa';
-import Pagination from '@/components/Pagination'; // Adjust the import path as needed
+import Pagination from '@/components/pagination';
 
 function Ratings() {
   const [currentPage, setCurrentPage] = useState(1);

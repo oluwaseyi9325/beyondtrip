@@ -23,23 +23,28 @@ interface SettingsFormData {
   escalationUnpaid: string;
   escalationWebhook: string;
   otherRequests: string;
-  publicKey: string;
-  secretKey: string;
-  webhookUrl: string;
+  publicKey?: string;
+  secretKey?: string;
+  webhookUrl?: string;
 }
 
 // ------------------------------------------------
 // Validation Schema
 // ------------------------------------------------
-const schema = yup.object().shape({
+const schema: yup.ObjectSchema<SettingsFormData> = yup.object().shape({
   approvalMode: yup.string().required("Approval mode is required"),
   pauseCampaign: yup.string().required("Pause campaign duration is required"),
   invoiceDeadline: yup.string().required("Invoice deadline is required"),
   editionTitle: yup.string().required("Edition title is required"),
   copiesCount: yup.string().required("Number of copies is required"),
+
+  emailNotifications: yup.boolean().required(),
+  inAppNotifications: yup.boolean().required(),
+
   escalationUnpaid: yup.string().required("Escalation setting is required"),
   escalationWebhook: yup.string().required("Escalation setting is required"),
   otherRequests: yup.string().required("Other requests setting is required"),
+
   publicKey: yup.string().optional(),
   secretKey: yup.string().optional(),
   webhookUrl: yup.string().url("Invalid URL").optional(),
@@ -57,6 +62,21 @@ const SettingsComponent = () => {
   } = useForm<SettingsFormData>({
     mode: "onBlur",
     resolver: yupResolver(schema),
+    defaultValues: {
+      approvalMode: "",
+      pauseCampaign: "",
+      invoiceDeadline: "",
+      editionTitle: "",
+      copiesCount: "",
+      emailNotifications: true,
+      inAppNotifications: false,
+      escalationUnpaid: "",
+      escalationWebhook: "",
+      otherRequests: "",
+      publicKey: "",
+      secretKey: "",
+      webhookUrl: "",
+    },
   });
 
   const [emailNotifications, setEmailNotifications] = useState(true);
@@ -73,29 +93,28 @@ const SettingsComponent = () => {
 
       console.log("Settings data:", settingsData);
 
-      // Replace with your actual API call
       await new Promise((resolve) => setTimeout(resolve, 1000));
       toast.success("Settings saved successfully!");
     } catch (err: any) {
-      toast.error("Failed to save settings", err);
+      toast.error("Failed to save settings");
+      console.log("Error", err)
     }
   };
 
   const handleHealthCheck = async () => {
     setIsTestingHealth(true);
     try {
-      // Replace with your actual health check API call
       await new Promise((resolve) => setTimeout(resolve, 2000));
       toast.success("Health check passed!");
-    } catch (err) {
-      toast.error("Health check failed!", err);
+    } catch {
+      toast.error("Health check failed!");
     } finally {
       setIsTestingHealth(false);
     }
   };
 
   const handleCancel = () => {
-    toast.info("Changes cancelled");
+    toast.success("Changes cancelled");
   };
 
   // Options
@@ -173,7 +192,7 @@ const SettingsComponent = () => {
           <h2 className="text-xl font-bold text-gray-900 mb-6">
             Notifications & Alerts
           </h2>
-          
+
           {/* Channels */}
           <div className="mb-4">
             <label className="block text-sm font-medium text-gray-700 mb-3">

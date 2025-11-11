@@ -26,11 +26,10 @@ export const useCampaignColumns = ({
 
     {
       name: "Status",
-      width: "15%",
       cell: (row) => (
         <div
           className={clsx(
-            "border text-sm font-medium rounded-full px-3 py-[2px]",
+            "border text-sm font-medium text-center max-w-26 w-full rounded-full px-3 py-0.5",
             row.status === "Active" &&
             " border-[#008000] text-[#008000]",
             row.status === "Pending" &&
@@ -64,7 +63,7 @@ export const useCampaignColumns = ({
       name: "",
       width: "5%",
       cell: (row,) => (
-        <div className="cursor-pointer" onClick={() => handleClickView(row)}>
+        <div className="cursor-pointer " onClick={() => handleClickView(row)}>
           <IoIosArrowForward size={22} />
         </div>
       ),
