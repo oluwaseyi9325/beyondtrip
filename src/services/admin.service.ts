@@ -1,5 +1,4 @@
 import makeRequest from "@/config/api";
-import { TAddAdmin } from "@/layout/general/modals/admin/add-admin";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
 export const useGetAdmins = (params?:any) => {
@@ -22,7 +21,7 @@ export const useGetAdmins = (params?:any) => {
 export const useInviteAdmin = () => {
   return useMutation({
     mutationKey: ["invite-admin"],
-    mutationFn: async (data: TAddAdmin) => {
+    mutationFn: async (data: any) => {
       const response = await makeRequest({
         url: "Account/register",
         method: "POST",

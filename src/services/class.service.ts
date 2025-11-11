@@ -1,11 +1,10 @@
 import makeRequest from "@/config/api";
-import { TAddClass } from "@/layout/general/modals/class";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
 export const useCreateClass = (id: string) => {
   return useMutation({
     mutationKey: ["create-cohort"],
-    mutationFn: async (data: TAddClass) => {
+    mutationFn: async (data: any) => {
       const response = await makeRequest({
         url: `Class/create/${id}/${data.course}/${data.cohort}`,
         method: "POST",
@@ -19,7 +18,7 @@ export const useCreateClass = (id: string) => {
 export const useDriverToClass = (id: string) => {
   return useMutation({
     mutationKey: ["create-cohort"],
-    mutationFn: async (data: TAddClass) => {
+    mutationFn: async (data: any) => {
       const response = await makeRequest({
         url: `driver`,
         method: "POST",

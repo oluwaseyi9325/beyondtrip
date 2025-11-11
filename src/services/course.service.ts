@@ -1,6 +1,5 @@
 import makeRequest from "@/config/api";
 import { transformCourses } from "@/helpers/convert-data";
-import { TAddCourse } from "@/layout/general/modals/course/add-course";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 
@@ -20,7 +19,7 @@ export const useGetCourses = (params?: any) => {
 export const useCreateCourse = () => {
   return useMutation({
     mutationKey: ["create-course"],
-    mutationFn: async (data: TAddCourse) => {
+    mutationFn: async (data: any) => {
       const response = await makeRequest({
         url: `Course/add-course?CourseName=${data.courseName}`,
         method: "POST",

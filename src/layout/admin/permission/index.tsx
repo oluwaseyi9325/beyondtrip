@@ -134,7 +134,7 @@ const RolesPermissionsTab = () => {
 
   const handleCancel = () => {
     reset();
-    toast.info("Changes cancelled");
+    toast.success("Changes cancelled");
   };
 
   const roleOptions = [

@@ -51,7 +51,7 @@ const SystemPreferencesTab = () => {
     reset,
   } = useForm<SystemPreferencesForm>({
     mode: "onBlur",
-    resolver: yupResolver(schema),
+    resolver: yupResolver(schema) as any,
     defaultValues: {
       language: "",
       region: "",
@@ -77,7 +77,7 @@ const SystemPreferencesTab = () => {
 
   const handleCancel = () => {
     reset();
-    toast.info("Changes cancelled");
+    toast.success("Changes cancelled");
   };
 
   const notificationItems = [

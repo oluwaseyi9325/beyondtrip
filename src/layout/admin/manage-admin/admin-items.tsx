@@ -114,7 +114,7 @@ const AdminPermissionsComponent = () => {
   };
 
   const handleCancel = () => {
-    toast.info("Changes cancelled");
+    toast.success("Changes cancelled");
   };
 
   const roleOptions = [

@@ -49,7 +49,7 @@ const CreateCampaign = () => {
         reset,
     } = useForm<TCreateCampaign>({
         mode: "onBlur",
-        resolver: yupResolver(schema),
+        resolver: yupResolver(schema) as any,
     });
 
     const [files, setFiles] = useState<File[]>([]);
