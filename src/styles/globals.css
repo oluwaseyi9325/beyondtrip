@@ -1,16 +1,19 @@
+@import url('https://fonts.cdnfonts.com/css/sreda');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
 @import "tailwindcss";
 
-@font-face {
+/* @font-face {
   font-family: Manrope;
   src: url("../../public/fonts/manrope.ttf");
-}
+} */
 
 @theme {
   /* Black */
   --color-black-100: #171313;
 
   /* Blue */
-  --color-blue-100: #121363;
+  --color-blue-100: #336AEA;
 
   /* Grey */
   --color-grey-100: #d0d0d0;
@@ -22,8 +25,9 @@
 }
 
 body {
-  @apply bg-[#EDEDED];
-  font-family: Manrope, "Segeo UI";
+  @apply bg-[#ffffff];
+  font-family: 'Inter', sans-serif;
+  /* font-family: Manrope, "Segeo UI"; */
 }
 
 /* No scrollbar */
@@ -44,3 +48,11 @@ body {
 .header {
   @apply font-[700] text-[#9292DA] leading-[20px] tracking-[0.06em] uppercase;
 }
+
+
+
+    /* colors: {
+        primary: '#27458F',
+        secondary: '#336AEA',
+        gray: '#444444',
+      }, */
