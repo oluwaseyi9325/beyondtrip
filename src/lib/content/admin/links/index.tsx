@@ -9,7 +9,7 @@
 // } from "react-icons/ci";
 // import { IoKeyOutline } from "react-icons/io5";
 import { IoMdSettings } from "react-icons/io";
-import { MdDashboard,  } from "react-icons/md";
+import { MdDashboard } from "react-icons/md";
 import { FaBell } from "react-icons/fa";
 import { IoIosPeople } from "react-icons/io";
 
@@ -40,10 +40,9 @@ export const AdminLinks = [
     sub: [
       { text: "Overview", path: "/admin/advertisers/overview" },
       { text: "Campaigns", path: "/admin/advertisers/campaigns" },
-      { text: "Invoices", path: "/admin/advertisers/invoices" }
+      { text: "Invoices", path: "/admin/advertisers/invoices" },
     ],
   },
-
   {
     icon: <FaBell size={20} />,
     text: "Notifications",
@@ -58,11 +57,4 @@ export const AdminLinks = [
     hasSub: false,
     sub: [],
   },
-
 ];
-
-
-
-
-
-

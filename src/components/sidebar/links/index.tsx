@@ -116,7 +116,7 @@ const SidebarLink = ({
         "flex items-center px-4 py-3 gap-3 rounded-lg transition-all",
         isActive
           ? "bg-[#336AEA] text-white font-medium"
-          : "text-[#8E8E8E] hover:bg-gray-50"
+          : "text-[#27458F] hover:bg-gray-50"
       )}
     >
       {icon}
