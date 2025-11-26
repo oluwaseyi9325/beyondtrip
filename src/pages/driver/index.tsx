@@ -4,9 +4,11 @@ import { Statistics } from "@/lib/content/driver/stats";
 import Stats from "@/ui/stats";
 import { EarningsGraph, MagazinePickup, NotificationCard, QuickActions, UpcomingPayout } from "@/layout/driver/dashboard";
 import { FaWallet, FaNewspaper, FaUserEdit } from "react-icons/fa";
+import useAuthStore from "@/store/useAuthStore";
 
 const Dashboard = () => {
-
+  const { profile } = useAuthStore();
+  console.log(profile,"my prooo")
   const actions = [
     { icon: <FaWallet size={20} />, label: "Withdraw Earnings", color: "text-blue-600" },
     { icon: <FaNewspaper size={20} />, label: "Activate Magazine", color: "text-blue-600" },
@@ -21,7 +23,7 @@ const Dashboard = () => {
           <div className="flex flex-col gap-2">
             <div className="flex items-center gap-3">
               <h1 className="lg:text-3xl text-xl font-bold text-gray-900">
-                Hello, Samuel Emmaeus
+                Hello, {profile?.firstName} {profile?.lastName}
               </h1>
               <div className="flex items-center gap-2">
                 <span className="h-3 w-3 rounded-full bg-blue-600"></span>
