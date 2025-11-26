@@ -11,10 +11,11 @@ interface TProps {
   children: React.ReactNode;
   active?: string;
   search?: string;
+  title?: string;
   handleSearch?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Container = ({ children, active,}: TProps) => {
+const Container = ({title, children, active,}: TProps) => {
 
   const [showSidebar, setShowSidebar] = useState(false);
   const sidebarRef = useRef<HTMLDivElement | null>(null);
@@ -75,6 +76,7 @@ const Container = ({ children, active,}: TProps) => {
         <Topbar
           // search={search}
           // handleSearch={handleSearch}
+          title={title}
           onToggleSidebar={() => setShowSidebar(true)}
         />
         <section className="h-[calc(100vh-90px)] px-7 overflow-y-auto space-y-4 relative scrollbar-none">

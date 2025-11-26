@@ -22,13 +22,13 @@ const Security = () => {
 
   return (
     <>
-      <Container active="Profile">
+      <Container title="Profile" active="Profile">
         <div className="py-6">
           <Tabs tabs={tabsData} defaultTab={0} />
         </div>
       </Container>
     </>
-  )
+  );
 }
 
 export default Security

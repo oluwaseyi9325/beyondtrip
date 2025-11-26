@@ -17,13 +17,13 @@ const Stats = ({ data, grid = 4 }: Props) => {
 
   return (
     <section
-      className={`w-full grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 ${
+      className={`w-full grid  grid-cols-1 lg:grid-cols-2  ${
         gridClassMap[grid] || "xl:grid-cols-4"
       } gap-4`}
     >
-      {data.map((item) => (
-        <StatsCard key={item.title} data={item} />
-      ))}
+        {data.map((item) => (
+          <StatsCard key={item.title} data={item} />
+        ))}
     </section>
   );
 };

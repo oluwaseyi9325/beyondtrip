@@ -15,7 +15,7 @@ function Earnings() {
         {
             title: "Manage Campaigns",
             content: (
-                <div className='space-y-10 mt-4'>
+                <div className=' mt-4'>
                     <PolicyCard/>
                     <CampaignTable data={campaignData} />
                 </div>
@@ -35,11 +35,11 @@ function Earnings() {
         }
     ];
     return (
-        <Container active="Campaigns">
-            <div>
-                <Tabs tabs={tabsData} defaultTab={0} />
-            </div>
-        </Container>
+      <Container title="Campaigns" active="Campaigns">
+        <div>
+          <Tabs tabs={tabsData} defaultTab={0} />
+        </div>
+      </Container>
     );
 }
 

@@ -95,7 +95,7 @@ const SavedCampaignCard = ({ campaign, onEdit, onRemove }: SavedCampaignCardProp
         <div>
           <h3 className="text-lg font-bold text-gray-900 mb-1">{campaign.name}</h3>
           <p className="text-[13px] mb-2 text-gray-600">
-            <span className="font-semibold">Date Created:</span> {campaign.dateCreated}
+            <span className="font-semibold text-black ">Date Created:</span> {campaign.dateCreated}
           </p>
         </div>
 
@@ -117,7 +117,7 @@ const SavedCampaignCard = ({ campaign, onEdit, onRemove }: SavedCampaignCardProp
             variant="border"
             borderColor="#336AEA"
             borderWidth="1"
-            className="!w-auto px-8 bg-white text-[#336AEA] rounded-full font-medium hover:bg-gray-50 transition-colors"
+            className="!w-auto px-8 bg-white text-[#336AEA] rounded-full font-medium  transition-colors"
           >
             Remove
           </Button>
