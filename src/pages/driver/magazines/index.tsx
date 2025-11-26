@@ -4,7 +4,7 @@ import React from 'react'
 // import Button from "@/components/button";
 import Tabs from '@/components/tab';
 import MagazineItem from '@/layout/driver/magazine/magazine-item';
-
+import HistoryMagazineTable from '@/layout/driver/magazine/history-magazine-table';
 // Magazine data interface
 interface Magazine {
     id: number;
@@ -63,7 +63,7 @@ function Earnings() {
         },
         {
             title: "History of Magazines",
-            content: <></>
+            content:< HistoryMagazineTable />
         }
     ];
 
