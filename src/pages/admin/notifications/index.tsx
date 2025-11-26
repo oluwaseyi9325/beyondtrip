@@ -30,7 +30,7 @@ const Security = () => {
 
   return (
     <>
-      <Container title="Notifications" active="Nofifications">
+      <Container title="Notifications" active="Notifications">
         {/* <section className=" py-6 h-full overflow-y-hidden"> */}
         <div className="py-6">
           <Text className="text-2xl mb-6" weight="700" color="black">

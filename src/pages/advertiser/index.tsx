@@ -23,7 +23,7 @@ function Earnings() {
   ];
 
   return (
-    <Container>
+    <Container title='Advertiser Dashboard' >
       <section className="w-full py-6 flex flex-col gap-6">
         <div className="flex items-start justify-between ">
           <div className="flex flex-col gap-2">

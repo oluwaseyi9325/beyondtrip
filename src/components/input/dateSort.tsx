@@ -31,7 +31,7 @@ const DateSort = ({ onDateChange }: Props) => {
   };
 
   return (
-    <div className="flex items-center gap-3 flex-wrap">
+    <div className="flex w-full items-center flex-wrap gap-3 ">
       <span className="text-sm font-medium text-gray-700 whitespace-nowrap">
         Sort date:
       </span>
@@ -63,7 +63,7 @@ const DateSort = ({ onDateChange }: Props) => {
       {/* Clear Button */}
       <button
         onClick={handleClear}
-        className="text-blue-600 hover:underline text-sm"
+        className="text-blue-600 whitespace-nowrap hover:underline text-sm"
       >
         Clear filters
       </button>
