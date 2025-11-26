@@ -18,7 +18,7 @@ function Earnings() {
   const accountNumber = "0029394827";
 
   return (
-    <Container active="Earnings">
+    <Container title='Earnings' active="Earnings">
       <section className=" space-y-4">
         {/* Top Row: Total Earnings and Available Balance */}
         <div className="grid grid-cols-1 lg:grid-cols-3 lg:gap-6">

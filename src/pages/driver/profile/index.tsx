@@ -22,17 +22,15 @@ const Security = () => {
 
   return (
     <>
-      <Container active="Profile">
+      <Container title="Profile" active="Profile">
         {/* <section className=" py-6 h-full overflow-y-hidden"> */}
         <div className="py-6">
           <Tabs tabs={tabsData} defaultTab={0} />
         </div>
         {/* </section> */}
       </Container>
-
-
     </>
-  )
+  );
 }
 
 export default Security

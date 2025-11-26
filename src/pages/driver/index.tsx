@@ -14,8 +14,8 @@ const Dashboard = () => {
   ];
 
   return (
-    <Container>
-      <section className="w-full lg:px-4 py-6 flex flex-col gap-8">
+    <Container title="Driver Dashboard" >
+      <section className="w-full py-6 flex flex-col gap-8">
         {/* Header */}
         <div className="flex items-start justify-between ">
           <div className="flex flex-col gap-2">
