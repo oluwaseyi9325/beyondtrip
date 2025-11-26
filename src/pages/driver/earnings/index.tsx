@@ -7,15 +7,22 @@ import UpcomingPayout from '@/layout/driver/earning/upcoming-payout';
 import BankDetails from '@/layout/driver/earning/bank-details';
 import AvailableBalance from '@/layout/driver/earning/available-balance';
 import { earningData } from '@/data/earningData';
+import { useDriverEarnings } from '@/services/earning.service';
+import useAuthStore from '@/store/useAuthStore';
+import { getInitials } from '@/utils/getInitials';
 
 function Earnings() {
+  const {profile}=useAuthStore()
+  const { data } = useDriverEarnings()
+  console.log(data,"earningsdsss")
   // Mock data - replace with your actual data
   const totalEarnings = 165000.00;
   const availableBalance = 55000.00;
   const upcomingPayout = 55000.00;
   const payoutDate = "Dec. 22";
-  const bankName = "First Bank";
-  const accountNumber = "0029394827";
+  const bankName = profile?.bankDetails?.bankName
+  const accountNumber = profile?.bankDetails?.accountNumber
+  const accountName= getInitials(profile?.firstName, profile?.lastName)
 
   return (
     <Container title='Earnings' active="Earnings">
@@ -47,7 +54,7 @@ function Earnings() {
           {/* Upcoming Payout Card */}
           <UpcomingPayout upcomingPayout={upcomingPayout} payoutDate={payoutDate} />
           {/* Bank Details Card */}
-          <BankDetails bankName={bankName } accountNumber={accountNumber} />
+          <BankDetails accountName={accountName} bankName={bankName } accountNumber={accountNumber} />
         
         </div>
 

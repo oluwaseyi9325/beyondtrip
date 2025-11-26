@@ -68,12 +68,21 @@ function Earnings() {
     ];
 
     return (
+<<<<<<< HEAD
+        <Container title='Magazines' active='Magazines'>
+            <section className="py-6 h-full overflow-y-auto scrollbar-none">
+                <Tabs tabs={tabsData} defaultTab={0} />
+            </section>
+        </Container>
+    )
+=======
       <Container title="Magazines" active="Magazines">
         <section className="py-6 h-full overflow-y-auto scrollbar-none">
           <Tabs tabs={tabsData} defaultTab={0} />
         </section>
       </Container>
     );
+>>>>>>> e282115651066a45c71bf6952c90b496400cf9ea
 }
 
 export default Earnings

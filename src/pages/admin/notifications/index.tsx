@@ -30,7 +30,12 @@ const Security = () => {
 
   return (
     <>
+<<<<<<< HEAD
+       {/* <Container title="Settings" active="Settings"> */}
+      <Container title="Notifications" active="Nofifications">
+=======
       <Container title="Notifications" active="Notifications">
+>>>>>>> e282115651066a45c71bf6952c90b496400cf9ea
         {/* <section className=" py-6 h-full overflow-y-hidden"> */}
         <div className="py-6">
           <Text className="text-2xl mb-6" weight="700" color="black">
