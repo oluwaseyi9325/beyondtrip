@@ -15,7 +15,7 @@ export interface TLogin {
 }
 
 export interface TLoginSchema {
-  emailAddress: string;
+  email: string;
   password: string;
 }
 

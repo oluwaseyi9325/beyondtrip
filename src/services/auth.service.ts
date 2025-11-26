@@ -12,21 +12,24 @@ export const useLogin = () => {
   return useMutation({
     mutationKey: ["login-user"],
     mutationFn: async (data: TLoginSchema) => {
+      // console.log(data,"Login data")
       const response = await makeRequest({
         method: "POST",
-        url: "Account/login",
+        url: "users/login",
         data,
       });
       return response?.data;
     },
     onSuccess: (response) => {
-      handleLogin(response?.data);
+      const formatResponse={...response?.user, token: response?.token}
+      handleLogin(formatResponse);
       toast.success("Login successful!");
-
-      const role = response?.data?.role;
+     console.log(formatResponse,"login datataatta")
+      const role = formatResponse?.role
+      console.log(role,"hgetting rile")
 
       if (role === "SuperAdmin" || role === "Admin") router.push("/admin");
-      if (role === "driver") router.push("/driver");
+      if (role === "user") router.push("/driver");
       if (role === "advertiser") router.push("/advertiser");
     },
     onError: (error: any) => {
