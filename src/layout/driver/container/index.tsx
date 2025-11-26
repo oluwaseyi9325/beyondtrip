@@ -5,16 +5,18 @@ import Sidebar from "../sidebar";
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
 import { useGetdriverMe } from "@/services/auth.service";
+import { getInitials } from "@/utils/getInitials";
 
 interface TProps {
   children: React.ReactNode;
   active?: string;
   search?: string;
   handleSearch?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  title?:string
 }
 
-const Container = ({ children, active, }: TProps) => {
-  const { role, updateProfile } = useAuthStore();
+const Container = ({ children, active, title }: TProps) => {
+  const { role, updateProfile, profile } = useAuthStore();
 
   const [hasMounted, setHasMounted] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
@@ -80,6 +82,8 @@ const Container = ({ children, active, }: TProps) => {
       {/* Main Content */}
       <section className="w-full h-full overflow-y-hidden">
         <Topbar
+          title={title}
+          userName={getInitials(profile?.firstName, profile?.lastName)}
           // search={search}
           // handleSearch={handleSearch}
           onToggleSidebar={() => setShowSidebar(true)}

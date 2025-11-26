@@ -4,7 +4,7 @@ import React from 'react'
 // import Button from "@/components/button";
 import Tabs from '@/components/tab';
 import MagazineItem from '@/layout/driver/magazine/magazine-item';
-
+import HistoryMagazineTable from '@/layout/driver/magazine/history-magazine-table';
 // Magazine data interface
 interface Magazine {
     id: number;
@@ -63,17 +63,17 @@ function Earnings() {
         },
         {
             title: "History of Magazines",
-            content: <></>
+            content:< HistoryMagazineTable />
         }
     ];
 
     return (
-        <Container active='Magazines'>
-            <section className="py-6 h-full overflow-y-auto scrollbar-none">
-                <Tabs tabs={tabsData} defaultTab={0} />
-            </section>
-        </Container>
-    )
+      <Container title="Magazines" active="Magazines">
+        <section className="py-6 h-full overflow-y-auto scrollbar-none">
+          <Tabs tabs={tabsData} defaultTab={0} />
+        </section>
+      </Container>
+    );
 }
 
 export default Earnings

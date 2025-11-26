@@ -6,7 +6,7 @@ import NotificationList from "@/layout/general/notification-item";
 export default function NotificationScreen() {
 
   return (
-    <Container active="Notifications" >
+    <Container title="Notifications" active="Notifications">
       <NotificationList />
     </Container>
   );
