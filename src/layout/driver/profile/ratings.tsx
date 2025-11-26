@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { FaStar, FaUser } from 'react-icons/fa';
 import Pagination from '@/components/pagination';
+import { useGetDriverRatings } from '@/services/ratings.servcie';
 
 function Ratings() {
+  const { data } = useGetDriverRatings();
+  console.log(data,"ratings")
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 

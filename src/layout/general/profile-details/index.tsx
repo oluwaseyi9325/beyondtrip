@@ -5,6 +5,7 @@ import { MdEdit } from 'react-icons/md'
 import ChangePassword from '../modals/profile/change-password'
 import EditProfile from '../modals/profile/edit-profile'
 import useAuthStore from '@/store/useAuthStore'
+import { getInitials } from '@/utils/getInitials'
 
 function BasicDetailsContent() {
   const [open, setOpen] = useState(false)
@@ -19,7 +20,7 @@ function BasicDetailsContent() {
             <div className="flex flex-wrap gap-2 items-center justify-between">
               <div className="flex items-center gap-4">
                 <div className="h-14 w-14 rounded-full bg-[#2C4C9C] flex items-center justify-center text-white text-xl font-bold">
-                  S
+                  {getInitials(profile?.firstName, profile?.lastName)}
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900">{profile?.firstName} {profile?.lastName}</h3>
@@ -53,27 +54,27 @@ function BasicDetailsContent() {
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               <div>
                 <p className="text-sm font-semibold text-gray-900 mb-1">First Name</p>
-                <p className="text-sm text-gray-500">Samuel</p>
+                <p className="text-sm text-gray-500">{profile?.firstName}</p>
               </div>
               <div>
                 <p className="text-sm font-semibold text-gray-900 mb-1">Last Name</p>
-                <p className="text-sm text-gray-500">Emmaeus</p>
+                <p className="text-sm text-gray-500">{profile?.lastName}</p>
               </div>
               <div>
                 <p className="text-sm font-semibold text-gray-900 mb-1">Email Address</p>
-                <p className="text-sm text-gray-500">sammemma@gmail.com</p>
+                <p className="text-sm text-gray-500">{profile?.email}</p>
               </div>
               <div>
                 <p className="text-sm font-semibold text-gray-900 mb-1">Phone No.</p>
-                <p className="text-sm text-gray-500">08456230345</p>
+                <p className="text-sm text-gray-500">{profile?.phone}</p>
               </div>
               <div>
                 <p className="text-sm font-semibold text-gray-900 mb-1">Address</p>
-                <p className="text-sm text-gray-500">Loremipsum.rdscimse</p>
+                <p className="text-sm text-gray-500">{profile?.address}</p>
               </div>
               <div>
                 <p className="text-sm font-semibold text-gray-900 mb-1">Reference</p>
-                <p className="text-sm text-gray-500">Loremipsum.rdscimse</p>
+                <p className="text-sm text-gray-500">{profile?.reference}</p>
               </div>
             </div>
           </div>

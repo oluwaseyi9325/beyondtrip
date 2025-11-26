@@ -135,8 +135,8 @@ export const useUpdateProfile = (id?:string) => {
     mutationKey: ["update-profile"],
     mutationFn: async (data: any) => {
       const response = await makeRequest({
-        url: `Account/update?id=${id}`,
-        method: "PUT",
+        url: `driver-dashboard?action=update-profile`,
+        method: "POST",
         data,
         requireToken: true,
       });

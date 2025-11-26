@@ -19,22 +19,22 @@ interface TUploadModal {
 }
 
 export interface TEditProfileForm {
-  username: string;
+  // username: string;
   firstName: string;
   lastName: string;
   email: string;
-  phoneNo: string;
+  phone: string;
   address: string;
   references: string;
   profilePicture?: File | null;
 }
 
 const schema = yup.object().shape({
-  username: yup.string().required("Username is required"),
+  // username: yup.string().required("Username is required"),
   firstName: yup.string().required("First name is required"),
   lastName: yup.string().required("Last name is required"),
   email: yup.string().email("Invalid email").required("Email is required"),
-  phoneNo: yup.string().required("Phone number is required"),
+  phone: yup.string().required("Phone number is required"),
   address: yup.string().required("Address is required"),
   references: yup.string().required("References are required"),
 });
@@ -63,11 +63,11 @@ const EditProfile = ({ open, handleClose, }: TUploadModal) => {
 
   useEffect(() => {
     if (open && profile) {
-      setValue("username", profile.username || "");
+      // setValue("username", profile.username || "");
       setValue("firstName", profile.firstName || "");
       setValue("lastName", profile.lastName || "");
       setValue("email", profile.email || "");
-      setValue("phoneNo", profile.phoneNumber || "");
+      setValue("phone", profile.phone || "");
       setValue("address", profile.address || "");
       setValue("references", profile.references || "");
       setPreview(profile?.avatarUrl || null);
@@ -92,21 +92,23 @@ const EditProfile = ({ open, handleClose, }: TUploadModal) => {
   };
 
   const onSubmit = (data: TEditProfileForm) => {
+    // console.log(data)
     const payload = { ...data, id: profile?.id };
-    updateProfile.mutate(payload, {
-      onSuccess: () => {
-        toast.success("Profile updated successfully!");
-        // if (refetch) refetch();
-        handleClose();
-        reset();
-      },
-      onError: (err: any) => {
-        toast.error(
-          err?.response?.data?.error?.description ??
-          "Something went wrong while updating the profile"
-        );
-      },
-    });
+    console.log(payload)
+    // updateProfile.mutate(payload, {
+    //   onSuccess: () => {
+    //     toast.success("Profile updated successfully!");
+    //     // if (refetch) refetch();
+    //     handleClose();
+    //     reset();
+    //   },
+    //   onError: (err: any) => {
+    //     toast.error(
+    //       err?.response?.data?.error?.description ??
+    //       "Something went wrong while updating the profile"
+    //     );
+    //   },
+    // });
   };
 
   const handleModalClose = () => {
@@ -175,12 +177,12 @@ const EditProfile = ({ open, handleClose, }: TUploadModal) => {
 
         {/* Form Fields */}
         <div className="space-y-3">
-          <Input
+          {/* <Input
             label="Username"
             placeholder="Username"
             register={register("username")}
             error={errors.username}
-          />
+          /> */}
 
           <div className="grid grid-cols-2 gap-3">
             <Input
@@ -207,8 +209,8 @@ const EditProfile = ({ open, handleClose, }: TUploadModal) => {
             <Input
               label="Phone No"
               placeholder="Enter phone number"
-              register={register("phoneNo")}
-              error={errors.phoneNo}
+              register={register("phone")}
+              error={errors.phone}
             />
           </div>
           <Input

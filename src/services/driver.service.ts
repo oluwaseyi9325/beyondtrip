@@ -14,40 +14,22 @@ export const useGetdrivers = (params?: any) => {
   });
 };
 
-export const useInvitedriver = () => {
-  return useMutation({
-    mutationKey: ["invite-driver"],
-    mutationFn: async (data: any) => {
-      const response = await makeRequest({
-        url: "driverAccount/register",
-        method: "POST",
-        data: {
-          courseId: data.course,
-          cohortId: data.cohort,
-          emailAddress: data.email,
-        },
-        requireToken: true,
-      });
-
-      return response;
-    },
+export const useDriverOverview = (params?: any) => {
+  return useQuery({
+    queryKey: ["driver-overview", { params }],
+    queryFn: () =>
+      makeRequest({
+        url: "driver-dashboard?action=overview",
+        params,
+      }),
+    retry: 1,
+    select: (response) => response?.data,
   });
 };
 
 
-// export const useDeactivatedriver = (id: string, params?: any) => {
-//   return useQuery({
-//     queryKey: ["driver-deacativate", { id, params }],
-//     queryFn: () =>
-//       makeRequest({
-//         url: `Account/deactivate/${id}`,
-//         params,
-//       }),
-//     enabled: !!id,
-//     retry: 1,
-//     select: (response) => response?.data,
-//   });
-// };
+
+
 
 export const useDeactivatedriver = (id: string,) => {
   console.log(id,"driver od")

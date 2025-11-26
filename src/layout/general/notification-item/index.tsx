@@ -40,7 +40,8 @@ const NotificationItem = ({ notification, onDismiss }: { notification: Notificat
   );
 };
 
-export default function NotificationList() {
+export default function NotificationList({ data }: any) {
+  console.log(data,"notifucations")
   const [notifications, setNotifications] = useState<Notification[]>([
     {
       id: 1,
@@ -49,69 +50,7 @@ export default function NotificationList() {
       time: "10:05am",
       icon: <MdEmail size={20} />,
     },
-    {
-      id: 2,
-      message: "Your total scans for September crossed 500 — keep it up!",
-      date: "March 1, 2025",
-      time: "10:05am",
-      icon: <MdEmail size={20} />,
-    },
-    {
-      id: 3,
-      message: "New magazine issue now available. Pickup from Ikeja Hub on Friday, August 8.",
-      date: "March 1, 2025",
-      time: "10:05am",
-      icon: <MdEmail size={20} />,
-    },
-    {
-      id: 4,
-      message: "You're now eligible for payout. You've reached ₦50,000 in earnings.",
-      date: "March 1, 2025",
-      time: "10:05am",
-      icon: <MdEmail size={20} />,
-    },
-    {
-      id: 5,
-      message: "Your payout request of ₦25,000 has been received. It's being processed.",
-      date: "March 1, 2025",
-      time: "10:05am",
-      icon: <MdEmail size={20} />,
-    },
-    {
-      id: 6,
-      message: "Your payout request of ₦25,000 has been received. It's being processed.",
-      date: "March 1, 2025",
-      time: "10:05am",
-      icon: <MdEmail size={20} />,
-      },
-     {
-      id: 6,
-      message: "Your payout request of ₦25,000 has been received. It's being processed.",
-      date: "March 1, 2025",
-      time: "10:05am",
-      icon: <MdEmail size={20} />,
-      },
-      {
-      id: 7,
-      message: "Your payout request of ₦25,000 has been received. It's being processed.",
-      date: "March 1, 2025",
-      time: "10:05am",
-      icon: <MdEmail size={20} />,
-      },
-       {
-      id: 8,
-      message: "Your payout request of ₦25,000 has been received. It's being processed.",
-      date: "March 1, 2025",
-      time: "10:05am",
-      icon: <MdEmail size={20} />,
-      },
-        {
-      id: 9,
-      message: "Your payout request of ₦25,000 has been received. It's being processed.",
-      date: "March 1, 2025",
-      time: "10:05am",
-      icon: <MdEmail size={20} />,
-    },
+   
   ]);
 
   const handleDismiss = (id: number) => {

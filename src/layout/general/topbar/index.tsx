@@ -13,13 +13,15 @@ interface Props {
   userName?: string;
   userRole?: string;
   onLogout?: () => void;
+  title?: string
 }
 
 const Topbar = ({ 
   onToggleSidebar, 
   userName = "Samuel Emmaeus",
   userRole = "Driver",
-  onLogout 
+  onLogout ,
+  title="Dashboard",
 }: Props) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -87,9 +89,9 @@ const Topbar = ({
   ];
 
   // Get initials from name
-  const getInitials = (name: string) => {
-    return name.split(' ').map(n => n[0]).join('').toUpperCase();
-  };
+  // const getInitials = (name: string) => {
+  //   return name.split(' ').map(n => n[0]).join('').toUpperCase();
+  // };
 
   return (
     <div className="w-full px-4 md:px-10 py-4 bg-white mb-4 flex items-center justify-between gap-2 border-b border-gray-100">
@@ -104,7 +106,7 @@ const Topbar = ({
           <IoMenu size={24} />
         </button>
         <div>
-          <h3 className="font-bold text-lg md:text-xl text-gray-900">Driver Dashboard</h3>
+          <h3 className="font-bold text-lg md:text-xl text-gray-900">{title}</h3>
         </div>
       </div>
 
@@ -137,7 +139,7 @@ const Topbar = ({
             className="w-10 h-10 rounded-full bg-[#2C4C9C] flex items-center justify-center text-white font-semibold hover:bg-[#234080] transition-colors"
             aria-label="User menu"
           >
-            {getInitials(userName)}
+            {userName}
           </button>
 
           {/* Dropdown Menu */}
@@ -146,7 +148,7 @@ const Topbar = ({
               {/* User Info Header */}
               <div className="px-4 py-3 border-b border-gray-100 flex items-center gap-3">
                 <div className="w-12 h-12 rounded-full bg-[#2C4C9C] flex items-center justify-center text-white font-semibold text-lg">
-                  {getInitials(userName)}
+                  {userName}
                 </div>
                 <div>
                   <p className="font-semibold text-gray-900 text-sm">{userName}</p>

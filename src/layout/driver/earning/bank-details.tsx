@@ -2,7 +2,7 @@ import Button from '@/components/button'
 import EditBank from '@/layout/general/modals/earnings/edit-bank'
 import React, { useState } from 'react'
 
-function BankDetails({ bankName, accountNumber }: any) {
+function BankDetails({ bankName, accountNumber, accountName }: any) {
     const [open,setOpen]=useState(false)
     return (
         <>
@@ -13,7 +13,7 @@ function BankDetails({ bankName, accountNumber }: any) {
                 <div className="flex items-center flex-wrap justify-between gap-4">
                     <div className="flex items-center gap-3">
                         <div className="h-12 w-12 rounded-full bg-[#2C4C9C] flex items-center justify-center text-white font-semibold">
-                            F
+                           {accountName}
                         </div>
                         <div>
                             <p className="font-semibold text-gray-900">{bankName}</p>

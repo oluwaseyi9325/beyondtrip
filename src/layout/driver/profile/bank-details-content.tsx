@@ -1,9 +1,12 @@
 // import EditBank from '@/layout/general/modals/earnings/edit-bank';
 import EditBank from '@/layout/general/modals/earnings/edit-bank';
+import useAuthStore from '@/store/useAuthStore';
 import React, { useState } from 'react'
 import { BiKey } from 'react-icons/bi';
 
 function BankDetailsContent() {
+    const { profile } = useAuthStore();
+    // console.log(profile?.bankDetails, "bank details")
     const [open, setOpen] = useState(false)
     return (
         <>
@@ -20,15 +23,15 @@ function BankDetailsContent() {
                         <div className="grid sm;grid-cols-2 lg:grid-cols-3 gap-6">
                             <div>
                                 <p className="text-sm font-semibold text-gray-900 mb-1">Name of Bank</p>
-                                <p className="text-sm text-gray-500">First Bank</p>
+                                <p className="text-sm text-gray-500">{profile?.bankDetails?.bankName}</p>
                             </div>
                             <div>
                                 <p className="text-sm font-semibold text-gray-900 mb-1">Account Name</p>
-                                <p className="text-sm text-gray-500">Samuel Emmaeus</p>
+                                <p className="text-sm text-gray-500">{profile?.bankDetails?.accountName}</p>
                             </div>
                             <div>
                                 <p className="text-sm font-semibold text-gray-900 mb-1">Account Number</p>
-                                <p className="text-sm text-gray-500">0236594834</p>
+                                <p className="text-sm text-gray-500">{profile?.bankDetails?.accountNumber}</p>
                             </div>
                         </div>
                     </div>
@@ -46,7 +49,7 @@ function BankDetailsContent() {
                     </div>
                 </div>
             </div>
-            <EditBank open={ open} handleClose={()=>setOpen(false)} />
+            <EditBank open={open} handleClose={() => setOpen(false)} />
         </>
     )
 }

@@ -4,6 +4,7 @@ import Button from "@/components/button";
 import Input from "@/components/input/input";
 import Select from "@/components/input/select";
 import Modal from "@/components/modal";
+import { bankOptions } from "@/data/banks";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect,} from "react";
 import { useForm } from "react-hook-form";
@@ -46,19 +47,7 @@ const EditBank = ({ open, handleClose, refetch, data }: TModal) => {
     resolver: yupResolver(editBankSchema),
   });
 
-  // Bank options - replace with actual API call if needed
-  const bankOptions= [
-    { label: "Access Bank", value: "access" },
-    { label: "GTBank", value: "gtbank" },
-    { label: "First Bank", value: "firstbank" },
-    { label: "Zenith Bank", value: "zenith" },
-    { label: "UBA", value: "uba" },
-    { label: "Wema Bank", value: "wema" },
-    { label: "Fidelity Bank", value: "fidelity" },
-    { label: "Union Bank", value: "union" },
-    { label: "Sterling Bank", value: "sterling" },
-    { label: "Polaris Bank", value: "polaris" },
-  ]
+
 
   // Populate form with existing data
   useEffect(() => {
