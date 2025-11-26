@@ -28,7 +28,7 @@ export const useLogin = () => {
       const role = formatResponse?.role
       console.log(role,"hgetting rile")
 
-      if (role === "SuperAdmin" || role === "Admin") router.push("/admin");
+      if (role === "auperAdmin" || role === "admin") router.push("/admin");
       if (role === "user") router.push("/driver");
       if (role === "advertiser") router.push("/advertiser");
     },
@@ -58,7 +58,7 @@ export const useGetdriverMe = () => {
     queryKey: ["driver-profile"],
     queryFn: () =>
       makeRequest({
-        url: "driver/logged-in-driver",
+        url: "driver-dashboard?action=profile",
         requireToken: true,
       }),
     retry: 1,

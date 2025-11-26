@@ -1,10 +1,10 @@
-// import useAuthStore from "@/store/useAuthStore";
+import useAuthStore from "@/store/useAuthStore";
 // import Topbar from "../general/topbar";
 import Topbar from "@/layout/general/topbar";
 import Sidebar from "../sidebar";
 import { useEffect, useRef, useState } from "react";
-// import { useRouter } from "next/router";
-// import { useGetdriverMe } from "@/services/auth.service";
+import { useRouter } from "next/router";
+import { useGetdriverMe } from "@/services/auth.service";
 
 interface TProps {
   children: React.ReactNode;
@@ -14,34 +14,34 @@ interface TProps {
 }
 
 const Container = ({ children, active, }: TProps) => {
-  // const { role, updateProfile } = useAuthStore();
+  const { role, updateProfile } = useAuthStore();
 
-  // const [hasMounted, setHasMounted] = useState(false);
+  const [hasMounted, setHasMounted] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
   const sidebarRef = useRef<HTMLDivElement | null>(null);
 
-  // const router = useRouter();
+  const router = useRouter();
 
-  // useEffect(() => {
-  //   setHasMounted(true);
-  // }, []);
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
 
-  // useEffect(() => {
-  //   if (hasMounted) {
-  //     if (role !== "driver") {
-  //       router.push("/");
-  //     }
-  //   }
-  // }, [hasMounted, role, router]);
+  useEffect(() => {
+    if (hasMounted) {
+      if (role !== "user") {
+        router.push("/");
+      }
+    }
+  }, [hasMounted, role, router]);
 
-  // const { data: response } = useGetdriverMe();
-
-  // useEffect(() => {
-  //   if (response) {
-  //     console.log(response?.data);
-  //     updateProfile(response?.data);
-  //   }
-  // }, [response, updateProfile]);
+  const { data: response } = useGetdriverMe();
+  // console.log(response,"driver data")
+  useEffect(() => {
+    if (response) {
+      console.log(response?.profile);
+      updateProfile(response?.profile);
+    }
+  }, [response, updateProfile]);
 
 
   // Handle click outside to close sidebar
