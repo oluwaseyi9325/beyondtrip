@@ -1,48 +1,49 @@
-// import useAuthStore from "@/store/useAuthStore";
+import useAuthStore from "@/store/useAuthStore";
 // import Topbar from "../general/topbar";
 import Topbar from "@/layout/general/topbar";
 import Sidebar from "../sidebar";
 import { useEffect, useRef, useState } from "react";
-// import { useRouter } from "next/router";
-// import { useGetdriverMe } from "@/services/auth.service";
+import { useRouter } from "next/router";
+import { useGetdriverMe } from "@/services/auth.service";
+import { getInitials } from "@/utils/getInitials";
 
 interface TProps {
   children: React.ReactNode;
   active?: string;
   search?: string;
-  title?:string;
   handleSearch?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  title?:string
 }
 
-const Container = ({title, children, active, }: TProps) => {
-  // const { role, updateProfile } = useAuthStore();
+const Container = ({ children, active, title }: TProps) => {
+  const { role, updateProfile, profile } = useAuthStore();
 
-  // const [hasMounted, setHasMounted] = useState(false);
+  const [hasMounted, setHasMounted] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
   const sidebarRef = useRef<HTMLDivElement | null>(null);
 
-  // const router = useRouter();
+  const router = useRouter();
 
-  // useEffect(() => {
-  //   setHasMounted(true);
-  // }, []);
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
 
-  // useEffect(() => {
-  //   if (hasMounted) {
-  //     if (role !== "driver") {
-  //       router.push("/");
-  //     }
-  //   }
-  // }, [hasMounted, role, router]);
+  useEffect(() => {
+    if (hasMounted) {
+      if (role !== "user") {
+        router.push("/");
+      }
+    }
+  }, [hasMounted, role, router]);
 
-  // const { data: response } = useGetdriverMe();
-
-  // useEffect(() => {
-  //   if (response) {
-  //     console.log(response?.data);
-  //     updateProfile(response?.data);
-  //   }
-  // }, [response, updateProfile]);
+  const { data: response } = useGetdriverMe();
+  // console.log(response,"driver data")
+  useEffect(() => {
+    if (response) {
+      console.log(response?.profile);
+      updateProfile(response?.profile);
+    }
+  }, [response, updateProfile]);
 
 
   // Handle click outside to close sidebar
@@ -81,9 +82,10 @@ const Container = ({title, children, active, }: TProps) => {
       {/* Main Content */}
       <section className="w-full h-full overflow-y-hidden">
         <Topbar
+          title={title}
+          userName={getInitials(profile?.firstName, profile?.lastName)}
           // search={search}
           // handleSearch={handleSearch}
-          title={title}
           onToggleSidebar={() => setShowSidebar(true)}
         />
         <section className="h-[calc(100vh-90px)] px-7 overflow-y-auto space-y-4 relative scrollbar-none">
