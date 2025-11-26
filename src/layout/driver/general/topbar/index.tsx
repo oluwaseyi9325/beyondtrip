@@ -51,7 +51,7 @@ const Topbar = ({ search, handleSearch, onToggleSidebar }: Props) => {
             // onClick={logoutUser}
           >
             <MdLogout size={20} />
-            <p className="font-[500] text-sm text-[#5E5E5E]">Logout</p>
+            <p className="font-medium text-sm text-[#5E5E5E]">Logout</p>
           </div>
         </div>
       </Dropdown>
