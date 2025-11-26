@@ -8,7 +8,7 @@ function PolicyCard() {
   if (!visible) return null;
 
   return (
-    <div className="bg-[#C5E4FF] p-5 border border-[#336AEA] rounded-lg flex items-start justify-between transition-all duration-300">
+    <div className="bg-[#C5E4FF] my-10 p-5 border border-[#336AEA] rounded-lg flex items-start justify-between transition-all duration-300">
       {/* Left Section */}
       <div className="flex items-start space-x-4">
         {/* Info Icon */}

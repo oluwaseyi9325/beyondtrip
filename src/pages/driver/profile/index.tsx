@@ -29,10 +29,8 @@ const Security = () => {
         </div>
         {/* </section> */}
       </Container>
-
-
     </>
-  )
+  );
 }
 
 export default Security

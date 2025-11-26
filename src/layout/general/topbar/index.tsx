@@ -12,6 +12,7 @@ interface Props {
   onToggleSidebar?: () => void;
   userName?: string;
   userRole?: string;
+  // title?: string;
   onLogout?: () => void;
   title?: string
 }
@@ -20,8 +21,8 @@ const Topbar = ({
   onToggleSidebar, 
   userName = "Samuel Emmaeus",
   userRole = "Driver",
-  onLogout ,
   title="Dashboard",
+  onLogout 
 }: Props) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -94,12 +95,12 @@ const Topbar = ({
   // };
 
   return (
-    <div className="w-full px-4 md:px-10 py-4 bg-white mb-4 flex items-center justify-between gap-2 border-b border-gray-100">
+    <div className="w-full px-4 md:px-7 py-4 bg-white mb-4 flex items-center justify-between gap-2 border-b border-gray-100">
       {/* Left side: hamburger + title */}
       <div className="flex items-center gap-3">
         {/* Hamburger (mobile only) */}
-        <button 
-          className="md:hidden text-gray-700 hover:bg-gray-100 p-2 rounded-lg transition-colors" 
+        <button
+          className="md:hidden text-gray-700 hover:bg-gray-100 p-2 rounded-lg transition-colors"
           onClick={onToggleSidebar}
           aria-label="Toggle sidebar"
         >
@@ -113,7 +114,7 @@ const Topbar = ({
       {/* Right side: view ratings, bell and profile */}
       <div className="flex items-center gap-3 md:gap-4">
         {/* View Ratings Link - hidden on mobile */}
-        <button 
+        <button
           className="hidden md:flex items-center gap-1 text-[#2C4C9C] hover:underline font-medium text-sm"
           onClick={() => router.push("/ratings")}
         >
@@ -122,7 +123,7 @@ const Topbar = ({
         </button>
 
         {/* Notification Bell */}
-        <button 
+        <button
           className="relative w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-colors"
           onClick={() => router.push("/notifications")}
           aria-label="Notifications"
@@ -151,7 +152,9 @@ const Topbar = ({
                   {userName}
                 </div>
                 <div>
-                  <p className="font-semibold text-gray-900 text-sm">{userName}</p>
+                  <p className="font-semibold text-gray-900 text-sm">
+                    {userName}
+                  </p>
                   <p className="text-xs text-gray-500">{userRole}</p>
                 </div>
               </div>
@@ -165,7 +168,9 @@ const Topbar = ({
                     className="w-full flex items-center gap-3 px-4 py-2.5 hover:bg-gray-50 transition-colors text-left"
                   >
                     <span className="text-[#2C4C9C]">{item.icon}</span>
-                    <span className="text-sm text-gray-700 font-medium">{item.label}</span>
+                    <span className="text-sm text-gray-700 font-medium">
+                      {item.label}
+                    </span>
                   </button>
                 ))}
               </div>
@@ -179,7 +184,9 @@ const Topbar = ({
                   <span className="text-[#2C4C9C]">
                     <MdLogout size={18} />
                   </span>
-                  <span className="text-sm text-gray-700 font-medium">Logout</span>
+                  <span className="text-sm text-gray-700 font-medium">
+                    Logout
+                  </span>
                 </button>
               </div>
             </div>
