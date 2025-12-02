@@ -8,12 +8,14 @@ import TransactionDetails from "@/layout/general/modals/earnings/view-earning";
 import DateSort from "@/components/input/dateSort";
 import SelectSearch from "@/components/input/selectSearch";
 import { IoChevronForward } from "react-icons/io5";
+import Link from "next/link";
 
 export interface TAmbassador {
   date: string;
   amount: string;
   description: string;
-  status: "Approved" | "Pending" | "Rejected" | "Not Paid";
+  createdAt: string;
+  status: "active" | "Pending" | "Rejected" | "Not Paid";
 }
 
 interface Props {
@@ -52,9 +54,9 @@ const EarningTable = ({ data, compactHeader = false }: Props) => {
           <h2 className="text-lg font-semibold text-gray-900">
             Payout History
           </h2>
-          <button className="flex items-center gap-1 text-blue-600 text-sm font-medium hover:underline">
+          <Link href="/driver/earnings/history" className="flex items-center gap-1 text-blue-600 text-sm font-medium hover:underline">
             View All <IoChevronForward className="text-blue-600 text-base" />
-          </button>
+          </Link>
         </div>
       ) : (
         <div className="flex items-center justify-between flex-wrap gap-4 py-5">

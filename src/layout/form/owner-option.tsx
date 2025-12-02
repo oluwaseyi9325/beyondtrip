@@ -28,10 +28,10 @@ const OwnerOption: FC<IOwnerOption> = ({
   return (
     <div
       onClick={() => setOwner(prev => (prev === type ? '' : type))}
-      className={cn(
-        'flex w-[50%] lg:w-[230px] rounded-[12px] h-[201px] cursor-pointer flex-col relative items-center justify-center',
-        isActive ? 'bg-[#27458F]' : 'border border-[#44444480]'
-      )}
+    //   className={cn(
+    //     'flex w-[50%] lg:w-[230px] rounded-[12px] h-[201px] cursor-pointer flex-col relative items-center justify-center',
+    //     isActive ? 'bg-[#27458F]' : 'border border-[#44444480]'
+    //   )}
     >
       <Image
         src={isActive ? activeImage : image}
@@ -41,7 +41,7 @@ const OwnerOption: FC<IOwnerOption> = ({
         height={99}
       />
       <span className={`py-2 ${owner === type ? 'text-white' : 'text-black'}`}>{content}</span>
-      {isActive && (
+      {/* {isActive && (
         <Image
         //   src={icons.successLogo}
           alt="success"
@@ -49,7 +49,7 @@ const OwnerOption: FC<IOwnerOption> = ({
           width={24}
           height={24}
         />
-      )}
+      )} */}
     </div>
   );
 };

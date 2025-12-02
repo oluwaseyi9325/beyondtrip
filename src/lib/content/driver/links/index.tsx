@@ -1,14 +1,18 @@
-import { MdDashboard, MdAccountBalanceWallet, MdNewspaper } from "react-icons/md";
+import {  MdAccountBalanceWallet, MdNewspaper } from "react-icons/md";
 import { FaUser, FaBell } from "react-icons/fa";
+import DashboardIcon from "~/assets/icons/dashboard";
+import EarningIcon from "~/assets/icons/earning";
+
+// const MdDashboard = require('@/public/assets/icons/dashboard').default;``
 
 export const DriverLinks = [
   {
-    icon: <MdDashboard size={20} />,
+    icon: <DashboardIcon  />,
     text: "Dashboard",
     path: "/driver",
   },
   {
-    icon: <MdAccountBalanceWallet size={20} />,
+    icon: <EarningIcon />,
     text: "Earnings",
     path: "/driver/earnings",
   },

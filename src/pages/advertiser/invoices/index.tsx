@@ -10,10 +10,10 @@ const itemsPerPage=10
   const totalItems = 250;
   const totalPages = Math.max(1, Math.ceil(totalItems / itemsPerPage));
 
-  const pagedData = useMemo(() => {
-    const start = (currentPage - 1) * itemsPerPage;
-    return invoiceData.slice(start, start + itemsPerPage);
-  }, [currentPage, itemsPerPage]);
+  // const pagedData = useMemo(() => {
+  //   const start = (currentPage - 1) * itemsPerPage;
+  //   return invoiceData.slice(start, start + itemsPerPage);
+  // }, [currentPage, itemsPerPage]);
 
 
     return (

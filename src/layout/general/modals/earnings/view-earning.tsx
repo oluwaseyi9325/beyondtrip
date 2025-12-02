@@ -1,4 +1,5 @@
 import Modal from "@/components/modal";
+import { formatDate } from "date-fns/format";
 // import { MdClose } from "react-icons/md";
 
 interface TModal {
@@ -21,10 +22,11 @@ const TransactionDetails = ({ open, handleClose, data }: TModal) => {
         {/* Amount Card */}
         <div className="bg-[#C5E4FF] rounded-2xl p-6 text-center">
           <h3 className="text-4xl font-bold text-gray-900 mb-2">
-            {data?.amount?.toLocaleString() || "50,000.00"}
+            {data?.amount?.toLocaleString() || "0"}
           </h3>
           <p className="text-sm text-gray-600">
-            {data?.date || "05 September 2025"} {data?.time || "11:24am"}
+            {(data?.createdAt) && ` ${formatDate(new Date(data?.createdAt), "dd MMMM yyyy")}`}
+              {(data?.createdAt) && ` at ${formatDate(new Date(data?.createdAt), "hh:mm a")}`}
           </p>
         </div>
 
@@ -33,20 +35,22 @@ const TransactionDetails = ({ open, handleClose, data }: TModal) => {
           <div className="flex justify-between items-center">
             <span className="text-sm text-gray-600">Transaction Date & Time</span>
             <span className="text-sm font-semibold text-gray-900">
-              {data?.date || "05 September 2025"} {data?.time || "11:24am"}
+              {(data?.createdAt) && ` ${formatDate(new Date(data?.createdAt), "dd MMMM yyyy")}`}
+
+              {(data?.createdAt) && ` at ${formatDate(new Date(data?.createdAt), "hh:mm a")}`}
             </span>
           </div>
 
           <div className="flex justify-between items-center">
             <span className="text-sm text-gray-600">Transaction Type</span>
-            <span className="text-sm font-semibold text-gray-900">
+            <span className="text-sm font-semibold text-gray-900 capitalize">
               {data?.type || "Withdraw"}
             </span>
           </div>
 
           <div className="flex justify-between items-center">
             <span className="text-sm text-gray-600">Payment Channel</span>
-            <span className="text-sm font-semibold text-gray-900">
+            <span className="text-sm font-semibold text-gray-900 capitalize">
               {data?.channel || "Bank Account"}
             </span>
           </div>
@@ -56,14 +60,14 @@ const TransactionDetails = ({ open, handleClose, data }: TModal) => {
           <div className="flex justify-between items-center">
             <span className="text-sm text-gray-600">Reference Code</span>
             <span className="text-sm font-semibold text-gray-900">
-              {data?.referenceCode || "00456349cEAzU"}
+              {data?.referenceCode || "----"}
             </span>
           </div>
 
           <div className="flex justify-between items-center">
             <span className="text-sm text-gray-600">Status</span>
-            <span className="inline-flex px-4 py-1.5 rounded-full text-sm font-medium bg-green-50 text-green-700 border border-green-200">
-              {data?.status || "Approved"}
+            <span className="inline-flex px-4 py-1.5 rounded-full text-sm font-medium bg-green-50 text-green-700 border border-green-200 capitalize">
+              {data?.status}
             </span>
           </div>
         </div>

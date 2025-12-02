@@ -4,6 +4,7 @@ import { IoIosArrowForward } from "react-icons/io";
 import clsx from "clsx";
 // import { useState } from "react";
 import { TAmbassador } from "..";
+import { formatDate } from "date-fns/format";
 
 interface Props {
   handleClick?: (id: string) => void;
@@ -21,7 +22,7 @@ export const useEarningColumns = ({
     {
       name: "Date",
       width: "25%",
-      selector: (row) => row.date,
+      selector: (row) => (row?.createdAt)&& formatDate(row?.createdAt, "dd MMM, yyyy"),
     },
     {
       name: "Amount",
@@ -39,8 +40,8 @@ export const useEarningColumns = ({
       cell: (row) => (
         <div
           className={clsx(
-            "border text-sm font-medium rounded-full px-3 py-[2px]",
-            row.status === "Approved" &&
+            "border text-sm font-medium rounded-full px-3 py-[2px] capitalize ",
+            row.status === "active" &&
               "bg-[#CBFFE5] border-[#CBFFE5] text-[#018844]",
             row.status === "Pending" &&
               "bg-[#FFF5E5] border-[#FFF5E5] text-[#FFA500]",

@@ -29,16 +29,42 @@ export const useDriverOverview = (params?: any) => {
 
 
 
+export const useDriverEditBank = (params?: any) => {
+  return useQuery({
+    queryKey: ["driver-overview", { params }],
+    queryFn: () =>
+      makeRequest({
+        url: "driver-dashboard?action=request-bank-update",
+        params,
+      }),
+    retry: 1,
+    select: (response) => response?.data,
+  });
+};
+
+export const useDriverBankDetails = (params?: any) => {
+  return useQuery({
+    queryKey: ["driver-overview", { params }],
+    queryFn: () =>
+      makeRequest({
+        url: "driver-dashboard?action=bank-details-requests",
+        params,
+      }),
+    retry: 1,
+    select: (response) => response?.data,
+  });
+};
 
 
-export const useDeactivatedriver = (id: string,) => {
-  console.log(id,"driver od")
+
+
+export const useDriverChangePassword = () => {
   return useMutation({
     mutationKey: ["driver-deacativate"],
     mutationFn: async (data: any) => {
-      console.log(data,"user data")
+      // console.log(data,"user data")
       const response = await makeRequest({
-        url: `Account/deactivate/${id}`,
+        url: `driver-dashboard?action=change-password`,
         method: "POST",
         data,
         requireToken: true,
@@ -48,17 +74,6 @@ export const useDeactivatedriver = (id: string,) => {
   });
 };
 
-export const useActivatedriver = (id: string,) => {
-  return useMutation({
-    mutationKey: ["driver-acativate"],
-    mutationFn: async (data: any) => {
-      const response = await makeRequest({
-        url: `Account/activate/${id}`,
-        method: "POST",
-        data,
-        requireToken: true,
-      });
-      return response;
-    },
-  });
-};
+
+
+

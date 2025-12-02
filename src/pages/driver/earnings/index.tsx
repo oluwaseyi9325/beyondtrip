@@ -6,7 +6,7 @@ import { FaWallet } from 'react-icons/fa';
 import UpcomingPayout from '@/layout/driver/earning/upcoming-payout';
 import BankDetails from '@/layout/driver/earning/bank-details';
 import AvailableBalance from '@/layout/driver/earning/available-balance';
-import { earningData } from '@/data/earningData';
+// import { earningData } from '@/data/earningData';
 import { useDriverEarnings } from '@/services/earning.service';
 import useAuthStore from '@/store/useAuthStore';
 import { getInitials } from '@/utils/getInitials';
@@ -14,9 +14,10 @@ import { getInitials } from '@/utils/getInitials';
 function Earnings() {
   const {profile}=useAuthStore()
   const { data } = useDriverEarnings()
-  console.log(data,"earningsdsss")
+  const earningData= data?.earnings?.recent
+  console.log(data?.earnings,"earningsdsss")
   // Mock data - replace with your actual data
-  const totalEarnings = 165000.00;
+  const totalEarnings = data?.earnings?.total || 0;
   const availableBalance = 55000.00;
   const upcomingPayout = 55000.00;
   const payoutDate = "Dec. 22";

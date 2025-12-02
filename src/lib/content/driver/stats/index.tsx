@@ -8,28 +8,37 @@ import { MdOutlineQrCodeScanner } from "react-icons/md";
 import { HiOutlineChartBar } from "react-icons/hi";
 import { RiStackLine } from "react-icons/ri";
 
-export const Statistics: TStats[] = [
+type TStatisticsProps={
+  totalEarnings:number,
+  totalPoints?:number,
+  totalScans?:number,
+  totalQuota?:number,
+}
+
+export const Statistics=({totalEarnings, totalPoints, totalScans, totalQuota}:TStatisticsProps)=>{
+  return[
   {
     icon: <AiOutlineDollar size={20} />,
     title: "Total Earnings",
-    figure: "₦0.00", // or just hide with ************
+    figure: `₦${totalEarnings.toLocaleString()}`, // or just hide with ************
   },
   {
     icon: <HiOutlineChartBar size={20} />,
     title: "Total Points",
-    figure: "500",
+    figure: `${totalPoints}`,
   },
   {
     icon: <MdOutlineQrCodeScanner size={20} />,
     title: "Scans",
-    figure: "800",
+    figure: `${totalScans}`,
   },
   {
     icon: <RiStackLine size={20} />,
     title: "Quota",
-    figure: "15",
+    figure: `${totalQuota}`,
   },
 ];
+}
 export const advertiserStatistics: TStats[] = [
   {
     icon: <ImBook size={16} />,
