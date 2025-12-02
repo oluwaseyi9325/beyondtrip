@@ -1,11 +1,13 @@
-import { earningData } from '@/data/earningData'
 import Container from '@/layout/driver/container'
 import EarningTable from '@/layout/driver/tables/earnings'
+import { useDriverEarnings } from '@/services/earning.service'
 import React from 'react'
 
 
 function Earnings() {
- 
+   const { data } = useDriverEarnings()
+   const earningData= data?.earnings?.recent
+  //  console.log(data?.earnings?.recent,"earningsdsss")
 
   return (
     <Container active='Earnings'>

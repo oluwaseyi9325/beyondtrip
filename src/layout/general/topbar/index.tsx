@@ -7,6 +7,7 @@ import { MdLogout } from "react-icons/md";
 import { IoMenu } from "react-icons/io5";
 import { FaUser } from "react-icons/fa";
 import { MdPayment, MdNotifications, MdSupport } from "react-icons/md";
+import Link from "next/link";
 
 interface Props {
   onToggleSidebar?: () => void;
@@ -114,13 +115,14 @@ const Topbar = ({
       {/* Right side: view ratings, bell and profile */}
       <div className="flex items-center gap-3 md:gap-4">
         {/* View Ratings Link - hidden on mobile */}
-        <button
+        <Link
+          href="/driver/profile?tab=ratings"
           className="hidden md:flex items-center gap-1 text-[#2C4C9C] hover:underline font-medium text-sm"
-          onClick={() => router.push("/ratings")}
+          // onClick={() => router.push("/ratings")}
         >
           View your ratings
           <span className="text-lg">›</span>
-        </button>
+        </Link>
 
         {/* Notification Bell */}
         <button

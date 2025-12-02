@@ -33,8 +33,9 @@ export const useLogin = () => {
       if (role === "advertiser") router.push("/advertiser");
     },
     onError: (error: any) => {
+      console.log(error,"login error")
       toast.error(
-        error?.response.data?.error?.description ?? "An error occured"
+        error?.response.data?.errors[0]?.message ?? "An error occured"
       );
     },
   });

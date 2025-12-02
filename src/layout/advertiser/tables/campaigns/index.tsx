@@ -58,10 +58,10 @@ const itemsPerPage=10
     searchFields: ["firstName", "lastName", "email"],
   })
 
-  const pagedData = useMemo(() => {
-    const start = (currentPage - 1) * itemsPerPage;
-    return filterAmbassador.slice(start, start + itemsPerPage);
-  }, [currentPage, itemsPerPage]);
+  // const pagedData = useMemo(() => {
+  //   const start = (currentPage - 1) * itemsPerPage;
+  //   return filterAmbassador.slice(start, start + itemsPerPage);
+  // }, [currentPage, itemsPerPage]);
 
   
   return (

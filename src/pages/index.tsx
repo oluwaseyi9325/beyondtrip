@@ -6,9 +6,9 @@ import Login from "@/ui/auth/login";
 import { useState } from "react";
 
 const Home = () => {
-   const [showRoleSelection, setShowRoleSelection] = useState(true);
-  
-  const handleSelectRole = (role) => {
+  const [showRoleSelection, setShowRoleSelection] = useState(true);
+
+  const handleSelectRole = (role: any) => {
     setShowRoleSelection(false);
     // Store role or redirect based on selection
     if (role === 'driver') {
@@ -21,9 +21,9 @@ const Home = () => {
   return (
     <>
       <AuthWrapper>
-      <Login/>
+        <Login />
       </AuthWrapper>
-      
+
       {showRoleSelection && (
         <RoleSelectionOverlay
           onSelectRole={handleSelectRole}

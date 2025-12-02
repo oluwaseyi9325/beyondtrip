@@ -5,10 +5,19 @@ import Stats from "@/ui/stats";
 import { EarningsGraph, MagazinePickup, NotificationCard, QuickActions, UpcomingPayout } from "@/layout/driver/dashboard";
 import { FaWallet, FaNewspaper, FaUserEdit } from "react-icons/fa";
 import useAuthStore from "@/store/useAuthStore";
+import { useDriverEarnings } from "@/services/earning.service";
 
 const Dashboard = () => {
   const { profile } = useAuthStore();
-  console.log(profile,"my prooo")
+  console.log(profile, "my prooo")
+  
+    const { data } = useDriverEarnings()
+  const earningData = data?.earnings?.recent
+  console.log(data?.earnings, "earningsdsss")
+  const totalEarnings = data?.earnings?.total || 0;
+  const totalPoints = data?.earnings?.totalPoints || 0;
+  const totalScans = data?.earnings?.totalScans || 0;
+  const totalQuota = data?.earnings?.totalQuota || 0;
   const actions = [
     { icon: <FaWallet size={20} />, label: "Withdraw Earnings", color: "text-blue-600" },
     { icon: <FaNewspaper size={20} />, label: "Activate Magazine", color: "text-blue-600" },
@@ -39,7 +48,7 @@ const Dashboard = () => {
 
         {/* Stats */}
         <div className="flex flex-col gap-3">
-          <Stats data={Statistics} />
+          <Stats data={Statistics({totalEarnings, totalPoints, totalScans, totalQuota})} />
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="lg:col-span-1 h-54">

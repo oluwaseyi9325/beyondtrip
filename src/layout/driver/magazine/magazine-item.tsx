@@ -28,6 +28,7 @@ function MagazineItem({ magazine }: { magazine: Magazine }) {
     const config = statusConfig[magazine.status];
 
     return (
+      // <div></div>
       <span className={`inline-block px-4 py-1.5 rounded-full text-sm font-medium border ${config.color}`}>
         {config.text}
       </span>

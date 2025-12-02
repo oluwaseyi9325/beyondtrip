@@ -16,7 +16,7 @@ function BankDetails({ bankName, accountNumber, accountName }: any) {
                            {accountName}
                         </div>
                         <div>
-                            <p className="font-semibold text-gray-900">{bankName}</p>
+                            <p className="font-semibold text-gray-900 uppercase">{bankName}</p>
                             <p className="text-sm text-gray-500">{accountNumber}</p>
                         </div>
                     </div>
