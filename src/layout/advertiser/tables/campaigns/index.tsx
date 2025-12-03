@@ -27,12 +27,6 @@ const CampaignTable = ({ data, compactHeader = false }: { data: TAmbassador[], c
   const [viewdriverOpen, setViewdriverOpen] = useState(false);
   const [driver, setdriver] = useState<TAmbassador | null>(null);
 
-const [currentPage, setCurrentPage] = useState(1);
-const itemsPerPage=10
-  const totalItems = 250;
-  const totalPages = Math.max(1, Math.ceil(totalItems / itemsPerPage));
-
-  
 
 
 
@@ -114,16 +108,7 @@ const itemsPerPage=10
       )}
 
       <Table<TAmbassador> columns={columns} data={filterAmbassador} />
-      {/* <Pagination /> */}
-      <div className="mt-4">
-        <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={(p) => setCurrentPage(p)}
-          totalItems={totalItems}
-          itemsPerPage={itemsPerPage}
-        />
-      </div>
+  
     </>
   );
 };

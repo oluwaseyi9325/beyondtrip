@@ -49,9 +49,12 @@ const PendingCampaignCard = ({ campaign, onMakePayment, onViewDetails }: Pending
       <div className="flex flex-wrap gap-2 items-center justify-between">
         {/* Left: Campaign Info */}
         <div>
-          <h3 className="text-lg font-bold text-gray-900 mb-1">{campaign.name}</h3>
+          <h3 className="text-lg font-bold text-gray-900 mb-1">
+            {campaign.name}
+          </h3>
           <p className="text-[13px] text-gray-600">
-            <span className="font-semibold">Date Created:</span> {campaign.dateCreated}
+            <span className="font-semibold">Date Created:</span>{" "}
+            {campaign.dateCreated}
           </p>
         </div>
 
@@ -59,15 +62,15 @@ const PendingCampaignCard = ({ campaign, onMakePayment, onViewDetails }: Pending
         <div className="flex flex-wrap items-center gap-3">
           {campaign.status === "approved" && (
             <Button
-            rounded="full"
-            size="md"
+              rounded="full"
+              size="md"
               handleClick={() => onMakePayment?.(campaign.id)}
               className="!w-auto px-8 bg-[#336AEA] text-white rounded-full font-medium hover:bg-[#2952b8] transition-colors"
             >
               Make Payment
             </Button>
           )}
-          
+
           {campaign.status === "rejected" && (
             <button
               onClick={() => onViewDetails?.(campaign.id)}
@@ -76,7 +79,7 @@ const PendingCampaignCard = ({ campaign, onMakePayment, onViewDetails }: Pending
               Click to view details
             </button>
           )}
-          
+
           {getStatusBadge()}
         </div>
       </div>

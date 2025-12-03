@@ -23,15 +23,14 @@ function Earnings() {
   ];
 
   return (
-    <Container title='Advertiser Dashboard' >
+    <Container title="Advertiser Dashboard">
       <section className="w-full py-6 flex flex-col gap-6">
         <div className="flex items-start justify-between ">
           <div className="flex flex-col gap-2">
             <div className="flex items-center gap-3">
               <h1 className="lg:text-3xl text-xl font-bold text-gray-900">
-                Hello, Samuel Emmaeus
+                Hello, ABC Digital Ltd
               </h1>
-              
             </div>
             <p className="text-base text-gray-600">
               Here’s how your campaigns are performing
@@ -42,9 +41,9 @@ function Earnings() {
         <div className="flex flex-col gap-3">
           <Stats grid={2} data={Statistics} />
         </div>
-      
-        <CustomGraph h="h-90" title='Ad Spend' />
-         <CustomGraph h="h-90" title='Campaign Performance'/>
+
+        <CustomGraph h="h-90" title="Ad Spend" />
+        <CustomGraph h="h-90" title="Campaign Performance" />
         <QuickActions />
         <div className=" overflow-hidden">
           <CampaignTable compactHeader data={campaignData} />
