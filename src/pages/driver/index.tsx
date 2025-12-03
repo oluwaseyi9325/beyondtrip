@@ -11,6 +11,7 @@ import { useRouter } from "next/navigation";
 import WithdrawEarnings from "~/assets/icons/withdrawEarning";
 import ActivateMagazine from "~/assets/icons/activvateMagazine";
 import EditProfile from "~/assets/icons/editProfile";
+import Image from "next/image";
 
 const Dashboard = () => {
   const { profile } = useAuthStore();
@@ -27,7 +28,9 @@ const Dashboard = () => {
   const totalQuota = data?.earnings?.totalQuota || 0;
 const actions = [
   {
-    icon: <WithdrawEarnings />,
+    // icon: <WithdrawEarnings />,
+    icon: <Image src="/assets/svg/withdrawEarning.svg" alt="Withdraw Earnings" width={22} height={22} />  ,
+
     label: "Withdraw Earnings",
     color: "text-blue-600",
     onClick: () => router.push("/driver/earnings"),
