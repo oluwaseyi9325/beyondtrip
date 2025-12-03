@@ -1,5 +1,4 @@
-import {  MdAccountBalanceWallet, MdNewspaper } from "react-icons/md";
-import { FaUser, FaBell } from "react-icons/fa";
+
 import DashboardIcon from "~/assets/icons/dashboard";
 import EarningIcon from "~/assets/icons/earning";
 import MagazineIcon from "~/assets/icons/magazine";

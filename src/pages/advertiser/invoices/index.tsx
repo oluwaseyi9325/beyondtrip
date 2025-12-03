@@ -1,7 +1,7 @@
 import Container from '@/layout/advertiser/container';
 import InvoiceTable from '@/layout/advertiser/tables/invoice';
 import { invoiceData } from '@/data/invoice';
-import { useState, useMemo } from 'react';
+import { useState } from 'react';
 import Pagination from '@/components/pagination';
 
 function Earnings() {

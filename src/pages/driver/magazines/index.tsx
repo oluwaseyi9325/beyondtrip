@@ -5,7 +5,6 @@ import React from 'react'
 import Tabs from '@/components/tab';
 import MagazineItem from '@/layout/driver/magazine/magazine-item';
 import HistoryMagazineTable from '@/layout/driver/magazine/history-magazine-table';
-import { useMagazineColumns } from '@/layout/driver/tables/magazines/data';
 import { useDriverMagazines, useDriverMagazinesPickup } from '@/services/magazine.service';
 // Magazine data interface
 interface Magazine {

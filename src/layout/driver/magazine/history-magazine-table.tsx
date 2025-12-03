@@ -246,7 +246,8 @@ const StatusPill = ({ status }: { status: EditionStatus }) => {
 
 function HistoryMagazineTable({ magazineData }: { magazineData?: Magazine[] }) {
   const [currentPage, setCurrentPage] = React.useState(1);
-  const [statusFilter, setStatusFilter] = React.useState<string>("");
+  const statusFilter="";
+  // const [statusFilter, setStatusFilter] = React.useState<string>("");
   const [dateRange, setDateRange] = React.useState<any>(null);
   const itemsPerPage = 10;
 

@@ -162,7 +162,7 @@ export const useAdvertiserRegister = () => {
 };
 
 
-export const useUpdateProfile = (id?:string) => {
+export const useUpdateProfile = () => {
   return useMutation({
     mutationKey: ["update-profile"],
     mutationFn: async (data: any) => {
