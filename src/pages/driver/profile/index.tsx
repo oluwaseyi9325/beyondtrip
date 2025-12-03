@@ -5,6 +5,14 @@ import BankDetailsContent from "@/layout/driver/profile/bank-details-content";
 import Ratings from "@/layout/driver/profile/ratings";
 
 const Security = () => {
+  const getqueryParam = (param: string): string | null => {
+    if (typeof window !== 'undefined') {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+    return null;
+  };
+
   const tabsData: any = [
     {
       title: "Basic Details",
@@ -25,12 +33,11 @@ const Security = () => {
       <Container title="Profile" active="Profile">
         {/* <section className=" py-6 h-full overflow-y-hidden"> */}
         <div className="py-6">
-          <Tabs tabs={tabsData} defaultTab={0} />
+          <Tabs tabs={tabsData} defaultTab={getqueryParam("tab") === "ratings" ? 2 : 0} />
         </div>
         {/* </section> */}
       </Container>
     </>
-  );
-}
+  );}
 
 export default Security

@@ -5,6 +5,8 @@ import React from 'react'
 import Tabs from '@/components/tab';
 import MagazineItem from '@/layout/driver/magazine/magazine-item';
 import HistoryMagazineTable from '@/layout/driver/magazine/history-magazine-table';
+import { useMagazineColumns } from '@/layout/driver/tables/magazines/data';
+import { useDriverMagazines, useDriverMagazinesPickup } from '@/services/magazine.service';
 // Magazine data interface
 interface Magazine {
     id: number;
@@ -52,18 +54,23 @@ const magazineData: Magazine[] = [
 
 
 function Earnings() {
+    const { data } = useDriverMagazines();
+    const { data: pickupData } = useDriverMagazinesPickup()
+    // const magazineData = data?.magazines || [];
+    console.log("Magazine Data:", data?.magazines);
+    console.log("Pickup Magazine Data:", pickupData);
     const tabsData: any = [
         {
             title: "Magazine Pickup/Return",
             content: <div className="space-y-6">
-                {magazineData.map((magazine) => (
+                {magazineData.map((magazine:any) => (
                     <MagazineItem key={magazine.id} magazine={magazine} />
                 ))}
             </div>
         },
         {
             title: "History of Magazines",
-            content:< HistoryMagazineTable />
+            content:< HistoryMagazineTable magazineData={data?.magazines || []} />
         }
     ];
 
@@ -74,6 +81,7 @@ function Earnings() {
         </section>
       </Container>
     );
+
 }
 
 export default Earnings

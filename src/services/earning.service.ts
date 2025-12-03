@@ -19,7 +19,18 @@ export const useDriverEarnings = (params?: any) => {
 
 
 
-
+export const useDriverEarningsWithdrawal = (params?: any) => {
+  return useQuery({
+    queryKey: ["driver-ratings", { params }],
+    queryFn: () =>
+      makeRequest({
+        url: "driver-dashboard?action=request-withdrawal",
+        params,
+      }),
+    retry: 1,
+    select: (response) => response?.data,
+  });
+};
 
 // advertiser
 

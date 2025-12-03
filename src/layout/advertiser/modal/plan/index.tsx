@@ -4,6 +4,7 @@ import { useState } from "react";
 import Modal from "@/components/modal";
 import Button from "@/components/button";
 import { FaCheck } from "react-icons/fa";
+import { useGetDriverRatings } from "@/services/ratings.servcie";
 
 // Plan interface
 interface Plan {
@@ -122,6 +123,9 @@ const UpgradePlanModal = ({ open, handleClose, plans, currentPlanId, onSelectPla
 
 // Main Pricing Component
 const Pricing = () => {
+  const { data } = useGetDriverRatings();
+  
+  console.log(data, "ratings data");
   const [showUpgradePlan, setShowUpgradePlan] = useState(false);
 
   // Sample plans data

@@ -3,7 +3,7 @@ import Stats from "@/ui/stats";
 import CampaignTable from "@/layout/advertiser/tables/campaigns";
 import { campaignData } from "@/data/campaign";
 import { CustomGraph } from "@/layout/general/graph/CustomGraph";
-import { QuickActions } from "@/layout/advertiser/quick-actions";
+// import { QuickActions } from "@/layout/advertiser/quick-actions";
 import SelectSearch from "@/components/input/selectSearch";
 import DateSort from "@/components/input/dateSort";
 import Pagination from "@/components/pagination";

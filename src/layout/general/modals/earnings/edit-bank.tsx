@@ -5,6 +5,7 @@ import Input from "@/components/input/input";
 import Select from "@/components/input/select";
 import Modal from "@/components/modal";
 import { bankOptions } from "@/data/banks";
+import { useDriverUpdateBank } from "@/services/bank.service";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect,} from "react";
 import { useForm } from "react-hook-form";
@@ -22,6 +23,7 @@ export interface TEditBank {
   bankName: string;
   accountName: string;
   accountNumber: string;
+  reason: string;
 }
 
 // Validation Schema
@@ -30,9 +32,12 @@ const editBankSchema = yup.object().shape({
   accountName: yup.string().required("Account name is required"),
   accountNumber: yup
     .string()
-    .required("Account number is required")
-    .matches(/^[0-9]{10}$/, "Account number must be 10 digits"),
+    .required("Account number is required"),
+  // .matches(/^[0-9]{10}$/, "Account number must be 10 digits"),
+  reason: yup.string().required("Reason is required"),
 });
+
+
 
 const EditBank = ({ open, handleClose, refetch, data }: TModal) => {
   const {
@@ -47,7 +52,7 @@ const EditBank = ({ open, handleClose, refetch, data }: TModal) => {
     resolver: yupResolver(editBankSchema),
   });
 
-
+  const update = useDriverUpdateBank();
 
   // Populate form with existing data
   useEffect(() => {
@@ -55,24 +60,31 @@ const EditBank = ({ open, handleClose, refetch, data }: TModal) => {
       setValue("bankName", data?.bankName || "");
       setValue("accountName", data?.accountName || "");
       setValue("accountNumber", data?.accountNumber || "");
+      setValue("reason", "Changed bank account");
     }
   }, [data, open, setValue]);
 
   // Submit function - replace with your actual API call
   const onSubmit = async (formData: TEditBank) => {
     try {
-      // Replace with your actual API call
-      // await updateBankDetails(formData);
-      
+      update.mutate(formData, {
+        onSuccess: () => {
+          toast.success("Bank details updated successfully!");
+          if (refetch) refetch();
+          handleClose();
+          reset();
+        },
+        onError: (err: any) => {
+          console.log("Error updating bank details:", err);
+          toast.error(
+            err?.response?.data?.error ||
+              "An error occurred while updating bank details"
+          );
+        },
+      });
       console.log("Submitting bank details:", formData);
       
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      
-      toast.success("Bank details updated successfully!");
-      if (refetch) refetch();
-      handleClose();
-      reset();
+     
     } catch (err: any) {
       toast.error(
         err?.response?.data?.error?.description ||
