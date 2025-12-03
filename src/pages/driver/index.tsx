@@ -6,10 +6,17 @@ import { EarningsGraph, MagazinePickup, NotificationCard, QuickActions, Upcoming
 import { FaWallet, FaNewspaper, FaUserEdit } from "react-icons/fa";
 import useAuthStore from "@/store/useAuthStore";
 import { useDriverEarnings } from "@/services/earning.service";
+import { link } from "fs";
+import { useRouter } from "next/navigation";
+import WithdrawEarnings from "~/assets/icons/withdrawEarning";
+import ActivateMagazine from "~/assets/icons/activvateMagazine";
+import EditProfile from "~/assets/icons/editProfile";
 
 const Dashboard = () => {
   const { profile } = useAuthStore();
   console.log(profile, "my prooo")
+  const router = useRouter();
+
   
     const { data } = useDriverEarnings()
   const earningData = data?.earnings?.recent
@@ -18,11 +25,27 @@ const Dashboard = () => {
   const totalPoints = data?.earnings?.totalPoints || 0;
   const totalScans = data?.earnings?.totalScans || 0;
   const totalQuota = data?.earnings?.totalQuota || 0;
-  const actions = [
-    { icon: <FaWallet size={20} />, label: "Withdraw Earnings", color: "text-blue-600" },
-    { icon: <FaNewspaper size={20} />, label: "Activate Magazine", color: "text-blue-600" },
-    { icon: <FaUserEdit size={20} />, label: "Update Profile", color: "text-blue-600" },
-  ];
+const actions = [
+  {
+    icon: <WithdrawEarnings />,
+    label: "Withdraw Earnings",
+    color: "text-blue-600",
+    onClick: () => router.push("/driver/earnings"),
+  },
+  {
+    icon: <ActivateMagazine />,
+    label: "Activate Magazine",
+    color: "text-blue-600",
+    onClick: () => router.push("/driver/magazines"),
+  },
+  {
+    icon: <EditProfile />,
+    label: "Update Profile",
+    color: "text-blue-600",
+    onClick: () => router.push("/driver/profile"),
+  },
+];
+
 
   return (
     <Container title="Driver Dashboard" >

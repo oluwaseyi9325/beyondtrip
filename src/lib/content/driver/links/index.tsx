@@ -2,12 +2,13 @@ import {  MdAccountBalanceWallet, MdNewspaper } from "react-icons/md";
 import { FaUser, FaBell } from "react-icons/fa";
 import DashboardIcon from "~/assets/icons/dashboard";
 import EarningIcon from "~/assets/icons/earning";
-
-// const MdDashboard = require('@/public/assets/icons/dashboard').default;``
+import MagazineIcon from "~/assets/icons/magazine";
+import ProfileIcon from "~/assets/icons/profile";
+import NotificationIcon from "~/assets/icons/notification";
 
 export const DriverLinks = [
   {
-    icon: <DashboardIcon  />,
+    icon: <DashboardIcon />,
     text: "Dashboard",
     path: "/driver",
   },
@@ -17,17 +18,17 @@ export const DriverLinks = [
     path: "/driver/earnings",
   },
   {
-    icon: <MdNewspaper size={20} />,
+    icon: <MagazineIcon />,
     text: "Magazines",
     path: "/driver/magazines",
   },
   {
-    icon: <FaUser size={20} />,
+    icon: <ProfileIcon />,
     text: "Profile",
     path: "/driver/profile",
   },
   {
-    icon: <FaBell size={20} />,
+    icon: <NotificationIcon />,
     text: "Notifications",
     path: "/driver/notifications",
   },
