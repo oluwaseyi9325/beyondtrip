@@ -41,6 +41,37 @@ export const useLogin = () => {
   });
 };
 
+
+export const usePartnerLogin = () => {
+  const { handleLogin } = useAuthStore();
+  const router = useRouter();
+
+  return useMutation({
+    mutationKey: ["login-user"],
+    mutationFn: async (data: TLoginSchema) => {
+      // console.log(data,"Login data")
+      const response = await makeRequest({
+        method: "POST",
+        url: "partner/login",
+        data,
+      });
+      return response?.data;
+    },
+    onSuccess: (response) => {
+      const formatResponse={...response?.partner, token: response?.token, role: "advertiser"}
+      handleLogin(formatResponse);
+      const role = formatResponse?.role
+      if (role === "advertiser") router.push("/advertiser");
+    },
+    onError: (error: any) => {
+      console.log(error,"login error")
+      toast.error(
+        error?.response.data?.errors[0]?.message ?? "An error occured"
+      );
+    },
+  });
+};
+
 export const useGetMe = () => {
   return useQuery({
     queryKey: ["profile"],
