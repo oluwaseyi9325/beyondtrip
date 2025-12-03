@@ -183,7 +183,7 @@ export const useChangePassword = () => {
     mutationKey: ["change-password"],
     mutationFn: async (data: any) => {
       const response = await makeRequest({
-        url: `Account/changePassword`,
+        url: `driver-dashboard?action=change-password`,
         method: "POST",
         data,
         requireToken: true,

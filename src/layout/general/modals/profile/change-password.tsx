@@ -9,6 +9,7 @@ import Button from "@/components/button";
 import { useChangePassword } from "@/services/auth.service";
 // import { validatePassword } from "@/utils/validatePassword";
 import { LuLockKeyhole } from "react-icons/lu";
+import { useRouter } from "next/router";
 
 interface TUploadModal {
   open: boolean;
@@ -19,7 +20,7 @@ interface TUploadModal {
 export interface TChangePasswordForm {
   currentPassword: string;
   newPassword: string;
-  confirmNewPassword: string;
+  confirmPassword: string;
 }
 
 const schema = yup.object().shape({
@@ -27,10 +28,7 @@ const schema = yup.object().shape({
   newPassword: yup
     .string()
     .required("New password is required"),
-    // .test("strong", "Password must be at least 8 characters", (value) =>
-    //   validatePassword(value)
-    // ),
-  confirmNewPassword: yup
+  confirmPassword: yup
     .string()
     .oneOf([yup.ref("newPassword")], "Passwords must match")
     .required("Confirm new password is required"),
@@ -48,6 +46,8 @@ const ChangePassword = ({ open, handleClose }: TUploadModal) => {
     resolver: yupResolver(schema),
   });
 
+  const router = useRouter();
+
   const create = useChangePassword();
   const newPasswordValue = watch("newPassword");
 
@@ -58,6 +58,8 @@ const ChangePassword = ({ open, handleClose }: TUploadModal) => {
         toast.success("Password changed successfully!");
         handleClose();
         reset();
+        router.push("/");
+
       },
       onError: (err: any) => {
         toast.error(
@@ -110,11 +112,11 @@ const ChangePassword = ({ open, handleClose }: TUploadModal) => {
           <Password
             label="Confirm New Password"
             placeholder="Re-enter your new password"
-            register={register("confirmNewPassword", {
+            register={register("confirmPassword", {
               validate: (value) =>
                 value === newPasswordValue || "Passwords do not match",
             })}
-            error={errors.confirmNewPassword as FieldError}
+            error={errors.confirmPassword as FieldError}
             icon={<LuLockKeyhole size={20} color="#121363" />}
           />
         </section>

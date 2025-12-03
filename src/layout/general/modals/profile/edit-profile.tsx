@@ -11,15 +11,13 @@ import { useUpdateProfile } from "@/services/auth.service";
 import { useGetadvertisersProfile } from "@/services/advertiser.service";
 import { FiEdit2, FiX } from "react-icons/fi";
 import Image from "next/image";
+
 interface TUploadModal {
   open: boolean;
   handleClose: () => void;
-  // classId: string;
-  // refetch?: () => void;
 }
 
 export interface TEditProfileForm {
-  // username: string;
   firstName: string;
   lastName: string;
   email: string;
@@ -30,7 +28,6 @@ export interface TEditProfileForm {
 }
 
 const schema = yup.object().shape({
-  // username: yup.string().required("Username is required"),
   firstName: yup.string().required("First name is required"),
   lastName: yup.string().required("Last name is required"),
   email: yup.string().email("Invalid email").required("Email is required"),
@@ -39,12 +36,10 @@ const schema = yup.object().shape({
   references: yup.string().required("References are required"),
 });
 
-const EditProfile = ({ open, handleClose, }: TUploadModal) => {
+const EditProfile = ({ open, handleClose }: TUploadModal) => {
   const { profile, updateProfile: updateUser } = useAuthStore();
-  const { data: response } = useGetadvertisersProfile();
-  // const updateProfile = useUpdateProfile(profile?.id);
+  const { data: response, refetch } = useGetadvertisersProfile();
   const updateProfile = useUpdateProfile();
-
 
   const [preview, setPreview] = useState<string | null>(null);
 
@@ -59,13 +54,16 @@ const EditProfile = ({ open, handleClose, }: TUploadModal) => {
     resolver: yupResolver(schema),
   });
 
+  // Update store when profile data is fetched
   useEffect(() => {
-    if (response) updateUser(response?.data);
+    if (response?.data) {
+      updateUser(response.data);
+    }
   }, [response, updateUser]);
 
+  // Populate form when modal opens
   useEffect(() => {
     if (open && profile) {
-      // setValue("username", profile.username || "");
       setValue("firstName", profile.firstName || "");
       setValue("lastName", profile.lastName || "");
       setValue("email", profile.email || "");
@@ -94,27 +92,39 @@ const EditProfile = ({ open, handleClose, }: TUploadModal) => {
   };
 
   const onSubmit = (data: TEditProfileForm) => {
-    // console.log(data)
     const payload = { ...data, id: profile?.id };
-    console.log(payload)
-    // updateProfile.mutate(payload, {
-    //   onSuccess: () => {
-    //     toast.success("Profile updated successfully!");
-    //     // if (refetch) refetch();
-    //     handleClose();
-    //     reset();
-    //   },
-    //   onError: (err: any) => {
-    //     toast.error(
-    //       err?.response?.data?.error?.description ??
-    //       "Something went wrong while updating the profile"
-    //     );
-    //   },
-    // });
+    
+    updateProfile.mutate(payload, {
+      onSuccess: (response) => {
+        toast.success("Profile updated successfully!");
+        if (response?.data) {
+          let formatData = { ...profile, ...response.data?.profile }; 
+          updateUser(formatData);
+          if (response.data.avatarUrl) {
+            setPreview(response.data.avatarUrl);
+          }
+        }
+        
+        // Refetch to ensure data is in sync
+        if (refetch) {
+          refetch();
+        }
+        
+        handleClose();
+        reset();
+      },
+      onError: (err: any) => {
+        toast.error(
+          err?.response?.data?.error?.description ??
+          "Something went wrong while updating the profile"
+        );
+      },
+    });
   };
 
   const handleModalClose = () => {
     reset();
+    setPreview(profile?.avatarUrl || null);
     handleClose();
   };
 
@@ -140,7 +150,10 @@ const EditProfile = ({ open, handleClose, }: TUploadModal) => {
                 <Image
                   src={preview}
                   alt="Profile"
+                  width={96}
+                  height={96}
                   className="w-full h-full object-cover"
+                  unoptimized={preview.startsWith('blob:')}
                 />
               ) : (
                 <div className="w-12 h-12 rounded-full bg-gray-200" />
@@ -150,14 +163,14 @@ const EditProfile = ({ open, handleClose, }: TUploadModal) => {
               <button
                 type="button"
                 onClick={handleRemoveImage}
-                className="absolute bottom-0 right-0 bg-white rounded-full shadow p-1"
+                className="absolute bottom-0 right-0 bg-white rounded-full shadow p-1 hover:bg-gray-50"
               >
                 <FiX className="text-gray-600 text-sm" />
               </button>
             ) : (
               <label
                 htmlFor="profile-upload"
-                className="absolute top-0 right-0 bg-white rounded-full shadow p-1 cursor-pointer"
+                className="absolute top-0 right-0 bg-white rounded-full shadow p-1 cursor-pointer hover:bg-gray-50"
               >
                 <FiEdit2 className="text-gray-600 text-sm" />
                 <input
@@ -179,13 +192,6 @@ const EditProfile = ({ open, handleClose, }: TUploadModal) => {
 
         {/* Form Fields */}
         <div className="space-y-3">
-          {/* <Input
-            label="Username"
-            placeholder="Username"
-            register={register("username")}
-            error={errors.username}
-          /> */}
-
           <div className="grid grid-cols-2 gap-3">
             <Input
               label="First Name"
@@ -215,12 +221,14 @@ const EditProfile = ({ open, handleClose, }: TUploadModal) => {
               error={errors.phone}
             />
           </div>
+          
           <Input
             label="Address"
             placeholder="Enter address"
             register={register("address")}
             error={errors.address}
           />
+          
           <Input
             label="References"
             placeholder="Enter references"
@@ -229,10 +237,8 @@ const EditProfile = ({ open, handleClose, }: TUploadModal) => {
           />
         </div>
 
-
-
         {/* Buttons */}
-        <div className="flex justify-end gap-4 ">
+        <div className="flex justify-end gap-4">
           <Button
             type="button"
             className="w-32 border border-gray-300 text-gray-700 bg-white hover:bg-gray-50"

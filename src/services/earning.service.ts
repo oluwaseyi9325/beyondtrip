@@ -9,7 +9,7 @@ export const useDriverEarnings = (params?: any) => {
     queryKey: ["driver-ratings", { params }],
     queryFn: () =>
       makeRequest({
-        url: "driver-dashboard?action=earnings",
+        url: "driver-dashboard?action=withdrawals",
         params,
       }),
     retry: 1,

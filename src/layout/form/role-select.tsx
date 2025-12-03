@@ -19,10 +19,10 @@ export const RoleSelectionOverlay = ({ onSelectRole, onClose }: any) => {
         {/* Header */}
         <div className="text-center mb-8">
           <p className="text-xl md:text-2xl text-gray-700 mb-2">
-            Welcome to Beyond Trips!
+          Welcome Back!
           </p>
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900">
-            Lets get you started
+           Select your account type
           </h1>
         </div>
 
@@ -74,7 +74,7 @@ export const RoleSelectionOverlay = ({ onSelectRole, onClose }: any) => {
                 selectedRole === 'driver' ? 'text-white' : 'text-gray-900'
               }`}
             >
-              Sign up as a Driver
+             Login as Driver
             </h3>
           </button>
 
@@ -125,7 +125,7 @@ export const RoleSelectionOverlay = ({ onSelectRole, onClose }: any) => {
                 selectedRole === 'partner' ? 'text-white' : 'text-gray-900'
               }`}
             >
-              Become a Partner
+             Login as Partner
             </h3>
           </button>
         </div>
@@ -135,17 +135,17 @@ export const RoleSelectionOverlay = ({ onSelectRole, onClose }: any) => {
           onClick={handleContinue}
           className="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white text-lg md:text-xl font-semibold py-4 md:py-5 rounded-2xl shadow-lg transition-all duration-300 transform hover:scale-[1.02] mb-6"
         >
-          Continue
+          Continue to Login
         </button>
 
         {/* Login Link */}
         <p className="text-center text-gray-700 text-base md:text-lg">
-          Already have an account?{' '}
+          Don't have an account?{' '}
           <button
             onClick={onClose}
             className="text-blue-600 font-bold hover:text-blue-700 transition-colors underline-offset-2 hover:underline"
           >
-            Log in
+            Sign up
           </button>
         </p>
       </div>
