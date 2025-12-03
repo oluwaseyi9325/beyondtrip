@@ -8,6 +8,12 @@ import { IoMenu } from "react-icons/io5";
 import { FaUser } from "react-icons/fa";
 import { MdPayment, MdNotifications, MdSupport } from "react-icons/md";
 import Link from "next/link";
+import NotificationIcon from "~/assets/icons/notification";
+import ProfileIcon from "~/assets/icons/profile";
+import Image from "next/image";
+import ContactSupportIcon from "~/assets/icons/contactSupport";
+import LogOutIcon from "~/assets/icons/logout";
+
 
 interface Props {
   onToggleSidebar?: () => void;
@@ -57,37 +63,44 @@ const Topbar = ({
 
   const menuItems = [
     {
-      icon: <FaUser size={18} />,
+      icon: <ProfileIcon />,
       label: "Your Profile",
       onClick: () => {
         setIsDropdownOpen(false);
         router.push("/driver/profile");
-      }
+      },
     },
     {
-      icon: <MdPayment size={18} />,
+      icon: (
+        <Image
+          src="/assets/svg/withdrawEarning.svg"
+          alt="Withdraw Earnings"
+          width={20}
+          height={20}
+        />
+      ),
       label: "Payout",
       onClick: () => {
         setIsDropdownOpen(false);
         router.push("/driver/earnings");
-      }
+      },
     },
     {
-      icon: <MdNotifications size={18} />,
+      icon: <NotificationIcon />,
       label: "Notifications",
       onClick: () => {
         setIsDropdownOpen(false);
         router.push("/driver/notifications");
-      }
+      },
     },
     {
-      icon: <MdSupport size={18} />,
+      icon: <ContactSupportIcon />,
       label: "Contact Support",
       onClick: () => {
         setIsDropdownOpen(false);
         router.push("#");
-      }
-    }
+      },
+    },
   ];
 
   // Get initials from name
@@ -108,7 +121,9 @@ const Topbar = ({
           <IoMenu size={24} />
         </button>
         <div>
-          <h3 className="font-bold text-lg md:text-xl text-gray-900">{title}</h3>
+          <h3 className="font-bold text-lg md:text-xl text-gray-900">
+            {title}
+          </h3>
         </div>
       </div>
 
@@ -126,11 +141,11 @@ const Topbar = ({
 
         {/* Notification Bell */}
         <button
-          className="relative w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-colors"
+          className="relative w-10 shrink-0 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-colors"
           onClick={() => router.push("/driver/notifications")}
           aria-label="Notifications"
         >
-          <GoBellFill size={20} className="text-gray-700" />
+          <NotificationIcon className="text-[#27458F] " />
           {/* Notification Badge - optional */}
           {/* <span className="absolute top-1 right-1 h-2 w-2 bg-red-500 rounded-full"></span> */}
         </button>
@@ -184,7 +199,7 @@ const Topbar = ({
                   className="w-full flex items-center gap-3 px-4 py-2.5 hover:bg-gray-50 transition-colors text-left"
                 >
                   <span className="text-[#2C4C9C]">
-                    <MdLogout size={18} />
+                    <LogOutIcon />
                   </span>
                   <span className="text-sm text-gray-700 font-medium">
                     Logout

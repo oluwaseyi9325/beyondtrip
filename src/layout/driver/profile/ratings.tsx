@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { FaStar, FaUser } from 'react-icons/fa';
 import Pagination from '@/components/pagination';
 import { useGetDriverRatings } from '@/services/ratings.servcie';
+import ProfileIcon from '~/assets/icons/profile';
 
 function Ratings() {
 const { data } = useGetDriverRatings();
@@ -49,12 +50,15 @@ const { data } = useGetDriverRatings();
       <div className="space-y-6">
         {/* Ratings Grid */}
 
-         <div className="grid lg:grid-cols-2 gap-4">
-          {currentRatings.map((rating:any) => (
-            <div key={rating.id} className="bg-white border border-gray-300 rounded-xl p-4">
+        <div className="grid lg:grid-cols-2 gap-4">
+          {currentRatings.map((rating: any) => (
+            <div
+              key={rating.id}
+              className="bg-white border border-gray-300 rounded-xl p-4"
+            >
               <div className="flex items-start gap-4">
                 <div className="h-12 w-12 rounded-full bg-blue-900 flex items-center justify-center text-white shrink-0">
-                  <FaUser size={20} />
+                  <ProfileIcon />
                 </div>
                 <div className="flex-1">
                   <div className="flex items-center gap-1 mb-2">
@@ -62,12 +66,18 @@ const { data } = useGetDriverRatings();
                       <FaStar
                         key={star}
                         size={20}
-                        className={star <= rating.rating ? "fill-yellow-400 text-yellow-400" : "text-gray-300"}
+                        className={
+                          star <= rating.rating
+                            ? "fill-yellow-400 text-yellow-400"
+                            : "text-gray-300"
+                        }
                       />
                     ))}
                   </div>
                   {rating.review && (
-                    <p className="text-sm text-gray-700 mb-2">{rating.review}</p>
+                    <p className="text-sm text-gray-700 mb-2">
+                      {rating.review}
+                    </p>
                   )}
                   <div className="flex flex-col sm:flex-row items-start sm:items-center sm:justify-between text-sm gap-1">
                     <div className="flex items-center gap-2">
@@ -78,16 +88,15 @@ const { data } = useGetDriverRatings();
                         {formatTime(rating.createdAt)}
                       </span>
                     </div>
-                    <span className="text-gray-900">{getUserName(rating.rater)}</span>
+                    <span className="text-gray-900">
+                      {getUserName(rating.rater)}
+                    </span>
                   </div>
                 </div>
               </div>
             </div>
           ))}
         </div>
-
-        
-     
 
         {/* Pagination Component */}
         <Pagination
