@@ -14,8 +14,8 @@ import { getInitials } from '@/utils/getInitials';
 function Earnings() {
   const {profile}=useAuthStore()
   const { data } = useDriverEarnings()
-  const earningData= data?.earnings?.recent
-  console.log(data?.earnings,"earningsdsss")
+  const earningData= data?.withdrawals?.history
+  console.log(data,"earningsdsss")
   // Mock data - replace with your actual data
   const totalEarnings = data?.earnings?.total || 0;
   const availableBalance = 55000.00;

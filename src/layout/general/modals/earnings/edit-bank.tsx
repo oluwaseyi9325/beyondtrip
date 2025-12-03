@@ -23,7 +23,7 @@ export interface TEditBank {
   bankName: string;
   accountName: string;
   accountNumber: string;
-  reason: string;
+  // reason: string;
 }
 
 // Validation Schema
@@ -33,8 +33,7 @@ const editBankSchema = yup.object().shape({
   accountNumber: yup
     .string()
     .required("Account number is required"),
-  // .matches(/^[0-9]{10}$/, "Account number must be 10 digits"),
-  reason: yup.string().required("Reason is required"),
+  // reason: yup.string().required("Reason is required"),
 });
 
 
@@ -60,14 +59,15 @@ const EditBank = ({ open, handleClose, refetch, data }: TModal) => {
       setValue("bankName", data?.bankName || "");
       setValue("accountName", data?.accountName || "");
       setValue("accountNumber", data?.accountNumber || "");
-      setValue("reason", "Changed bank account");
+      // setValue("reason", "Changed bank account");
     }
   }, [data, open, setValue]);
 
   // Submit function - replace with your actual API call
-  const onSubmit = async (formData: TEditBank) => {
-    try {
-      update.mutate(formData, {
+  const onSubmit =  (formData: TEditBank) => {
+    console.log("Submitting bank details:", formData);
+      const payload = { ...formData, reason: "Changed bank account" };
+      update.mutate(payload, {
         onSuccess: () => {
           toast.success("Bank details updated successfully!");
           if (refetch) refetch();
@@ -82,15 +82,10 @@ const EditBank = ({ open, handleClose, refetch, data }: TModal) => {
           );
         },
       });
-      console.log("Submitting bank details:", formData);
+      // console.log("Submitting bank details:", formData);
       
      
-    } catch (err: any) {
-      toast.error(
-        err?.response?.data?.error?.description ||
-        "An error occurred while updating bank details"
-      );
-    }
+   
   };
 
   const handleCancel = () => {
@@ -150,11 +145,12 @@ const EditBank = ({ open, handleClose, refetch, data }: TModal) => {
         {/* Buttons */}
         <div className="flex gap-4 mt-4">
           <Button
+            disabled={update.isPending}
             type="submit"
             size="md"
             className="!w-full bg-[#336AEA] text-white rounded-lg font-medium hover:bg-[#2952b8] transition-colors"
           >
-            Submit
+           { update.isPending ? "Submitting..." : "Submit" }
           </Button>
 
           <Button
