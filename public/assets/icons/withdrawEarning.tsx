@@ -1,10 +1,12 @@
-import * as React from "react"
-import { SVGProps } from "react"
-const SvgComponent = (props: SVGProps<SVGSVGElement>) => (
+import * as React from "react";
+import { SVGProps } from "react";
+
+
+const WithdrawEarnings = (props: SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="1em"
-    height="1em"
+    width={21}
+    height={20}
     fill="none"
     {...props}
   >
@@ -45,5 +47,6 @@ const SvgComponent = (props: SVGProps<SVGSVGElement>) => (
       <path fill="#336AEA" d="M-1.5-2h24v24h-24V-2Z" />
     </g>
   </svg>
-)
-export default SvgComponent
+);
+export default WithdrawEarnings;
+

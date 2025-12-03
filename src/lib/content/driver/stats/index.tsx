@@ -7,6 +7,10 @@ import { AiOutlineDollar } from "react-icons/ai";
 import { MdOutlineQrCodeScanner } from "react-icons/md";
 import { HiOutlineChartBar } from "react-icons/hi";
 import { RiStackLine } from "react-icons/ri";
+import EarningIcon from "~/assets/icons/totalEarning";
+import TotalPoints from "~/assets/icons/totalPoint";
+import TotalScans from "~/assets/icons/totalScans";
+import TotalQuota from "~/assets/icons/quota";
 
 type TStatisticsProps={
   totalEarnings:number,
@@ -16,28 +20,28 @@ type TStatisticsProps={
 }
 
 export const Statistics=({totalEarnings, totalPoints, totalScans, totalQuota}:TStatisticsProps)=>{
-  return[
-  {
-    icon: <AiOutlineDollar size={20} />,
-    title: "Total Earnings",
-    figure: `₦${totalEarnings.toLocaleString()}`, // or just hide with ************
-  },
-  {
-    icon: <HiOutlineChartBar size={20} />,
-    title: "Total Points",
-    figure: `${totalPoints}`,
-  },
-  {
-    icon: <MdOutlineQrCodeScanner size={20} />,
-    title: "Scans",
-    figure: `${totalScans}`,
-  },
-  {
-    icon: <RiStackLine size={20} />,
-    title: "Quota",
-    figure: `${totalQuota}`,
-  },
-];
+  return [
+    {
+      icon: <EarningIcon />,
+      title: "Total Earnings",
+      figure: `₦${totalEarnings.toLocaleString()}`, // or just hide with *********
+    },
+    {
+      icon: <TotalPoints />,
+      title: "Total Points",
+      figure: `${totalPoints}`,
+    },
+    {
+      icon: <TotalScans />,
+      title: "Scans",
+      figure: `${totalScans}`,
+    },
+    {
+      icon: <TotalQuota />,
+      title: "Quota",
+      figure: `${totalQuota}`,
+    },
+  ];
 }
 export const advertiserStatistics: TStats[] = [
   {

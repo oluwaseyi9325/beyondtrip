@@ -61,7 +61,7 @@ const Topbar = ({
       label: "Your Profile",
       onClick: () => {
         setIsDropdownOpen(false);
-        router.push("/profile");
+        router.push("/driver/profile");
       }
     },
     {
@@ -69,7 +69,7 @@ const Topbar = ({
       label: "Payout",
       onClick: () => {
         setIsDropdownOpen(false);
-        router.push("/payout");
+        router.push("/driver/earnings");
       }
     },
     {
@@ -77,7 +77,7 @@ const Topbar = ({
       label: "Notifications",
       onClick: () => {
         setIsDropdownOpen(false);
-        router.push("/notifications");
+        router.push("/driver/notifications");
       }
     },
     {
@@ -85,7 +85,7 @@ const Topbar = ({
       label: "Contact Support",
       onClick: () => {
         setIsDropdownOpen(false);
-        router.push("/support");
+        router.push("#");
       }
     }
   ];
@@ -127,7 +127,7 @@ const Topbar = ({
         {/* Notification Bell */}
         <button
           className="relative w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-colors"
-          onClick={() => router.push("/notifications")}
+          onClick={() => router.push("/driver/notifications")}
           aria-label="Notifications"
         >
           <GoBellFill size={20} className="text-gray-700" />
