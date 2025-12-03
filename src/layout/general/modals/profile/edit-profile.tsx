@@ -42,7 +42,9 @@ const schema = yup.object().shape({
 const EditProfile = ({ open, handleClose, }: TUploadModal) => {
   const { profile, updateProfile: updateUser } = useAuthStore();
   const { data: response } = useGetadvertisersProfile();
-  const updateProfile = useUpdateProfile(profile?.id);
+  // const updateProfile = useUpdateProfile(profile?.id);
+  const updateProfile = useUpdateProfile();
+
 
   const [preview, setPreview] = useState<string | null>(null);
 

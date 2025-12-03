@@ -22,7 +22,7 @@ export const RoleSelectionOverlay = ({ onSelectRole, onClose }: any) => {
             Welcome to Beyond Trips!
           </p>
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900">
-            Let's get you started
+            Lets get you started
           </h1>
         </div>
 

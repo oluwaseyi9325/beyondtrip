@@ -1,6 +1,6 @@
 import Table from "@/components/table";
 import { useCampaignColumns } from "./data";
-import { useState, useMemo } from "react";
+import { useState, } from "react";
 // import driverToClass from "@/layout/general/modals/driver-to-class";
 
 import { useTableSearch } from "@/hooks/use-table-search";

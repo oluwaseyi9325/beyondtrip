@@ -3,12 +3,10 @@ import Container from "@/layout/driver/container";
 import { Statistics } from "@/lib/content/driver/stats";
 import Stats from "@/ui/stats";
 import { EarningsGraph, MagazinePickup, NotificationCard, QuickActions, UpcomingPayout } from "@/layout/driver/dashboard";
-import { FaWallet, FaNewspaper, FaUserEdit } from "react-icons/fa";
 import useAuthStore from "@/store/useAuthStore";
 import { useDriverEarnings } from "@/services/earning.service";
-import { link } from "fs";
 import { useRouter } from "next/navigation";
-import WithdrawEarnings from "~/assets/icons/withdrawEarning";
+
 import ActivateMagazine from "~/assets/icons/activvateMagazine";
 import EditProfile from "~/assets/icons/editProfile";
 import Image from "next/image";
@@ -20,7 +18,7 @@ const Dashboard = () => {
 
   
     const { data } = useDriverEarnings()
-  const earningData = data?.earnings?.recent
+  // const earningData = data?.earnings?.recent
   console.log(data?.earnings, "earningsdsss")
   const totalEarnings = data?.earnings?.total || 0;
   const totalPoints = data?.earnings?.totalPoints || 0;
