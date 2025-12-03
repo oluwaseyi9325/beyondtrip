@@ -7,7 +7,7 @@ import { CustomGraph } from "@/layout/general/graph/CustomGraph";
 import SelectSearch from "@/components/input/selectSearch";
 import DateSort from "@/components/input/dateSort";
 import Pagination from "@/components/pagination";
-import { useState, useMemo } from "react";
+import { useState, } from "react";
 
 function Earnings() {
 
