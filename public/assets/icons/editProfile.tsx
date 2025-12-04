@@ -1,18 +1,25 @@
 import * as React from "react";
 import { SVGProps } from "react";
-
 const EditProfile = (props: SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width={24}
-    height={24}
+    width={20}
+    height={20}
     fill="none"
     {...props}
   >
-    <path
-      fill="#336AEA"
-      d="M2 3.993A1 1 0 0 1 2.992 3h18.016c.548 0 .992.445.992.993v16.014a1 1 0 0 1-.992.993H2.992A.993.993 0 0 1 2 20.007V3.993ZM6 15v2h12v-2H6Zm0-8v6h6V7H6Zm8 0v2h4V7h-4Zm0 4v2h4v-2h-4ZM8 9h2v2H8V9Z"
-    />
+    <g clipPath="url(#a)">
+      <path
+        fill="#fff"
+        d="M7 10a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm2.8 1h-.522a5.445 5.445 0 0 1-4.556 0H4.2A4.201 4.201 0 0 0 0 15.2v1.3A1.5 1.5 0 0 0 1.5 18h8.59a1.5 1.5 0 0 1-.08-.666l.212-1.903.037-.347.247-.246 2.416-2.416A4.157 4.157 0 0 0 9.8 11Zm1.416 4.54-.213 1.907a.498.498 0 0 0 .55.55l1.903-.213 4.31-4.309-2.241-2.24-4.31 4.306Zm8.565-5.137L18.597 9.22a.749.749 0 0 0-1.056 0L16.359 10.4l-.128.128 2.244 2.24 1.306-1.306a.752.752 0 0 0 0-1.059Z"
+      />
+    </g>
+    <defs>
+      <clipPath id="a">
+        <path fill="#fff" d="M0 2h20v16H0z" />
+      </clipPath>
+    </defs>
   </svg>
 );
 export default EditProfile;
+

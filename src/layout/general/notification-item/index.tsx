@@ -90,6 +90,7 @@
 
 import { MdEmail, MdClose, MdCampaign, MdAttachMoney, MdInfo } from "react-icons/md";
 import { useState, useEffect } from "react";
+import InboxIcon from "~/assets/icons/inbox";
 
 interface Notification {
   id: string;
@@ -115,7 +116,7 @@ const NotificationItem = ({
       case "earnings":
         return <MdAttachMoney size={24} className="text-green-600" />;
       case "general":
-        return <MdCampaign size={24} className="text-blue-600" />;
+        return <InboxIcon />;
       default:
         return <MdInfo size={24} className="text-gray-600" />;
     }
@@ -163,7 +164,7 @@ const NotificationItem = ({
     >
       <div className="flex items-start gap-4">
         {/* Icon */}
-        <div className="flex-shrink-0 mt-1">{getIcon(notification.type)}</div>
+        <div className="shrink-0 mt-1">{getIcon(notification.type)}</div>
 
         {/* Content */}
         <div className="flex-1 min-w-0">

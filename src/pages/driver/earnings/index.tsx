@@ -10,6 +10,8 @@ import AvailableBalance from '@/layout/driver/earning/available-balance';
 import { useDriverEarnings } from '@/services/earning.service';
 import useAuthStore from '@/store/useAuthStore';
 import { getInitials } from '@/utils/getInitials';
+import EarningIcon from '~/assets/icons/totalEarning';
+
 
 function Earnings() {
   const {profile}=useAuthStore()
@@ -26,7 +28,7 @@ function Earnings() {
   const accountName= getInitials(profile?.firstName, profile?.lastName)
 
   return (
-    <Container title='Earnings' active="Earnings">
+    <Container title="Earnings" active="Earnings">
       <section className=" space-y-4">
         {/* Top Row: Total Earnings and Available Balance */}
         <div className="grid grid-cols-1 lg:grid-cols-3 lg:gap-6">
@@ -34,10 +36,12 @@ function Earnings() {
           <div className="bg-white border mb-6 lg:mb-0 border-gray-200 rounded-2xl p-6 shadow-sm col-span-1 flex flex-col justify-between">
             <div>
               <div className="flex items-center gap-3 mb-6">
-                <div className="h-12 w-12  rounded-full bg-blue-100 flex items-center justify-center">
-                  <FaWallet size={20} className="text-blue-600" />
+                <div className="h-10 w-10  shrink-0 rounded-full bg-[#90B1FF59] flex items-center justify-center">
+                  <EarningIcon />
                 </div>
-                <h2 className="text-lg font-semibold text-gray-900">Total Earnings</h2>
+                <h2 className="text-lg font-semibold text-gray-900">
+                  Total Earnings
+                </h2>
               </div>
               <h3 className="text-4xl font-bold text-gray-900">
                 ₦{totalEarnings.toLocaleString()}
@@ -47,16 +51,21 @@ function Earnings() {
 
           {/* Available Balance Card */}
           <AvailableBalance availableBalance={availableBalance} />
-         
         </div>
 
         {/* Bottom Row: Upcoming Payout and Bank Details */}
         <div className="grid grid-cols-1 lg:grid-cols-3 lg:gap-6">
           {/* Upcoming Payout Card */}
-          <UpcomingPayout upcomingPayout={upcomingPayout} payoutDate={payoutDate} />
+          <UpcomingPayout
+            upcomingPayout={upcomingPayout}
+            payoutDate={payoutDate}
+          />
           {/* Bank Details Card */}
-          <BankDetails accountName={accountName} bankName={bankName } accountNumber={accountNumber} />
-        
+          <BankDetails
+            accountName={accountName}
+            bankName={bankName}
+            accountNumber={accountNumber}
+          />
         </div>
 
         {/* Earnings Table */}

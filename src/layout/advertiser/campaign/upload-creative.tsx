@@ -209,7 +209,7 @@ const UploadCreative = () => {
                   className="border-2 border-dashed border-gray-300 rounded-lg p-12 text-center hover:border-blue-400 transition-colors cursor-pointer"
                 >
                   <label className="cursor-pointer flex flex-col items-center gap-4">
-                    <div className="bg-blue-100 p-4 rounded-full">
+                    <div className=" p-4">
                       <FaFileUpload size={32} className="text-blue-500" />
                     </div>
                     <div>

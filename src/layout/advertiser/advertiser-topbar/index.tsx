@@ -13,7 +13,7 @@ import ProfileIcon from "~/assets/icons/profile";
 import Image from "next/image";
 import ContactSupportIcon from "~/assets/icons/contactSupport";
 import LogOutIcon from "~/assets/icons/logout";
-
+import InvoiceIcon from "~/assets/icons/invoice";
 
 interface Props {
   onToggleSidebar?: () => void;
@@ -24,12 +24,12 @@ interface Props {
   title?: string
 }
 
-const Topbar = ({ 
-  onToggleSidebar, 
-  userName = "Samuel Emmaeus",
-  userRole = "Driver",
-  title="Dashboard",
-  onLogout 
+const AdvertiserTopbar = ({
+  onToggleSidebar,
+  userName = "ABC Digital Ltd.",
+  userRole = "Advertiser",
+  title = "Dashboard",
+  onLogout,
 }: Props) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -38,7 +38,10 @@ const Topbar = ({
   // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
         setIsDropdownOpen(false);
       }
     };
@@ -67,22 +70,15 @@ const Topbar = ({
       label: "Your Profile",
       onClick: () => {
         setIsDropdownOpen(false);
-        router.push("/driver/profile");
+        router.push("/advertiser/profile");
       },
     },
     {
-      icon: (
-        <Image
-          src="/assets/svg/withdrawEarning.svg"
-          alt="Withdraw Earnings"
-          width={20}
-          height={20}
-        />
-      ),
-      label: "Payout",
+      icon: <InvoiceIcon />,
+      label: "Invoices",
       onClick: () => {
         setIsDropdownOpen(false);
-        router.push("/driver/earnings");
+        router.push("/advertiser/invoices");
       },
     },
     {
@@ -90,7 +86,7 @@ const Topbar = ({
       label: "Notifications",
       onClick: () => {
         setIsDropdownOpen(false);
-        router.push("/driver/notifications");
+        router.push("/advertiser/profile");
       },
     },
     {
@@ -128,21 +124,11 @@ const Topbar = ({
       </div>
 
       {/* Right side: view ratings, bell and profile */}
-      <div className="flex items-center gap-3 md:gap-4">
-        {/* View Ratings Link - hidden on mobile */}
-        <Link
-          href="/driver/profile?tab=ratings"
-          className="hidden md:flex items-center gap-1 text-[#2C4C9C] hover:underline font-medium text-sm"
-          // onClick={() => router.push("/ratings")}
-        >
-          View your ratings
-          <span className="text-lg">›</span>
-        </Link>
-
+      <div className="flex items-center">
         {/* Notification Bell */}
         <button
-          className="relative w-10 shrink-0 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-colors"
-          onClick={() => router.push("/driver/notifications")}
+          className="relative w-10 shrink-0 h-10 rounded-full flex items-center justify-center transition-colors"
+          onClick={() => router.push("/advertiser/profile")}
           aria-label="Notifications"
         >
           <NotificationIcon className="text-[#27458F] " />
@@ -154,10 +140,10 @@ const Topbar = ({
         <div className="relative" ref={dropdownRef}>
           <button
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-            className="w-10 h-10 rounded-full bg-[#2C4C9C] flex items-center justify-center text-white font-semibold hover:bg-[#234080] transition-colors"
+            className="w-10 h-10 cursor-pointer rounded-full bg-[#2C4C9C] flex items-center justify-center text-white font-semibold hover:bg-[#234080] transition-colors"
             aria-label="User menu"
           >
-            {userName}
+            {userName?.[0]}
           </button>
 
           {/* Dropdown Menu */}
@@ -166,7 +152,7 @@ const Topbar = ({
               {/* User Info Header */}
               <div className="px-4 py-3 border-b border-gray-100 flex items-center gap-3">
                 <div className="w-12 h-12 rounded-full bg-[#2C4C9C] flex items-center justify-center text-white font-semibold text-lg">
-                  {userName}
+                  {userName?.[0]}
                 </div>
                 <div>
                   <p className="font-semibold text-gray-900 text-sm">
@@ -214,4 +200,4 @@ const Topbar = ({
   );
 };
 
-export default Topbar;
+export default AdvertiserTopbar;

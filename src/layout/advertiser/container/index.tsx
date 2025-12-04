@@ -1,6 +1,6 @@
 "use client";
 
-import Topbar from "@/layout/general/topbar";
+import AdvertiserTopbar from "../advertiser-topbar";
 import Sidebar from "../sidebar";
 // import useAuthStore from "@/store/useAuthStore";
 import { useEffect, useRef, useState } from "react";
@@ -65,15 +65,16 @@ const Container = ({title, children, active,}: TProps) => {
       {/* Sidebar (mobile + desktop) */}
       <div
         ref={sidebarRef}
-        className={`fixed z-50 top-0 left-0 h-full w-[250px] transition-transform duration-300 bg-[white] p-4  ${showSidebar ? "translate-x-0" : "-translate-x-full"
-          } md:relative md:translate-x-0 md:w-full md:p-0`}
+        className={`fixed z-50 top-0 left-0 h-full w-[250px] transition-transform duration-300 bg-[white] p-4  ${
+          showSidebar ? "translate-x-0" : "-translate-x-full"
+        } md:relative md:translate-x-0 md:w-full md:p-0`}
       >
         <Sidebar active={active} onCloseMobile={() => setShowSidebar(false)} />
       </div>
 
       {/* Main Content */}
       <section className="w-full h-full overflow-y-hidden">
-        <Topbar
+        <AdvertiserTopbar
           // search={search}
           // handleSearch={handleSearch}
           title={title}
