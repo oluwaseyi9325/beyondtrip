@@ -32,7 +32,7 @@ const Security = () => {
     <>
 
        {/* <Container title="Settings" active="Settings"> */}
-      <Container title="Notifications" active="Nofifications">
+      <Container title="Notifications" active="Notifications">
 
         {/* <section className=" py-6 h-full overflow-y-hidden"> */}
         <div className="py-6">

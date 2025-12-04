@@ -11,24 +11,31 @@ import { CampaignChart } from "@/layout/admin/dashboard/campaign-chart";
 import { RevenueChart } from "@/layout/admin/dashboard/revenue-chart";
 import { PastMagazines } from "@/layout/admin/dashboard/past-magazine";
 import { NewMagazines } from "@/layout/admin/dashboard/new-magazine";
-
-
+import CampaignIcon from "~/assets/icons/campaign";
+import MagazineIcon from "~/assets/icons/magazine";
+import PayoutIcon from "~/assets/icons/payout";
+import { useRouter } from "next/router";
 const Dashboard = () => {
+  const router = useRouter()
+
   const actions = [
     {
-      icon: <FaNewspaper size={20} />,
+      icon: <CampaignIcon />,
       label: "Manage Campaigns",
       color: "text-blue-600",
+      onClick: () => router.push("/admin/advertisers/campaigns"),
     },
     {
-      icon: <FaWallet size={20} />,
+      icon: <MagazineIcon />,
       label: "Manage Magazines",
       color: "text-blue-600",
-    },         
-    { 
-      icon: <FaNewspaper size={20} />,
+      onClick: () => router.push("/admin/drivers/magazines"),
+    },
+    {
+      icon: <PayoutIcon />,
       label: "Manage Payouts",
       color: "text-blue-600",
+      onClick: () => router.push("/admin/drivers/requests"),
     },
   ]; 
 

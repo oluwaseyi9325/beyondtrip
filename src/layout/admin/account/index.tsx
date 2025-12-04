@@ -8,9 +8,8 @@ import toast from "react-hot-toast";
 import Input from "@/components/input/input";
 import Button from "@/components/button";
 import { FiEdit2, FiX } from "react-icons/fi";
-import { MdEdit } from "react-icons/md";
 import Image from "next/image";
-
+import EditProfile from "~/assets/icons/editProfile";
 // ------------------------------------------------
 // Types
 // ------------------------------------------------
@@ -108,7 +107,7 @@ const AccountDetailsTab = () => {
                             onClick={() => setIsEditMode(!isEditMode)}
                             className="bg-[#336AEA] text-white px-4 py-2 rounded-lg font-medium hover:bg-[#2952b8] transition-colors flex items-center gap-2 text-sm sm:text-base"
                         >
-                            <MdEdit size={16} />
+                            <EditProfile />
                             Edit Profile
                         </button>
                     </div>

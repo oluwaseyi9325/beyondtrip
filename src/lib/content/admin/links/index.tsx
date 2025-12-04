@@ -8,50 +8,79 @@
 //   CiUser,
 // } from "react-icons/ci";
 // import { IoKeyOutline } from "react-icons/io5";
-import { IoMdSettings } from "react-icons/io";
-import { MdDashboard } from "react-icons/md";
-import { FaBell } from "react-icons/fa";
-import { IoIosPeople } from "react-icons/io";
+import DashboardIcon from "~/assets/icons/dashboard";
+import GroupIcon from "~/assets/icons/group";
+import NotificationIcon from "~/assets/icons/notification";
+import SettingIcon from "~/assets/icons/setting";
+import OverviewIcon from "~/assets/icons/overview";
+import MagazineIcon from "~/assets/icons/magazine";
+import RequestIcon from "~/assets/icons/request";
+import CampaignIcon from "~/assets/icons/campaign";
+import InvoiceSidebarIcon from "~/assets/icons/invoiceSidebar";
 
 export const AdminLinks = [
   {
-    icon: <MdDashboard size={20} />,
+    icon: <DashboardIcon />,
     text: "Dashboard",
     path: "/admin",
     hasSub: false,
     sub: [],
   },
   {
-    icon: <IoIosPeople size={20} />,
+    icon: <GroupIcon />,
     text: "Drivers",
     path: "",
     hasSub: true,
     sub: [
-      { text: "Overview", path: "/admin/drivers/overview" },
-      { text: "Magazines", path: "/admin/drivers/magazines" },
-      { text: "Manage Requests", path: "/admin/drivers/requests" },
+      {
+        text: "Overview",
+        path: "/admin/drivers/overview",
+        icon: <OverviewIcon />,
+      },
+      {
+        text: "Magazines",
+        path: "/admin/drivers/magazines",
+        icon: <MagazineIcon />,
+      },
+      {
+        text: "Manage Requests",
+        path: "/admin/drivers/requests",
+        icon: <RequestIcon />,
+      },
     ],
   },
   {
-    icon: <IoIosPeople size={20} />,
+    icon: <GroupIcon />,
     text: "Advertisers",
     path: "",
     hasSub: true,
     sub: [
-      { text: "Overview", path: "/admin/advertisers/overview" },
-      { text: "Campaigns", path: "/admin/advertisers/campaigns" },
-      { text: "Invoices", path: "/admin/advertisers/invoices" },
+      {
+        text: "Overview",
+        path: "/admin/advertisers/overview",
+        icon: <OverviewIcon />,
+      },
+      {
+        text: "Campaigns",
+        path: "/admin/advertisers/campaigns",
+        icon: <CampaignIcon />,
+      },
+      {
+        text: "Invoices",
+        path: "/admin/advertisers/invoices",
+        icon: <InvoiceSidebarIcon />,
+      },
     ],
   },
   {
-    icon: <FaBell size={20} />,
+    icon: <NotificationIcon />,
     text: "Notifications",
     path: "/admin/notifications",
     hasSub: false,
     sub: [],
   },
   {
-    icon: <IoMdSettings size={20} />,
+    icon: <SettingIcon />,
     text: "Settings",
     path: "/admin/settings",
     hasSub: false,
