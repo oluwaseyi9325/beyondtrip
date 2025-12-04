@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { BiKey } from "react-icons/bi";
-import { MdEdit } from "react-icons/md";
 // import EditProfile from '../modals/profile/edit-profile'
 import ChangePassword from "../modals/profile/change-password";
 import EditProfile from "../modals/profile/edit-profile";
@@ -8,6 +6,7 @@ import useAuthStore from "@/store/useAuthStore";
 import { getInitials } from "@/utils/getInitials";
 import EditUserProfile from "~/assets/icons/editProfile";
 import ChangePwsIcon from "~/assets/icons/changePws";
+
 
 function BasicDetailsContent() {
   const [open, setOpen] = useState(false);

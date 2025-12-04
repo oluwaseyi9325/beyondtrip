@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import NotificationCard from "../notificationCard";
 
+
 const NotificationPagination = ({
   currentPage,
   totalPages,
@@ -85,7 +86,7 @@ const NotificationPagination = ({
               disabled={page === "..."}
               className={`w-8 h-8 sm:w-10 sm:h-10 rounded-lg font-medium transition-colors text-xs sm:text-sm ${
                 page === currentPage
-                  ? "bg-blue-100 text-blue-600"
+                  ? "bg-blue-100 text-white"
                   : page === "..."
                   ? "cursor-default text-gray-400"
                   : "text-gray-600 hover:bg-gray-100"
@@ -109,7 +110,7 @@ const NotificationPagination = ({
   );
 };
 
-// ✅ Main Driver Notifications Component
+// Main Driver Notifications Component
 const DriverNotifications = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;

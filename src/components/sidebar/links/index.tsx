@@ -87,15 +87,17 @@ const SidebarLink = ({
                         "pl-8 pr-4 py-2.5 text-sm flex items-center rounded-md transition-all",
                         isSubItemActive
                           ? "bg-[white] text-[#336AEA]  font-bold"
-                          : "text-[#6B7280] hover:bg-[#F3F4F6] hover:text-[#336AEA]"
+                          : "text-[#27458F] hover:bg-[#F3F4F6] hover:text-[#336AEA]"
                       )}
                     >
                       {/* Optional: Add a bullet or dash indicator */}
-                      <span className={clsx(
-                        "mr-2 text-xs",
-                        isSubItemActive ? "text-[#336AEA]" : "text-[#9CA3AF]"
-                      )}>
-                        •
+                      <span
+                        className={clsx(
+                          "mr-2 text-xs",
+                          isSubItemActive ? "text-[#336AEA]" : "text-[#27458F]"
+                        )}
+                      >
+                        {item?.icon}
                       </span>
                       {item.text}
                     </Link>

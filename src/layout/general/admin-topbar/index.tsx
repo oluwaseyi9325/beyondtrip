@@ -7,6 +7,10 @@ import { MdLogout } from "react-icons/md";
 import { IoMenu } from "react-icons/io5";
 import { FaUserCircle, } from "react-icons/fa";
 import {  MdNotifications, MdPlaylistAddCheckCircle } from "react-icons/md";
+import InvoiceIcon from "~/assets/icons/invoice";
+import LogOutIcon from "~/assets/icons/logout";
+import ProfileIcon from "~/assets/icons/profile";
+import NotificationIcon from "~/assets/icons/notification";
 
 interface Props {
   onToggleSidebar?: () => void;
@@ -55,28 +59,28 @@ const AdminTopbar = ({
 
   const menuItems = [
     {
-      icon: <FaUserCircle size={18} />,
+      icon: <ProfileIcon />,
       label: "Account Settings",
       onClick: () => {
         setIsDropdownOpen(false);
-        router.push("/settings");
-      }
+        router.push("/admin/settings");
+      },
     },
     {
-      icon: <MdPlaylistAddCheckCircle size={18} />,
+      icon: <InvoiceIcon />,
       label: "Manage Payout",
       onClick: () => {
         setIsDropdownOpen(false);
-        router.push("/payout");
-      }
+        router.push("/admin/settings");
+      },
     },
     {
-      icon: <MdNotifications size={18} />,
+      icon: <NotificationIcon />,
       label: "Notifications",
       onClick: () => {
         setIsDropdownOpen(false);
-        router.push("/notifications");
-      }
+        router.push("/admin/notifications");
+      },
     },
   ];
 
@@ -98,7 +102,7 @@ const AdminTopbar = ({
           <IoMenu size={24} />
         </button>
         <div>
-          <h3 className="font-[700] text-xl md:text-[28px] text-gray-900">{title}</h3>
+          <h3 className="font-bold text-xl md:text-[28px] text-gray-900">{title}</h3>
         </div>
       </div>
 
@@ -114,7 +118,7 @@ const AdminTopbar = ({
         {/* Notification Bell */}
         <button 
           className="relative w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-colors"
-          onClick={() => router.push("/notifications")}
+          onClick={() => router.push("/admin/notifications")}
           aria-label="Notifications"
         >
           <GoBellFill size={20} className="text-[#27458F]" />
@@ -164,10 +168,10 @@ const AdminTopbar = ({
               <div className="border-t border-gray-100 pt-2">
                 <button
                   onClick={handleLogout}
-                  className="w-full flex items-center gap-3 px-4 py-2.5 hover:bg-gray-50 transition-colors text-left"
+                  className="w-full flex items-center gap-3 px-5 py-2.5 hover:bg-gray-50 transition-colors text-left"
                 >
                   <span className="text-[#2C4C9C]">
-                    <MdLogout size={18} />
+                    <LogOutIcon />
                   </span>
                   <span className="text-sm text-gray-700 font-medium">Logout</span>
                 </button>
